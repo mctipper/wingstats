@@ -1,0 +1,71 @@
+import type { BirdCard } from "../types/BirdCard";
+import { createHabitatInfo } from "../types/Habitats";
+
+// helper func to convert X to Boolean
+const convertFlagToBoolean = (value: string | undefined): boolean => value === 'X';
+
+export function transformBirdCard(raw: any): BirdCard {
+  return {
+    id: raw["id"],
+    commonName: raw["Common name"],
+    scientificName: raw["Scientific name"],
+    expansion: raw["Expansion"],
+    color: raw["Color"],
+    powerCategory: raw["PowerCategory"],
+    powerText: raw["Power text"],
+    predator: raw["Predator"],
+    flocking: raw["Flocking"],
+    bonusCard: raw["Bonus card"],
+    victoryPoints: raw["Victory points"],
+    nestType: raw["Nest type"],
+    eggCapacity: raw["Egg capacity"],
+    wingspan: raw["Wingspan"],
+    habitats: createHabitatInfo({
+        forest: convertFlagToBoolean(raw["Forest"]),
+        grassland: convertFlagToBoolean(raw["Grassland"]),
+        wetland: convertFlagToBoolean(raw["Wetland"])
+    }),
+    invertebrate: raw["Invertebrate"],
+    seed: raw["Seed"],
+    fish: raw["Fish"],
+    fruit: raw["Fruit"],
+    rodent: raw["Rodent"],
+    nectar: raw["Nectar"],
+    wildFood: raw["Wild (food)"],
+    slashFoodCost: raw["/ (food cost)"],
+    starFoodCost: raw["* (food cost)"],
+    totalFoodCost: raw["Total food cost"],
+    anatomist: raw["Anatomist"],
+    cartographer: raw["Cartographer"],
+    historian: raw["Historian"],
+    photographer: raw["Photographer"],
+    backyardBirder: raw["Backyard Birder"],
+    birdBander: raw["Bird Bander"],
+    birdCounter: raw["Bird Counter"],
+    birdFeeder: raw["Bird Feeder"],
+    dietSpecialist: raw["Diet Specialist"],
+    enclosureBuilder: raw["Enclosure Builder"],
+    falconer: raw["Falconer"],
+    fisheryManager: raw["Fishery Manager"],
+    foodWebExpert: raw["Food Web Expert"],
+    forester: raw["Forester"],
+    largeBirdSpecialist: raw["Large Bird Specialist"],
+    nestBoxBuilder: raw["Nest Box Builder"],
+    omnivoreExpert: raw["Omnivore Expert"],
+    passerineSpecialist: raw["Passerine Specialist"],
+    platformBuilder: raw["Platform Builder"],
+    prairieManager: raw["Prairie Manager"],
+    rodentologist: raw["Rodentologist"],
+    viticulturalist: raw["Viticulturalist"],
+    wetlandScientist: raw["Wetland Scientist"],
+    wildlifeGardener: raw["Wildlife Gardener"],
+    caprimulgiformSpecialist: raw["Caprimulgiform Specialist"],
+    smallClutchSpecialist: raw["Small Clutch Specialist"],
+    endangeredSpeciesProtector: raw["Endangered Species Protector"],
+    beakPointingLeft: raw["Beak Pointing Left"],
+    beakPointingRight: raw["Beak Pointing Right"],
+    note: raw["Note"],
+    rulings: raw["rulings"],
+    additionalRulings: raw["additionalRulings"]
+  };
+}
