@@ -1,0 +1,20 @@
+{
+  "name": "wingstats",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest --config vitest.config.ts"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^7.1.0"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0",
+    "vitest": "^3.2.4"
+  }
+}
