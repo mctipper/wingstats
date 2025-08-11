@@ -4,5 +4,6 @@ export type BeakPointing = {
 }
 
 export type BeakPointingInfo = BeakPointing & {
+    both: boolean;
     neither: boolean;
 }
