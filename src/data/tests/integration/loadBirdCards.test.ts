@@ -524,10 +524,7 @@ const sampleBirdCards = [
     }
 ];
 
-vi.stubGlobal('fetch', vi.fn(async () => ({
-    ok: true,
-    json: async () => sampleBirdCards,
-})));
+
 
 describe('loadBirdCards integration', () => {
     beforeEach(() => {
@@ -535,6 +532,11 @@ describe('loadBirdCards integration', () => {
     });
 
     it('calls transformBirdCard for each raw card', async () => {
+        vi.stubGlobal('fetch', vi.fn(async () => ({
+            ok: true,
+            json: async () => sampleBirdCards,
+        })));
+
         const transformSpy = vi.spyOn(transformModule, 'transformBirdCard');
 
         await loadBirdCards();
@@ -543,9 +545,14 @@ describe('loadBirdCards integration', () => {
     });
 
     it('allocates transformed cards into correct decks', async () => {
+        vi.stubGlobal('fetch', vi.fn(async () => ({
+            ok: true,
+            json: async () => sampleBirdCards,
+        })));
+
         const decks: AllBirdDecks = await loadBirdCards();
 
-        // types first - runtime checks
+        // types first (runtime checks only boooo)
         expectTypeOf(decks).toEqualTypeOf<AllBirdDecks>();
         expectTypeOf(decks.BaseGame).toEqualTypeOf<BaseGameDeck>();
         expectTypeOf(decks.European).toEqualTypeOf<EuropeanDeck>();
@@ -553,10 +560,19 @@ describe('loadBirdCards integration', () => {
         expectTypeOf(decks.Asia).toEqualTypeOf<AsiaDeck>();
 
         // count the number of cards loaded into each deck
-        // both 'originalcore' and 'swiftstart' to be counted as BaseGame
-        expect(decks.BaseGame.cards.length).toBe(3);
-        expect(decks.European.cards.length).toBe(0); // purposefully did not put in any European birds in the sample
+        expect(decks.BaseGame.cards.length).toBe(3); // includes both originalcore + swiftstart
+        expect(decks.European.cards.length).toBe(0); // none in sample purposefully
         expect(decks.Oceania.cards.length).toBe(3);
         expect(decks.Asia.cards.length).toBe(1);
+    });
+
+    it('throws if fetch response is not ok', async () => {
+        vi.stubGlobal('fetch', vi.fn(async () => ({
+            ok: false,
+            status: 500,
+            json: async () => ({})
+        })));
+
+        await expect(loadBirdCards()).rejects.toThrow('Failed to load master.json data');
     });
 });
