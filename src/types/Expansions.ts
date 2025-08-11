@@ -1,4 +1,4 @@
-export type ExpansionName =
+export type Expansions =
     | 'BaseGame'
     | 'European'
     | 'Oceania'

@@ -1,8 +1,8 @@
-import type { ExpansionName } from "./ExpansionName";
+import type { Expansions } from "./Expansions";
 import type { BirdCard } from "./BirdCard";
 
 export type BirdCardDeck = {
-  expansion: ExpansionName;
+  expansion: Expansions;
   cards: BirdCard[];
 };
 

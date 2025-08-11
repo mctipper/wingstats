@@ -7,6 +7,7 @@ import type {
   AsiaDeck,
   AllBirdDecks
 } from '../types/BirdCardDeck';
+import type { Expansions } from '../types/Expansions';
 
 export async function loadBirdCards(): Promise<AllBirdDecks> {
   const response = await fetch(`${import.meta.env.BASE_URL}/data/master.json`);
@@ -38,32 +39,16 @@ export async function loadBirdCards(): Promise<AllBirdDecks> {
     cards: []
   };
 
-  for (const card of transformedCards) {
-    switch (card.expansion) {
-      case "originalcore":
-      case "swiftstart":
-        baseGameDeck.cards.push(card);
-        break;
-      case "european":
-        europeanDeck.cards.push(card);
-        break;
-      case "oceania":
-        oceaniaDeck.cards.push(card);
-        break;
-      case "asia":
-        asiaDeck.cards.push(card);
-        break;
-      default:
-        console.warn(`Unexpected expansion value: ${card.expansion}`);
-    }
-  }
-
   const allDecks: AllBirdDecks = {
     BaseGame: baseGameDeck,
     European: europeanDeck,
     Oceania: oceaniaDeck,
     Asia: asiaDeck
   };
+
+  for (const card of transformedCards) {
+    allDecks[card.expansion as Expansions].cards.push(card)
+  }
 
   return allDecks;
 }
