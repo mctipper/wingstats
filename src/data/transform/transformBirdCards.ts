@@ -1,16 +1,12 @@
-import type { BirdCard } from "../types/BirdCard";
-import {
-  convertFlagToBoolean,
-  convertNullToZero,
-  createHabitatInfo,
-  createBonusCardInfo,
-  createBeakPointingInfo,
-  translateExpansion,
-  translateColour,
-  translateNest,
-  translateWingspan
-} from "./transformHelpers";
-
+import type { BirdCard } from "../../types/BirdCard";
+import { convertFlagToBoolean, convertNullToZero } from "./helpers/converters";
+import { createBeakPointingInfo } from "./helpers/createBeakPointingInfo";
+import { createBonusCardInfo } from "./helpers/createBonusCardInfo";
+import { createHabitatInfo } from "./helpers/createHabitatInfo";
+import { translateColour } from "./helpers/translateColour";
+import { translateExpansion } from "./helpers/translateExpansion";
+import { translateNest } from "./helpers/translateNest";
+import { translateWingspan } from "./helpers/translateWingspan";
 
 
 export function transformBirdCard(raw: any): BirdCard {

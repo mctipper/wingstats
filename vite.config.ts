@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { configDefaults } from 'vitest/config';
+import path from 'path';
 
 export default defineConfig({
     base: '/wingstats/',
@@ -12,5 +13,12 @@ export default defineConfig({
         globals: true,
         environment: 'node',
         exclude: [...configDefaults.exclude, 'dist'],
+    },
+    resolve: {
+        alias: {
+            '@data': path.resolve(__dirname, 'src/data'),
+            '@logic': path.resolve(__dirname, 'src/logic'),
+            '@types': path.resolve(__dirname, 'src/types')
+        },
     },
 });
