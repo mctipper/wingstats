@@ -1,4 +1,4 @@
-import type { BirdCard } from '../types/BirdCard';
+import type { BirdCard } from '@customTypes/BirdCard';
 import { transformBirdCard } from '@data/transform/transformBirdCard';
 import type {
   BaseGameDeck,
@@ -6,8 +6,8 @@ import type {
   OceaniaDeck,
   AsiaDeck,
   AllBirdDecks
-} from '../types/BirdCardDeck';
-import type { Expansions } from '../types/Expansions';
+} from '@customTypes/BirdCardDeck';
+import type { Expansions } from '@customTypes/Expansions';
 
 export async function loadBirdCards(): Promise<AllBirdDecks> {
   const response = await fetch(`${import.meta.env.BASE_URL}/data/master.json`);

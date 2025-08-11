@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createHabitatInfo } from '../createHabitatInfo';
+import { createHabitatInfo } from '@data/transform/helpers/create/createHabitatInfo';
 import type { Habitats, HabitatInfo } from '@customTypes/Habitats';
 
 describe('createHabitatInfo', () => {

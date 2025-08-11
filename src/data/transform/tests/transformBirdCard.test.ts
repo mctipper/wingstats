@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { transformBirdCard } from '../transformBirdCard';
+import { transformBirdCard } from '@data/transform/transformBirdCard';
 import type { BirdCard } from '@customTypes/BirdCard';
 import type { Expansions } from '@customTypes/Expansions';
 import type { Colour } from '@customTypes/Colour';

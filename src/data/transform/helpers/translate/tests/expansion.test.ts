@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { translateExpansion } from '../expansion';
+import { translateExpansion } from '@data/transform/helpers/translate/expansion';
 
 describe('translateExpansion', () => {
     it('returns "BaseGame" for originalcore and swiftstart', () => {

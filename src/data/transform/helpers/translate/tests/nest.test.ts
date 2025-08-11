@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { translateNest } from '../nest';
+import { translateNest } from '@data/transform/helpers/translate/nest';
 import type { Nest } from '@customTypes/Nest';
 
 describe('translateNest', () => {

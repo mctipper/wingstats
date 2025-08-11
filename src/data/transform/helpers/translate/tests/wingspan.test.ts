@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { translateWingspan } from '../wingspan';
+import { translateWingspan } from '@data/transform/helpers/translate/wingspan';
 
 describe("translateWingspan", () => {
     it("translates '*' (flightless) to 0", () => {

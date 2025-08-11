@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createBeakPointingInfo } from '../createBeakPointingInfo';
+import { createBeakPointingInfo } from '@data/transform/helpers/create/createBeakPointingInfo';
 import type { BeakPointing, BeakPointingInfo } from '@customTypes/BeakPointing';
 
 describe('createBeakPointingInfo', () => {

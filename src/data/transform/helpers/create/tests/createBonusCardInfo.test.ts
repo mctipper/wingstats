@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createBonusCardInfo } from '../createBonusCardInfo';
+import { createBonusCardInfo } from '@data/transform/helpers/create/createBonusCardInfo';
 import type { BonusCards, BonusCardInfo } from '@customTypes/BonusCards';
 
 const defaultBonusCards: BonusCards = {

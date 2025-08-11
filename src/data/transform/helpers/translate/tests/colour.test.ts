@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { translateColour, validColours } from '../colour';
+import { translateColour, validColours } from '@data/transform/helpers/translate/colour';
 import type { Colour } from '@customTypes/Colour';
 
 describe('translateColour', () => {

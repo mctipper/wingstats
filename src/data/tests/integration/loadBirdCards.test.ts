@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { loadBirdCards } from '../../loadBirdCards';
+import { loadBirdCards } from '@data/loadBirdCards';
 import * as transformModule from '@data/transform/transformBirdCard';
 import type {
     BaseGameDeck,

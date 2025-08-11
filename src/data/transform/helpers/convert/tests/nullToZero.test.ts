@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { convertNullToZero } from '../nullToZero';
+import { convertNullToZero } from '@data/transform/helpers/convert/nullToZero';
 
 describe('convertNullToZero', () => {
     it('returns 0 when value is undefined', () => {

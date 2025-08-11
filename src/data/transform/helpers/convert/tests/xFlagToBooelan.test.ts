@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { convertFlagToBoolean } from '../xFlagToBoolean';
+import { convertFlagToBoolean } from '@data/transform/helpers/convert/xFlagToBoolean';
 
 describe('convertFlagToBoolean', () => {
     it('returns true when value is "X"', () => {
