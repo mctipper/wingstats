@@ -1,4 +1,5 @@
 import type { HabitatInfo } from "./Habitats";
+import type { FoodCost } from "./Food";
 import type { Expansions } from "./Expansions";
 import type { Colour } from "./Colour";
 import type { BonusCards } from "./BonusCards";
@@ -20,16 +21,7 @@ export type BirdCard = {
   eggCapacity: number;
   wingspan: number;
   habitats: HabitatInfo;
-  invertebrate: number;
-  seed: number;
-  fish: number;
-  fruit: number;
-  rodent: number;
-  nectar: number;
-  wildFood: number;
-  slashFoodCost: boolean;
-  starFoodCost: boolean;
-  totalFoodCost: number;
+  foodCost: FoodCost;
   bonusCards: BonusCards;
   beakPointing: BeakPointing;
   note: string;
