@@ -10,7 +10,7 @@ export default defineConfig({
     },
     test: {
         globals: true,
-        environment: 'node', // or 'jsdom' if you're testing DOM components
+        environment: 'node',
         exclude: [...configDefaults.exclude, 'dist'],
     },
 });
