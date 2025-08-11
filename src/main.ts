@@ -1,6 +1,7 @@
 import './style.css'
+import { loadBirdCards } from "./data/loadBirdCards";
+import type { AllBirdDecks } from './types/BirdCardDeck';
 
 
-if (import.meta.env.DEV) {
-  import('./data/__debug__/debugLoadBirdCards');
-}
+const decks: AllBirdDecks = await loadBirdCards()
+console.log(decks.Asia.cards.length)
