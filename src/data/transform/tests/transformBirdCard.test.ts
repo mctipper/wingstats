@@ -108,6 +108,20 @@ describe("transformBirdCard", () => {
         assertType<BonusCards>(result.bonusCards);
         assertType<BeakPointing>(result.beakPointing);
 
+        // other custom types are tested elsewhere as they require helpers 
+        expect(result.foodCost).toEqual({
+            invertebrate: expect.any(Number),
+            seed: expect.any(Number),
+            fish: expect.any(Number),
+            fruit: expect.any(Number),
+            rodent: expect.any(Number),
+            nectar: expect.any(Number),
+            wildFood: expect.any(Number),
+            slashFoodCost: expect.any(Boolean),
+            starFoodCost: expect.any(Boolean),
+            totalFoodCost: expect.any(Number),
+        });
+
         // check full result
         expect(result).toEqual({
             id: 263,
