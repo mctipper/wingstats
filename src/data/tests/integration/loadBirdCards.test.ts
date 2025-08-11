@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, expectTypeOf } from 'vitest';
 import { loadBirdCards } from '@data/loadBirdCards';
 import * as transformModule from '@data/transform/transformBirdCard';
 import type {
@@ -8,11 +8,6 @@ import type {
     AsiaDeck,
     AllBirdDecks
 } from '@customTypes';
-
-
-function assertType<T>(_value: T): void {
-    // helper func to assert type (as per name duh)
-}
 
 // sample subset of actual master.json data
 const sampleBirdCards = [
@@ -550,12 +545,12 @@ describe('loadBirdCards integration', () => {
     it('allocates transformed cards into correct decks', async () => {
         const decks: AllBirdDecks = await loadBirdCards();
 
-        // types first
-        assertType<AllBirdDecks>(decks);
-        assertType<BaseGameDeck>(decks.BaseGame)
-        assertType<EuropeanDeck>(decks.European)
-        assertType<OceaniaDeck>(decks.Oceania)
-        assertType<AsiaDeck>(decks.Asia)
+        // types first - runtime checks
+        expectTypeOf(decks).toEqualTypeOf<AllBirdDecks>();
+        expectTypeOf(decks.BaseGame).toEqualTypeOf<BaseGameDeck>();
+        expectTypeOf(decks.European).toEqualTypeOf<EuropeanDeck>();
+        expectTypeOf(decks.Oceania).toEqualTypeOf<OceaniaDeck>();
+        expectTypeOf(decks.Asia).toEqualTypeOf<AsiaDeck>();
 
         // count the number of cards loaded into each deck
         // both 'originalcore' and 'swiftstart' to be counted as BaseGame

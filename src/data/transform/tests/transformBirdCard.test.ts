@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, expectTypeOf } from 'vitest';
 import { transformBirdCard } from '@data/transform/transformBirdCard';
 import type {
     BirdCard,
@@ -11,10 +11,6 @@ import type {
     BeakPointingInfo
 } from '@customTypes';
 
-
-function assertType<T>(_value: T): void {
-    // helper func to assert type (as per name duh)
-}
 
 // using a valid bird card as the transform example
 const abbottsBooby: any = {
@@ -91,23 +87,23 @@ describe("transformBirdCard", () => {
         const result = transformBirdCard(abbottsBooby);
 
         // check type
-        assertType<BirdCard>(result)
         // check property types (only ones we care about)
-        assertType<number>(result.id);
-        assertType<string>(result.commonName);
-        assertType<Expansions>(result.expansion);
-        assertType<Colour>(result.color);
-        assertType<boolean>(result.predator);
-        assertType<boolean>(result.flocking);
-        assertType<boolean>(result.bonusCard);
-        assertType<number>(result.victoryPoints);
-        assertType<Nest>(result.nestType);
-        assertType<number>(result.eggCapacity);
-        assertType<number>(result.wingspan);
-        assertType<HabitatInfo>(result.habitats);
-        assertType<FoodCost>(result.foodCost);
-        assertType<BonusCardInfo>(result.bonusCards);
-        assertType<BeakPointingInfo>(result.beakPointing);
+        expectTypeOf(result).toEqualTypeOf<BirdCard>();
+        expectTypeOf(result.id).toEqualTypeOf<number>();
+        expectTypeOf(result.commonName).toEqualTypeOf<string>();
+        expectTypeOf(result.expansion).toEqualTypeOf<Expansions>();
+        expectTypeOf(result.color).toEqualTypeOf<Colour>();
+        expectTypeOf(result.predator).toEqualTypeOf<boolean>();
+        expectTypeOf(result.flocking).toEqualTypeOf<boolean>();
+        expectTypeOf(result.bonusCard).toEqualTypeOf<boolean>();
+        expectTypeOf(result.victoryPoints).toEqualTypeOf<number>();
+        expectTypeOf(result.nestType).toEqualTypeOf<Nest>();
+        expectTypeOf(result.eggCapacity).toEqualTypeOf<number>();
+        expectTypeOf(result.wingspan).toEqualTypeOf<number>();
+        expectTypeOf(result.habitats).toEqualTypeOf<HabitatInfo>();
+        expectTypeOf(result.foodCost).toEqualTypeOf<FoodCost>();
+        expectTypeOf(result.bonusCards).toEqualTypeOf<BonusCardInfo>();
+        expectTypeOf(result.beakPointing).toEqualTypeOf<BeakPointingInfo>();
 
         // other custom types are tested elsewhere as they require helpers 
         expect(result.foodCost).toEqual({

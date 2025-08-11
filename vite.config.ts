@@ -13,6 +13,10 @@ export default defineConfig({
         globals: true,
         environment: 'node',
         exclude: [...configDefaults.exclude, 'dist'],
+        typecheck: {
+            include: ['src/**/*.test.ts'],
+            ignoreSourceErrors: false
+        }
     },
     resolve: {
         alias: {
