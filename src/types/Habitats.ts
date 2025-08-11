@@ -5,5 +5,6 @@ export type Habitats = {
 };
 
 export type HabitatInfo = Habitats & {
+  habitatCount: number;
   multipleHabitats: boolean;
 };
