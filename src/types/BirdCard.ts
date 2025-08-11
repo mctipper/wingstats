@@ -1,6 +1,7 @@
 import type { HabitatInfo } from "./Habitats";
 import type { FoodCost } from "./Food";
 import type { Expansions } from "./Expansions";
+import type { Nest } from "./Nest";
 import type { Colour } from "./Colour";
 import type { BonusCards } from "./BonusCards";
 import type { BeakPointing } from "./BeakPointing";
@@ -17,7 +18,7 @@ export type BirdCard = {
   flocking: boolean;
   bonusCard: boolean;
   victoryPoints: number;
-  nestType: string;
+  nestType: Nest;
   eggCapacity: number;
   wingspan: number;
   habitats: HabitatInfo;
