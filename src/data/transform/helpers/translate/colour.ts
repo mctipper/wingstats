@@ -1,11 +1,10 @@
 import type { Colour } from "@customTypes/Colour";
 
+// damn TS and its runtime/compiletime inequality
+export const validColours: Colour[] = ['None', 'White', 'Brown', 'Pink', 'Teal', 'Yellow'];
 
 export function translateColour(rawColour: string | null): Colour {
     if (rawColour === null) return 'None';
-
-    // damn TS and its runtime/compiletime inequality
-    const validColours: Colour[] = ['None', 'White', 'Brown', 'Pink', 'Teal', 'Yellow'];
 
     if (validColours.includes(rawColour as Colour)) {
         return rawColour as Colour;
