@@ -1,4 +1,4 @@
-import type { Colour } from "@customTypes/Colour";
+import type { Colour } from "@customTypes";
 
 // damn TS and its runtime/compiletime inequality
 export const validColours: Colour[] = ['None', 'White', 'Brown', 'Pink', 'Teal', 'Yellow'];

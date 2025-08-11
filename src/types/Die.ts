@@ -1,4 +1,4 @@
-import type { Food } from './Food.ts'
+import type { Food } from '@customTypes'
 
 export type DieFace =
     | { kind: 'single'; food: Food }

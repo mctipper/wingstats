@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { createHabitatInfo } from '@data/transform/helpers/create/createHabitatInfo';
-import type { Habitats, HabitatInfo } from '@customTypes/Habitats';
+import type {
+    Habitats,
+    HabitatInfo
+} from '@customTypes';
 
 describe('createHabitatInfo', () => {
     it('returns habitatCount = 1 and multipleHabitats = false when one habitat is true', () => {

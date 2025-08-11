@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { baseGameDie, oceaniaDie, allDice } from '@data/diceDefinitions';
-import type { Die } from '@customTypes/Die';
+import type { Die } from '@customTypes';
 
 describe('Die definitions', () => {
     // these are mostly enforce through Die type definition, but just including some 

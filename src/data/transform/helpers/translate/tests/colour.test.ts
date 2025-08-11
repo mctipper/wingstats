@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { translateColour, validColours } from '@data/transform/helpers/translate/colour';
-import type { Colour } from '@customTypes/Colour';
+import type { Colour } from '@customTypes';
 
 describe('translateColour', () => {
     it('returns "None" when input is null', () => {

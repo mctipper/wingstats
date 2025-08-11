@@ -1,4 +1,4 @@
-import type { Nest } from "@customTypes/Nest";
+import type { Nest } from "@customTypes";
 
 export function nestMatches(birdNest: Nest, requiredNest: Nest): boolean {
     if (requiredNest === 'None') return birdNest === 'None';

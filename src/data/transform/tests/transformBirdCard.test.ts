@@ -1,13 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { transformBirdCard } from '@data/transform/transformBirdCard';
-import type { BirdCard } from '@customTypes/BirdCard';
-import type { Expansions } from '@customTypes/Expansions';
-import type { Colour } from '@customTypes/Colour';
-import type { Nest } from '@customTypes/Nest';
-import type { HabitatInfo } from '@customTypes/Habitats';
-import type { FoodCost } from '@customTypes/Food';
-import type { BonusCards } from '@customTypes/BonusCards';
-import type { BeakPointing } from '@customTypes/BeakPointing';
+import type {
+    BirdCard,
+    Expansions,
+    Colour,
+    Nest,
+    HabitatInfo,
+    FoodCost,
+    BonusCardInfo,
+    BeakPointingInfo
+} from '@customTypes';
 
 
 function assertType<T>(_value: T): void {
@@ -92,7 +94,6 @@ describe("transformBirdCard", () => {
         assertType<BirdCard>(result)
         // check property types (only ones we care about)
         assertType<number>(result.id);
-        assertType<number>(result.id);
         assertType<string>(result.commonName);
         assertType<Expansions>(result.expansion);
         assertType<Colour>(result.color);
@@ -105,8 +106,8 @@ describe("transformBirdCard", () => {
         assertType<number>(result.wingspan);
         assertType<HabitatInfo>(result.habitats);
         assertType<FoodCost>(result.foodCost);
-        assertType<BonusCards>(result.bonusCards);
-        assertType<BeakPointing>(result.beakPointing);
+        assertType<BonusCardInfo>(result.bonusCards);
+        assertType<BeakPointingInfo>(result.beakPointing);
 
         // other custom types are tested elsewhere as they require helpers 
         expect(result.foodCost).toEqual({

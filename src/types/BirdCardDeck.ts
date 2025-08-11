@@ -1,5 +1,4 @@
-import type { Expansions } from "./Expansions";
-import type { BirdCard } from "./BirdCard";
+import type { BirdCard, Expansions } from "@customTypes";
 
 export type BirdCardDeck = {
   expansion: Expansions;

@@ -1,5 +1,8 @@
-import type { Food } from '@customTypes/Food';
-import type { Die, DieFace } from '@customTypes/Die'
+import type {
+    Die,
+    DieFace,
+    Food
+} from '@customTypes';
 
 function containsFood(face: DieFace, target: Food): boolean {
     return face.kind === 'single'

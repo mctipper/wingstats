@@ -1,4 +1,7 @@
-import type { BonusCards, BonusCardInfo } from "@customTypes/BonusCards";
+import type {
+    BonusCards,
+    BonusCardInfo
+} from "@customTypes";
 
 
 export function createBonusCardInfo(bc: BonusCards): BonusCardInfo {

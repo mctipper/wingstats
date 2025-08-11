@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { createBeakPointingInfo } from '@data/transform/helpers/create/createBeakPointingInfo';
-import type { BeakPointing, BeakPointingInfo } from '@customTypes/BeakPointing';
+import type {
+    BeakPointing,
+    BeakPointingInfo
+} from '@customTypes';
 
 describe('createBeakPointingInfo', () => {
     it('returns both = true and neither = false when both left and right are true', () => {

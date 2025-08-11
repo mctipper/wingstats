@@ -1,4 +1,4 @@
-import type { Die } from '@customTypes/Die';
+import type { Die } from '@customTypes';
 
 export const baseGameDie: Die = {
     kind: 'basegame',

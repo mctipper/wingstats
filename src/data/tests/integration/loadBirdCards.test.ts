@@ -7,7 +7,7 @@ import type {
     OceaniaDeck,
     AsiaDeck,
     AllBirdDecks
-} from '@customTypes/BirdCardDeck';
+} from '@customTypes';
 
 
 function assertType<T>(_value: T): void {

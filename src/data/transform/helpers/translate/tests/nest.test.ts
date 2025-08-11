@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { translateNest } from '@data/transform/helpers/translate/nest';
-import type { Nest } from '@customTypes/Nest';
+import type { Nest } from '@customTypes';
 
 describe('translateNest', () => {
     it('translates "Wild" to "Star"', () => {

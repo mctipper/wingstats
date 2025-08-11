@@ -31,8 +31,11 @@
       "@logic/*": [
         "src/logic/*"
       ],
+      "@customTypes": [
+        "src/types/index.ts"
+      ],
       "@customTypes/*": [
-        "src/types/*"
+        "src/types/"
       ]
     }
   },

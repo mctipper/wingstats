@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { DieLogic } from '@logic/die';
-import type { Die, DieFace } from '@customTypes/Die';
+import type {
+    Die,
+    DieFace
+} from '@customTypes';
 import { allDice } from '@data/diceDefinitions';
 
 

@@ -1,4 +1,4 @@
-import type { Nest } from "@customTypes/Nest";
+import type { Nest } from "@customTypes";
 
 
 export function translateNest(rawNest: string): Nest {

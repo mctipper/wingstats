@@ -1,4 +1,4 @@
-import type { Expansions } from "@customTypes/Expansions";
+import type { Expansions } from "@customTypes";
 
 
 export function translateExpansion(rawExpansion: string): Expansions {

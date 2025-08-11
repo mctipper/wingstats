@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { createBonusCardInfo } from '@data/transform/helpers/create/createBonusCardInfo';
-import type { BonusCards, BonusCardInfo } from '@customTypes/BonusCards';
+import type {
+    BonusCards,
+    BonusCardInfo
+} from '@customTypes';
 
 const defaultBonusCards: BonusCards = {
     anatomist: false,

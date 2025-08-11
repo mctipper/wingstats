@@ -1,10 +1,12 @@
-import type { HabitatInfo } from "./Habitats";
-import type { FoodCost } from "./Food";
-import type { Expansions } from "./Expansions";
-import type { Nest } from "./Nest";
-import type { Colour } from "./Colour";
-import type { BonusCards } from "./BonusCards";
-import type { BeakPointing } from "./BeakPointing";
+import type {
+  HabitatInfo,
+  FoodCost,
+  Expansions,
+  Nest,
+  Colour,
+  BonusCardInfo,
+  BeakPointingInfo
+} from "@customTypes";
 
 export type BirdCard = {
   id: number;
@@ -23,8 +25,8 @@ export type BirdCard = {
   wingspan: number;
   habitats: HabitatInfo;
   foodCost: FoodCost;
-  bonusCards: BonusCards;
-  beakPointing: BeakPointing;
+  bonusCards: BonusCardInfo;
+  beakPointing: BeakPointingInfo;
   note: string;
   rulings: any[];
   additionalRulings: {

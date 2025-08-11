@@ -1,4 +1,7 @@
-import type { BeakPointing, BeakPointingInfo } from "@customTypes/BeakPointing";
+import type {
+    BeakPointing,
+    BeakPointingInfo
+} from "@customTypes";
 
 
 export function createBeakPointingInfo(bp: BeakPointing): BeakPointingInfo {

@@ -1,4 +1,4 @@
-import type { BirdCard } from "@customTypes/BirdCard";
+import type { BirdCard } from "@customTypes";
 import { convertFlagToBoolean, convertNullToZero } from "./helpers/convert";
 import { createBeakPointingInfo, createBonusCardInfo, createHabitatInfo } from "./helpers/create";
 import { translateColour, translateExpansion, translateNest, translateWingspan } from "./helpers/translate";
