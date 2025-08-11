@@ -34,16 +34,18 @@ export function transformBirdCard(raw: any): BirdCard {
       grassland: convertFlagToBoolean(raw["Grassland"]),
       wetland: convertFlagToBoolean(raw["Wetland"])
     }),
-    invertebrate: convertNullToZero(raw["Invertebrate"]),
-    seed: convertNullToZero(raw["Seed"]),
-    fish: convertNullToZero(raw["Fish"]),
-    fruit: convertNullToZero(raw["Fruit"]),
-    rodent: convertNullToZero(raw["Rodent"]),
-    nectar: convertNullToZero(raw["Nectar"]),
-    wildFood: convertNullToZero(raw["Wild (food)"]),
-    slashFoodCost: convertFlagToBoolean(raw["/ (food cost)"]),
-    starFoodCost: convertFlagToBoolean(raw["* (food cost)"]),
-    totalFoodCost: convertNullToZero(raw["Total food cost"]),
+    foodCost: {
+      invertebrate: convertNullToZero(raw["Invertebrate"]),
+      seed: convertNullToZero(raw["Seed"]),
+      fish: convertNullToZero(raw["Fish"]),
+      fruit: convertNullToZero(raw["Fruit"]),
+      rodent: convertNullToZero(raw["Rodent"]),
+      nectar: convertNullToZero(raw["Nectar"]),
+      wildFood: convertNullToZero(raw["Wild (food)"]),
+      slashFoodCost: convertFlagToBoolean(raw["/ (food cost)"]),
+      starFoodCost: convertFlagToBoolean(raw["* (food cost)"]),
+      totalFoodCost: convertNullToZero(raw["Total food cost"]),
+    },
     bonusCards: createBonusCardInfo(
       {
         anatomist: convertFlagToBoolean(raw["Anatomist"]),
