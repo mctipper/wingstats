@@ -1,5 +1,5 @@
 import type { BirdCard } from '../types/BirdCard';
-import { transformBirdCard } from '@data/transform/transformBirdCards';
+import { transformBirdCard } from '@data/transform/transformBirdCard';
 import type {
   BaseGameDeck,
   EuropeanDeck,
