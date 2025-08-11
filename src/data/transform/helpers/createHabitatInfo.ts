@@ -1,4 +1,4 @@
-import type { Habitats, HabitatInfo } from "../../../types/Habitats";
+import type { Habitats, HabitatInfo } from "@customTypes/Habitats";
 
 
 export function createHabitatInfo(h: Habitats): HabitatInfo {

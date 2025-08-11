@@ -18,7 +18,7 @@ export default defineConfig({
         alias: {
             '@data': path.resolve(__dirname, 'src/data'),
             '@logic': path.resolve(__dirname, 'src/logic'),
-            '@types': path.resolve(__dirname, 'src/types')
+            '@customTypes': path.resolve(__dirname, 'src/types')
         },
     },
 });

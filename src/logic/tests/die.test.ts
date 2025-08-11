@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { DieLogic } from '../die';
-import type { Die, DieFace } from '../../types/Die';
-import { allDice } from '../../data/loadDice';
+import { DieLogic } from '@logic/die';
+import type { Die, DieFace } from '@customTypes/Die';
+import { allDice } from '@data/loadDice';
 
 
 describe('containsFood', () => {

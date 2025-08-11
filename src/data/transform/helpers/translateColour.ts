@@ -1,4 +1,4 @@
-import type { Colour } from "../../../types/Colour";
+import type { Colour } from "@customTypes/Colour";
 
 
 export function translateColour(rawColour: string | null): Colour {

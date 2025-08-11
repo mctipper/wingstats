@@ -1,4 +1,4 @@
-import type { BirdCard } from "../../types/BirdCard";
+import type { BirdCard } from "@customTypes/BirdCard";
 import { convertFlagToBoolean, convertNullToZero } from "./helpers/converters";
 import { createBeakPointingInfo } from "./helpers/createBeakPointingInfo";
 import { createBonusCardInfo } from "./helpers/createBonusCardInfo";
