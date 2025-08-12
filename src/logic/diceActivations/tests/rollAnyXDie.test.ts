@@ -3,7 +3,7 @@ import { RollAnyXDice } from '@logic/diceActivations/rollAnyXDie'
 import { getDiceBinaryActivationStats } from '@logic/diceActivations/getDiceBinaryActivationStats';
 import { getDiceBinomialActivationStats } from '@logic/diceActivations/getDiceBinomialActivationStats';
 import type { Food } from '@customTypes';
-import { oceaniaDie } from '@data/diceDefinitions';
+import { oceaniaDie } from '@definitions/diceDefinitions';
 
 // enable spying
 vi.mock('@logic/diceActivations/getDiceBinaryActivationStats', () => ({

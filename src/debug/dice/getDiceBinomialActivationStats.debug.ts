@@ -1,6 +1,6 @@
 import { getDiceBinomialActivationStats } from "@logic/diceActivations/getDiceBinomialActivationStats";
 import type { Food } from "@customTypes";
-import { baseGameDie } from "@data/diceDefinitions";
+import { baseGameDie } from "@definitions/diceDefinitions";
 
 
 export function debug(): any {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { baseGameDie, oceaniaDie, allDice } from '@data/diceDefinitions';
+import { baseGameDie, oceaniaDie, allDice } from '@definitions/diceDefinitions';
 import type { Die } from '@customTypes';
 
 describe('Die definitions', () => {

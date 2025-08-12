@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { allDice } from '@data/diceDefinitions';
+import { allDice } from '@definitions/diceDefinitions';
 import type { Food } from '@customTypes';
 import { getDiceBinomialActivationStats } from '../getDiceBinomialActivationStats';
 

@@ -4,7 +4,7 @@ import type {
     Die,
     DieFace
 } from '@customTypes';
-import { allDice } from '@data/diceDefinitions';
+import { allDice } from '@definitions/diceDefinitions';
 
 
 describe('containsFood', () => {
