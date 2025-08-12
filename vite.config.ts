@@ -19,6 +19,10 @@ export default defineConfig({
         typecheck: {
             include: ['src/**/*.test.ts'],
             ignoreSourceErrors: false
+        },
+        coverage: {
+            provider: 'v8',
+            exclude: ['**/debug/**']
         }
     },
     resolve: {
