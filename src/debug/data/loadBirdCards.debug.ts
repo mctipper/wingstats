@@ -3,9 +3,13 @@ import type { AllBirdDecks } from '@customTypes/BirdCardDeck';
 
 
 export async function debug(): Promise<any> {
+    debugger;
+
     const decks: AllBirdDecks = await loadBirdCards()
     console.log(decks.Asia.cards.length)
+
     debugger;
+
     return {
         'base': decks.BaseGame.cards.length,
         'european': decks.European.cards.length,

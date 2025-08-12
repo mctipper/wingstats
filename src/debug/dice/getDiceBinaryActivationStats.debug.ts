@@ -41,6 +41,8 @@ export function debug(): any {
         { food: ['Rodent', 'Fruit', 'Fish', 'Seed'], rolls: 5 },
     ];
 
+    debugger;
+
     for (const _case of cases) {
         const result = getDiceBinaryActivationStats(baseGameDie, _case.food, _case.rolls)
         let output: DebugOutputCase = {
@@ -50,5 +52,8 @@ export function debug(): any {
         }
         outputs.push(output)
     }
+
+    debugger;
+
     return outputs
 }

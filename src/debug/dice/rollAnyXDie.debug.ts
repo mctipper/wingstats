@@ -4,6 +4,8 @@ import type { ActivationStats } from '@customTypes';
 
 
 export function debug(): any {
+    debugger;
+
     const greatCormorant: ActivationStats = RollAnyXDice(
         baseGameDie,
         'Fish',
