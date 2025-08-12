@@ -4,7 +4,7 @@ import { binomialCoefficient } from '@logic/binomialCoefficient';
 
 
 
-export function getBinomialActivationStats(
+export function getDiceBinomialActivationStats(
     die: Die,
     targetFood: Food | Food[],
     rollCount: number
