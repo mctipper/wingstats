@@ -1,4 +1,4 @@
-import { RollAnyXDice } from '@logic/activations/dice/rollAnyXDie';
+import { RollAnyXDice } from '@logic/diceActivations/rollAnyXDie';
 import { baseGameDie, oceaniaDie } from '@data/diceDefinitions';
 import type { ActivationStats } from '@customTypes';
 
