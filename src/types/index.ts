@@ -1,3 +1,7 @@
+export type { ActivationResultMode } from './ActivationResultMode';
+
+export type { ActivationStats } from './ActivationStats';
+
 export type { BeakPointing, BeakPointingInfo } from './BeakPointing';
 
 export type { BirdCard } from './BirdCard'
