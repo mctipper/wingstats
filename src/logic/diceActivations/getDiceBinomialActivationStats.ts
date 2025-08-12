@@ -9,7 +9,7 @@ export function getBinomialActivationStats(
     targetFood: Food | Food[],
     rollCount: number
 ): ActivationStats {
-    // Binomial Activation, the total number of success is counted
+    // Binomial Activation, the total number of success is detailed along with a singular EV (expected value)
     const singleSuccessProb = DieLogic.getFoodOdds(die, targetFood);
     const distribution: Record<number, number> = {};
     let expectedValue: number = 0;
