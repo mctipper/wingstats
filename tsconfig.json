@@ -28,6 +28,9 @@
       "@data/*": [
         "src/data/*"
       ],
+      "@definitions/*": [
+        "src/definitions/*"
+      ],
       "@logic/*": [
         "src/logic/*"
       ],
