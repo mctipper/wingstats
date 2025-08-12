@@ -22,7 +22,7 @@ export default defineConfig({
         },
         coverage: {
             provider: 'v8',
-            exclude: ['**/debug/**']
+            exclude: ['**/debug/**', 'vite.config.ts']
         }
     },
     resolve: {
