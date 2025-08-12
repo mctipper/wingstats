@@ -1,6 +1,6 @@
 import type { Die, Food, ActivationResultMode, ActivationStats } from '@customTypes';
-import { getBinaryActivationStats } from '@logic/activations/getBinaryActivationStats';
-import { getBinomialActivationStats } from '@logic/activations/getBinomialActivationStats';
+import { getDiceBinaryActivationStats } from '@logic/diceActivations/getDiceBinaryActivationStats';
+import { getBinomialActivationStats } from '@logic/diceActivations/getDiceBinomialActivationStats';
 
 export function RollAnyXDice(
     die: Die,
@@ -10,6 +10,6 @@ export function RollAnyXDice(
 ): ActivationStats {
     // wrapper function to explicitly call the 'roll any x dice' style activation
     return activationResultMode === 'binary'
-        ? getBinaryActivationStats(die, targetFood, rollCount)
+        ? getDiceBinaryActivationStats(die, targetFood, rollCount)
         : getBinomialActivationStats(die, targetFood, rollCount);
 }

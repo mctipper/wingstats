@@ -1,7 +1,7 @@
 import type { Die, Food, ActivationStats } from '@customTypes';
 import { DieLogic } from '@logic/die';
 
-export function getBinaryActivationStats(
+export function getDiceBinaryActivationStats(
     die: Die,
     targetFood: Food | Food[],
     rollCount: number
