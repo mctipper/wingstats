@@ -24,7 +24,7 @@ export function getDiceBinomialActivationStats(
         expectedValue += k * prob;
     }
 
-    const failure = distribution[0] ?? 0;
+    const failure = distribution[0];
     const anySuccess = 1 - failure;
 
     return {
