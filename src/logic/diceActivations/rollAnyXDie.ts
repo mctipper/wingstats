@@ -2,7 +2,7 @@ import type { Die, Food, ActivationResultMode, ActivationStats } from '@customTy
 import { getDiceBinaryActivationStats } from '@logic/diceActivations/getDiceBinaryActivationStats';
 import { getDiceBinomialActivationStats } from '@logic/diceActivations/getDiceBinomialActivationStats';
 
-export function RollAnyXDice(
+export function rollAnyXDice(
     die: Die,
     targetFood: Food | Food[],
     rollCount: number,
