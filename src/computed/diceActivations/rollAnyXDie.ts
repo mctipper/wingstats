@@ -6,10 +6,10 @@ import { rollAnyXDice } from "@logic/diceActivations/rollAnyXDie";
 
 
 const birdsWithRollAnyXDice: diceActivationInput[] = [
-    { name: 'Eurasian Kestrel', targetFood: 'Rodent', rollCount: 3, activationResultMode: 'binary' },
-    { name: 'Great Cormorant', targetFood: 'Fish', rollCount: 2, activationResultMode: 'binary' },
-    { name: 'Rhinoceros Auklet', targetFood: 'Fish', rollCount: 2, activationResultMode: 'binary' },
-    { name: 'Sri Lanka Frogmouth', targetFood: 'Invertebrate', rollCount: 1, activationResultMode: 'binary' },
+    { birdName: 'Eurasian Kestrel', targetFood: 'Rodent', rollCount: 3, activationResultMode: 'binary' },
+    { birdName: 'Great Cormorant', targetFood: 'Fish', rollCount: 2, activationResultMode: 'binary' },
+    { birdName: 'Rhinoceros Auklet', targetFood: 'Fish', rollCount: 2, activationResultMode: 'binary' },
+    { birdName: 'Sri Lanka Frogmouth', targetFood: 'Invertebrate', rollCount: 1, activationResultMode: 'binary' },
 ]
 
 export function getRollAnyXDiceBirdActivations(): diceActivationResult[] {
@@ -22,7 +22,7 @@ export function getRollAnyXDiceBirdActivations(): diceActivationResult[] {
             bird.activationResultMode
         )
         return {
-            name: bird.name,
+            birdName: bird.birdName,
             targetFood: bird.targetFood,
             rollCount: bird.rollCount,
             activationStats: activationStats

@@ -1,15 +1,15 @@
 import type { DiceActivations, Die, Food, ActivationResultMode, ActivationStats } from '@customTypes';
 import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 
-export function rollAnyXDice(
+export function resetTheBirdfeeder(
     die: Die,
     targetFood: Food | Food[],
-    rollCount: number,
     activationResultMode: ActivationResultMode
 ): ActivationStats {
-    // wrapper function to explicitly call the 'roll any x dice' style activation
-    const activationName: DiceActivations = 'rollAnyXDice';
-    const permitReroll: boolean = false;
+    // wrapper function to explicitly call the 'reset the birdfeeder' style activation
+    const activationName: DiceActivations = 'resetTheBirdfeeder'
+    const rollCount: number = 5
+    const permitReroll: boolean = true
     return activationResultMode === 'binary'
         ? getDiceBinaryActivationStats(activationName, die, targetFood, rollCount, permitReroll)
         : getDiceBinomialActivationStats(activationName, die, targetFood, rollCount, permitReroll);

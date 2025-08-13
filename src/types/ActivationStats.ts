@@ -1,4 +1,7 @@
+import type { DiceActivations } from '@customTypes';
+
 export type ActivationStats = {
+    activationName: DiceActivations;
     // probability of each count of success
     distribution: Record<number, number>;
     // P(success >= 1)

@@ -1,13 +1,48 @@
-import type { Die, Food, ActivationStats } from '@customTypes';
+import type { DiceActivations, Die, Food, ActivationStats } from '@customTypes';
 import { DieLogic } from '@logic/die';
 import { binomialCoefficient } from '@logic/binomialCoefficient';
+import { getExactMatchExcludingTargetOdds } from '@logic/diceActivations/helpers/exactMatchOdds'
 
 
-
-export function getDiceBinomialActivationStats(
+function applyBinomialReroll(
     die: Die,
     targetFood: Food | Food[],
-    rollCount: number
+    rollCount: number,
+    activationStats: ActivationStats
+): ActivationStats {
+    const rerollProb = getExactMatchExcludingTargetOdds(die, targetFood, rollCount);
+
+    // adjustment scale due to reroll recursion-until-success-or-fail
+    const scale = 1 / (1 - rerollProb);
+
+    // apply to all
+    let adjustedDistribution = Object.fromEntries(
+        Object.entries(activationStats.distribution).map(([k, v]) => [Number(k), v * scale])
+    );
+
+    const adjustedExpectedValue = activationStats.expectedValue * scale;
+    const adjustedAnySuccess = activationStats.anySuccess * scale;
+    const adjustedFailure = 1 - adjustedAnySuccess
+    // special-case, as rerolling is recursive, can just apply scale to failure once
+    adjustedDistribution[0] = adjustedFailure;
+
+    const adjustedActivationStats: ActivationStats = {
+        activationName: activationStats.activationName,
+        distribution: adjustedDistribution,
+        anySuccess: adjustedAnySuccess,
+        failure: adjustedFailure,
+        expectedValue: adjustedExpectedValue,
+    };
+
+    return adjustedActivationStats;
+}
+
+export function getDiceBinomialActivationStats(
+    activationName: DiceActivations,
+    die: Die,
+    targetFood: Food | Food[],
+    rollCount: number,
+    permitReroll: boolean = false
 ): ActivationStats {
     // Binomial Activation, the total number of success is detailed along with a singular EV (expected value)
     const singleSuccessProb = DieLogic.getFoodOdds(die, targetFood);
@@ -24,13 +59,19 @@ export function getDiceBinomialActivationStats(
         expectedValue += k * prob;
     }
 
-    const failure = distribution[0];
-    const anySuccess = 1 - failure;
+    const failure: number = distribution[0]
 
-    return {
-        distribution,
-        anySuccess,
-        failure,
-        expectedValue,
+    const activationStats: ActivationStats = {
+        activationName: activationName,
+        distribution: distribution,
+        anySuccess: 1 - failure,
+        failure: failure,
+        expectedValue: expectedValue,
     };
+
+    if (permitReroll) {
+        return applyBinomialReroll(die, targetFood, rollCount, activationStats)
+    }
+
+    return activationStats
 }

@@ -1,5 +1,7 @@
 export type { ActivationResultMode } from './ActivationResultMode';
 
+export type { DiceActivations } from './Activations'
+
 export type { ActivationStats } from './ActivationStats';
 
 export type { BeakPointing, BeakPointingInfo } from './BeakPointing';
