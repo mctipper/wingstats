@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getRollAnyXDiceBirdActivations } from '@computed/diceActivations/rollAnyXDie'
-import * as diceActvationLogic from '@logic/diceActivations/rollAnyXDie';
+import { getResetTheBirdfeederActivations } from '@computed/diceActivations/resetTheBirdfeeder'
+import * as diceActvationLogic from '@logic/diceActivations/resetTheBirdfeeder';
 import type { ActivationStats } from '@customTypes';
 
-describe('getRollAnyXDiceBirdActivations', () => {
+describe('getResetTheBirdfeederActivations', () => {
     it('should return correct activation results for each bird', () => {
         // mock rollAnyXDice to return predictable stats
         const mockActivationStatsResult: ActivationStats = {
@@ -16,9 +16,9 @@ describe('getRollAnyXDiceBirdActivations', () => {
             failure: 0.1,
             expectedValue: 0.9
         }
-        vi.spyOn(diceActvationLogic, 'rollAnyXDice').mockImplementation(() => mockActivationStatsResult as ActivationStats);
+        vi.spyOn(diceActvationLogic, 'resetTheBirdfeeder').mockImplementation(() => mockActivationStatsResult as ActivationStats);
 
-        const results = getRollAnyXDiceBirdActivations();
+        const results = getResetTheBirdfeederActivations();
 
         for (const result of results) {
             expect(result.birdName).toBeTypeOf('string');
