@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getRollAnyXDiceBirdActivation } from '@computed/diceActivations/rollAnyXDie'
+import { getRollAnyXDiceBirdActivations } from '@computed/diceActivations/rollAnyXDie'
 import * as diceLogic from '@logic/diceActivations/rollAnyXDie';
 import type { ActivationStats } from '@customTypes';
 
-describe('getRollAnyXDiceBirdActivation', () => {
+describe('getRollAnyXDiceBirdActivations', () => {
     it('should return correct activation results for each bird', () => {
         // mock rollAnyXDice to return predictable stats
         const mockActivationStatsResult: ActivationStats = {
@@ -17,7 +17,7 @@ describe('getRollAnyXDiceBirdActivation', () => {
         }
         vi.spyOn(diceLogic, 'rollAnyXDice').mockImplementation(() => mockActivationStatsResult as ActivationStats);
 
-        const results = getRollAnyXDiceBirdActivation();
+        const results = getRollAnyXDiceBirdActivations();
 
         for (const result of results) {
             expect(result.name).toBeTypeOf('string');
