@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { DieLogic } from '@logic/die';
+import { DieLogic } from '@logic/dieLogic';
 import type {
     Die,
     DieFace

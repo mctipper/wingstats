@@ -1,6 +1,6 @@
 import type { ActivationStats, diceActivationInput, diceActivationResult } from "@customTypes";
 import { baseGameDie } from "@definitions/diceDefinitions";
-import { resetTheBirdfeeder } from "@logic/diceActivations/resetTheBirdfeeder";
+import { resetTheBirdfeederLogic } from "@logic/diceActivations/resetTheBirdfeederLogic";
 
 
 const rollCount: number = 5
@@ -24,7 +24,7 @@ const birdsWithRollAnyXDice: diceActivationInput[] = [
 export function getResetTheBirdfeederActivations(): diceActivationResult[] {
     return birdsWithRollAnyXDice.map(bird => {
         // as all rollAnyXDice power only target non-nectar foods, can safely use basegame die
-        const activationStats: ActivationStats = resetTheBirdfeeder(
+        const activationStats: ActivationStats = resetTheBirdfeederLogic(
             baseGameDie,
             bird.targetFood,
             bird.activationResultMode

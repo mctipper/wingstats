@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { rollAnyXDice } from '@logic/diceActivations/rollAnyXDie'
+import { resetTheBirdfeederLogic } from '@logic/diceActivations/resetTheBirdfeederLogic'
 import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 import type { DiceActivations, Food } from '@customTypes';
 import { oceaniaDie } from '@definitions/diceDefinitions';
@@ -13,25 +13,25 @@ vi.mock('@logic/diceActivations/helpers/getDiceBinomialActivationStats', () => (
     getDiceBinomialActivationStats: vi.fn(() => ({ mode: 'binomial' })),
 }));
 
-describe('rollAnyXDice logic', () => {
+describe('resetTheBirdfeeder logic', () => {
     beforeEach(() => {
         vi.clearAllMocks();
     });
 
-    const activationName: DiceActivations = 'rollAnyXDice'
+    const activationName: DiceActivations = 'resetTheBirdfeeder'
     const food: Food = 'Fish';
     const rollCount: number = 5;
-    const permitReroll: boolean = false;
+    const permitReroll: boolean = true;
 
     it('calls getDiceBinaryActivationStats when mode is "binary"', () => {
-        rollAnyXDice(oceaniaDie, food, rollCount, 'binary');
+        resetTheBirdfeederLogic(oceaniaDie, food, 'binary');
 
         expect(getDiceBinaryActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, rollCount, permitReroll);
         expect(getDiceBinomialActivationStats).not.toHaveBeenCalled();
     });
 
     it('calls getDiceBinomialActivationStats when mode is "binomial"', () => {
-        rollAnyXDice(oceaniaDie, food, rollCount, 'binomial');
+        resetTheBirdfeederLogic(oceaniaDie, food, 'binomial');
 
         expect(getDiceBinomialActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, rollCount, permitReroll);
         expect(getDiceBinaryActivationStats).not.toHaveBeenCalled();

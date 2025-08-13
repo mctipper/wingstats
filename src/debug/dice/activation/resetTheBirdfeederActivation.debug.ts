@@ -1,4 +1,4 @@
-import { getResetTheBirdfeederActivations } from "@computed/diceActivations/resetTheBirdfeeder";
+import { getResetTheBirdfeederActivations } from "@computed/diceActivations/resetTheBirdfeederActivation";
 
 
 

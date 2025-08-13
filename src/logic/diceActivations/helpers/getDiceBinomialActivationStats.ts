@@ -1,6 +1,6 @@
 import type { DiceActivations, Die, Food, ActivationStats } from '@customTypes';
-import { DieLogic } from '@logic/die';
-import { binomialCoefficient } from '@logic/binomialCoefficient';
+import { DieLogic } from '@logic/dieLogic';
+import { binomialCoefficient } from '@logic/utils/binomialCoefficient';
 import { getExactMatchExcludingTargetOdds } from '@logic/diceActivations/helpers/exactMatchOdds'
 
 

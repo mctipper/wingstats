@@ -1,5 +1,5 @@
 import type { DiceActivations, Die, Food, ActivationStats } from '@customTypes';
-import { DieLogic } from '@logic/die';
+import { DieLogic } from '@logic/dieLogic';
 import { getExactMatchExcludingTargetOdds } from '@logic/diceActivations/helpers/exactMatchOdds';
 
 

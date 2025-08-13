@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getResetTheBirdfeederActivations } from '@computed/diceActivations/resetTheBirdfeeder'
-import * as diceActvationLogic from '@logic/diceActivations/resetTheBirdfeeder';
+import { getResetTheBirdfeederActivations } from '@computed/diceActivations/resetTheBirdfeederActivation'
+import * as diceActvationLogic from '@logic/diceActivations/resetTheBirdfeederLogic';
 import type { ActivationStats } from '@customTypes';
 
 describe('getResetTheBirdfeederActivations', () => {
@@ -16,7 +16,7 @@ describe('getResetTheBirdfeederActivations', () => {
             failure: 0.1,
             expectedValue: 0.9
         }
-        vi.spyOn(diceActvationLogic, 'resetTheBirdfeeder').mockImplementation(() => mockActivationStatsResult as ActivationStats);
+        vi.spyOn(diceActvationLogic, 'resetTheBirdfeederLogic').mockImplementation(() => mockActivationStatsResult as ActivationStats);
 
         const results = getResetTheBirdfeederActivations();
 

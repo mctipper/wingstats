@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nestMatches } from '@logic/nest';
+import { nestMatches } from '@logic/nestLogic';
 import type { Nest } from '@customTypes';
 
 const allNests: Nest[] = ['None', 'Cavity', 'Platform', 'Ground', 'Bowl', 'Star']

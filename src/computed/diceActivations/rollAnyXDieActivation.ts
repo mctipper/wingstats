@@ -1,6 +1,6 @@
 import type { ActivationStats, diceActivationInput, diceActivationResult } from "@customTypes";
 import { baseGameDie } from "@definitions/diceDefinitions";
-import { rollAnyXDice } from "@logic/diceActivations/rollAnyXDie";
+import { rollAnyXDiceLogic } from "@logic/diceActivations/rollAnyXDieLogic";
 
 
 
@@ -15,7 +15,7 @@ const birdsWithRollAnyXDice: diceActivationInput[] = [
 export function getRollAnyXDiceBirdActivations(): diceActivationResult[] {
     return birdsWithRollAnyXDice.map(bird => {
         // as all rollAnyXDice power only target non-nectar foods, can safely use basegame die
-        const activationStats: ActivationStats = rollAnyXDice(
+        const activationStats: ActivationStats = rollAnyXDiceLogic(
             baseGameDie,
             bird.targetFood,
             bird.rollCount,

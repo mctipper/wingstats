@@ -1,4 +1,4 @@
-import { getRollAnyXDiceBirdActivations } from "@computed/diceActivations/rollAnyXDie";
+import { getRollAnyXDiceBirdActivations } from "@computed/diceActivations/rollAnyXDieActivation";
 
 export function debug(): any {
     debugger;

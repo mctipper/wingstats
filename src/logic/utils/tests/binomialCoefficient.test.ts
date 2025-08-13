@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { binomialCoefficient } from '@logic/binomialCoefficient';
+import { binomialCoefficient } from '@logic/utils/binomialCoefficient';
 
 describe('binomialCoefficient', () => {
     it.each([

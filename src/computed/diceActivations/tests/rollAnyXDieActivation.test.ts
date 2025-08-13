@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getRollAnyXDiceBirdActivations } from '@computed/diceActivations/rollAnyXDie'
-import * as diceActvationLogic from '@logic/diceActivations/rollAnyXDie';
+import { getRollAnyXDiceBirdActivations } from '@computed/diceActivations/rollAnyXDieActivation'
+import * as diceActvationLogic from '@logic/diceActivations/rollAnyXDieLogic';
 import type { ActivationStats } from '@customTypes';
 
 describe('getRollAnyXDiceBirdActivations', () => {
@@ -16,7 +16,7 @@ describe('getRollAnyXDiceBirdActivations', () => {
             failure: 0.1,
             expectedValue: 0.9
         }
-        vi.spyOn(diceActvationLogic, 'rollAnyXDice').mockImplementation(() => mockActivationStatsResult as ActivationStats);
+        vi.spyOn(diceActvationLogic, 'rollAnyXDiceLogic').mockImplementation(() => mockActivationStatsResult as ActivationStats);
 
         const results = getRollAnyXDiceBirdActivations();
 

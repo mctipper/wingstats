@@ -1,4 +1,4 @@
-import { resetTheBirdfeeder } from '@logic/diceActivations/resetTheBirdfeeder';
+import { resetTheBirdfeederLogic } from '@logic/diceActivations/resetTheBirdfeederLogic';
 import { baseGameDie } from '@definitions/diceDefinitions';
 import type { ActivationStats } from '@customTypes';
 
@@ -6,25 +6,25 @@ import type { ActivationStats } from '@customTypes';
 export function debug(): any {
     debugger;
 
-    const blackNoddy: ActivationStats = resetTheBirdfeeder(
+    const blackNoddy: ActivationStats = resetTheBirdfeederLogic(
         baseGameDie,
         'Fish',
         'binomial'
     );
 
-    const europeanBeeEater: ActivationStats = resetTheBirdfeeder(
+    const europeanBeeEater: ActivationStats = resetTheBirdfeederLogic(
         baseGameDie,
         'Invertebrate',
         'binary'
     )
 
-    const europeanHoneyBuzzard: ActivationStats = resetTheBirdfeeder(
+    const europeanHoneyBuzzard: ActivationStats = resetTheBirdfeederLogic(
         baseGameDie,
         'Invertebrate',
         'binomial'
     )
 
-    const laughingKookaburra: ActivationStats = resetTheBirdfeeder(
+    const laughingKookaburra: ActivationStats = resetTheBirdfeederLogic(
         baseGameDie,
         ['Fish', 'Invertebrate', 'Rodent'],
         'binary'

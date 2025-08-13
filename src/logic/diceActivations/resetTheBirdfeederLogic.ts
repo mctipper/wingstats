@@ -1,7 +1,7 @@
 import type { DiceActivations, Die, Food, ActivationResultMode, ActivationStats } from '@customTypes';
 import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 
-export function resetTheBirdfeeder(
+export function resetTheBirdfeederLogic(
     die: Die,
     targetFood: Food | Food[],
     activationResultMode: ActivationResultMode
