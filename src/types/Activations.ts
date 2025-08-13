@@ -3,4 +3,5 @@
 export type DiceActivations =
     '__TEST__'
     | 'rollAnyXDice'
-    | 'resetTheBirdfeeder';
+    | 'resetTheBirdfeeder'
+    | 'rollDiceNotInTheBirdfeeder';
