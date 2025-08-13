@@ -1,6 +1,5 @@
 import type { Die, Food, ActivationResultMode, ActivationStats } from '@customTypes';
-import { getDiceBinaryActivationStats } from '@logic/diceActivations/getDiceBinaryActivationStats';
-import { getDiceBinomialActivationStats } from '@logic/diceActivations/getDiceBinomialActivationStats';
+import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 
 export function rollAnyXDice(
     die: Die,

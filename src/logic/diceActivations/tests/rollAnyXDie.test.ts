@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { rollAnyXDice } from '@logic/diceActivations/rollAnyXDie'
-import { getDiceBinaryActivationStats } from '@logic/diceActivations/getDiceBinaryActivationStats';
-import { getDiceBinomialActivationStats } from '@logic/diceActivations/getDiceBinomialActivationStats';
+import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 import type { Food } from '@customTypes';
 import { oceaniaDie } from '@definitions/diceDefinitions';
 

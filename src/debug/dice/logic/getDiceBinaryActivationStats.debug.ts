@@ -1,4 +1,4 @@
-import { getDiceBinaryActivationStats } from "@logic/diceActivations/getDiceBinaryActivationStats";
+import { getDiceBinaryActivationStats } from "@logic/diceActivations/helpers";
 import type { Food } from "@customTypes";
 import { baseGameDie } from "@definitions/diceDefinitions";
 
