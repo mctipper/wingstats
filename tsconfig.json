@@ -25,6 +25,9 @@
     /* Importing */
     "baseUrl": ".",
     "paths": {
+      "@computed/*": [
+        "src/computed/*"
+      ],
       "@data/*": [
         "src/data/*"
       ],

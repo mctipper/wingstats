@@ -27,6 +27,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
+            '@computed': path.resolve(__dirname, 'src/computed'),
             '@customTypes': path.resolve(__dirname, 'src/types'),
             '@data': path.resolve(__dirname, 'src/data'),
             '@definitions': path.resolve(__dirname, 'src/definitions'),
