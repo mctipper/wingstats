@@ -22,6 +22,8 @@ export type {
 
 export type { Colour } from './Colour';
 
+export type { diceActivationInput, diceActivationResult } from './Computed'
+
 export type {
     DieFace,
     Die
