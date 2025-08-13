@@ -15,8 +15,12 @@ a:hover {
     text-decoration: underline;
 }
 
+h3 {
+    padding-left: 1rem;
+}
+
 #debug-module-list ul {
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 3rem;
     margin-bottom: 2rem;
 }
 

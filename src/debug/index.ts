@@ -9,34 +9,57 @@ type DebugModule = {
     run: () => unknown | Promise<unknown>;
 };
 
+type DebugSubcategory = {
+    subcategory: string;
+    entries: DebugModule[];
+};
+
 type DebugCategory = {
     category: string;
-    entries: DebugModule[];
+    subcategories: DebugSubcategory[];
 };
 
 // only explicitly import the debug.ts modules
 const debugModules = {
-    data: import.meta.glob('./data/*.debug.ts'),
-    dice: import.meta.glob('./dice/*.debug.ts'),
-    draw: import.meta.glob('./draw/*.debug.ts'),
+    data: import.meta.glob('./data/**/*.debug.ts'),
+    dice: import.meta.glob('./dice/**/*.debug.ts'),
+    draw: import.meta.glob('./draw/**/*.debug.ts'),
 };
 
 async function loadModules(): Promise<DebugCategory[]> {
     const categories = Object.entries(debugModules);
 
-    // builds a neat object with the name and .debug method to execute for each module
     const loaded = await Promise.all(
         categories.map(async ([category, modules]) => {
-            const entries = await Promise.all(
+            const subcategoryMap = new Map<string, DebugModule[]>();
+
+            await Promise.all(
                 Object.entries(modules).map(async ([path, loader]) => {
                     const mod: any = await loader();
-                    return {
-                        name: path.split('/').pop()?.replace('.debug.ts', '') ?? 'unknown',
+                    const parts = path.split('/');
+                    const name = parts.pop()?.replace('.debug.ts', '') ?? 'unknown';
+
+                    // get subpath between category and filename
+                    const categoryIndex = parts.indexOf(category);
+                    const subParts = parts.slice(categoryIndex + 1);
+                    const subcategory = subParts.join('/') || 'root';
+
+                    if (!subcategoryMap.has(subcategory)) {
+                        subcategoryMap.set(subcategory, []);
+                    }
+
+                    subcategoryMap.get(subcategory)!.push({
+                        name,
                         run: mod.debug,
-                    };
+                    });
                 })
             );
-            return { category, entries };
+
+            const subcategories: DebugSubcategory[] = Array.from(subcategoryMap.entries()).map(
+                ([subcategory, entries]) => ({ subcategory, entries })
+            );
+
+            return { category, subcategories };
         })
     );
 
@@ -48,7 +71,7 @@ function renderModuleList(modules: DebugCategory[]) {
     const container = document.getElementById('debug-module-list')!;
     container.innerHTML = '';
 
-    for (const { category, entries } of modules) {
+    for (const { category, subcategories } of modules) {
         // create a section for each category with header / list for each debug module
         const section = document.createElement('section');
 
@@ -56,24 +79,37 @@ function renderModuleList(modules: DebugCategory[]) {
         heading.textContent = category;
         section.appendChild(heading);
 
-        const list = document.createElement('ul');
+        for (const { subcategory, entries } of subcategories) {
+            if (subcategory !== 'root') {
+                const subheading = document.createElement('h3');
+                subheading.textContent = subcategory;
+                section.appendChild(subheading);
+            }
 
-        for (const { name, run } of entries) {
-            // allow the run the debug function for each debug module when clicked
-            const item = document.createElement('li');
-            const link = document.createElement('a');
-            link.textContent = name;
-            link.href = '#';
-            link.onclick = async (e) => {
-                e.preventDefault();
-                const result = await run();
-                renderDebugResult(`${category}/${name}`, result);
-            };
-            item.appendChild(link);
-            list.appendChild(item);
+            const list = document.createElement('ul');
+
+            for (const { name, run } of entries) {
+                // allow the run the debug function for each debug module when clicked
+                const item = document.createElement('li');
+                const link = document.createElement('a');
+                link.textContent = name;
+                link.href = '#';
+                link.onclick = async (e) => {
+                    e.preventDefault();
+                    const result = await run();
+                    if (subcategory !== 'root') {
+                        renderDebugResult(`${category}/${subcategory}/${name}`, result);
+                    } else {
+                        renderDebugResult(`${category}/${name}`, result);
+                    }
+                };
+                item.appendChild(link);
+                list.appendChild(item);
+            }
+
+            section.appendChild(list);
         }
 
-        section.appendChild(list);
         container.appendChild(section);
     }
 }
