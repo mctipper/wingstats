@@ -1,9 +1,9 @@
-import { getRollAnyXDiceBirdActivations } from "@computed/diceActivations/rollAnyXDieActivation";
+import { birdsWithRollAnyXDice, getRollAnyXDiceBirdActivations } from "@computed/diceActivations/rollAnyXDieActivation";
 
 export function debug(): any {
     debugger;
 
-    const result = getRollAnyXDiceBirdActivations();
+    const result = getRollAnyXDiceBirdActivations(birdsWithRollAnyXDice);
 
     debugger;
 

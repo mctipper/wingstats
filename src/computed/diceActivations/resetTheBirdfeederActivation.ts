@@ -1,11 +1,10 @@
-import type { ActivationStats, diceActivationInput, diceActivationResult } from "@customTypes";
+import type { ActivationStats, DiceActivationInput, DiceActivationResult } from "@customTypes";
 import { baseGameDie } from "@definitions/diceDefinitions";
 import { resetTheBirdfeederLogic } from "@logic/diceActivations/resetTheBirdfeederLogic";
 
-
 const rollCount: number = 5
 
-const birdsWithRollAnyXDice: diceActivationInput[] = [
+export const birdsResetTheBirdfeeder: DiceActivationInput[] = [
     { birdName: 'Black Noddy', targetFood: 'Fish', rollCount: rollCount, activationResultMode: 'binomial' },
     { birdName: 'Black-Shouldered Kite', targetFood: 'Rodent', rollCount: rollCount, activationResultMode: 'binary' },
     { birdName: 'Bullfinch', targetFood: ['Seed', 'Fruit'], rollCount: rollCount, activationResultMode: 'binary' },
@@ -21,10 +20,11 @@ const birdsWithRollAnyXDice: diceActivationInput[] = [
     { birdName: 'White-Faced Heron', targetFood: 'Fish', rollCount: rollCount, activationResultMode: 'binomial' },
 ]
 
-export function getResetTheBirdfeederActivations(): diceActivationResult[] {
-    return birdsWithRollAnyXDice.map(bird => {
+export function getResetTheBirdfeederActivations(birdsResetTheBirdfeeder: DiceActivationInput[]): DiceActivationResult[] {
+    return birdsResetTheBirdfeeder.map(bird => {
+        const activationStats: Record<number, ActivationStats> = {};
         // as all rollAnyXDice power only target non-nectar foods, can safely use basegame die
-        const activationStats: ActivationStats = resetTheBirdfeederLogic(
+        activationStats[0] = resetTheBirdfeederLogic(
             baseGameDie,
             bird.targetFood,
             bird.activationResultMode
@@ -33,6 +33,7 @@ export function getResetTheBirdfeederActivations(): diceActivationResult[] {
             birdName: bird.birdName,
             targetFood: bird.targetFood,
             rollCount: rollCount,
+            activationResultMode: bird.activationResultMode,
             activationStats: activationStats
         }
     }

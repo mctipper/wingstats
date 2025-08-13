@@ -1,11 +1,11 @@
-import { getResetTheBirdfeederActivations } from "@computed/diceActivations/resetTheBirdfeederActivation";
+import { birdsResetTheBirdfeeder, getResetTheBirdfeederActivations } from "@computed/diceActivations/resetTheBirdfeederActivation";
 
 
 
 export function debug() {
     debugger;
 
-    const results = getResetTheBirdfeederActivations();
+    const results = getResetTheBirdfeederActivations(birdsResetTheBirdfeeder);
 
     debugger;
 

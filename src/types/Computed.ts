@@ -1,14 +1,15 @@
 import type { ActivationStats, Food, ActivationResultMode } from '@customTypes';
 
 
-export type diceActivationResult = {
+export type DiceActivationResult = {
     birdName: string,
     targetFood: Food | Food[],
     rollCount: number,
-    activationStats: ActivationStats
+    activationResultMode: ActivationResultMode,
+    activationStats: Record<number, ActivationStats>
 }
 
-export type diceActivationInput = {
+export type DiceActivationInput = {
     birdName: string,
     targetFood: Food | Food[],
     rollCount: number,
