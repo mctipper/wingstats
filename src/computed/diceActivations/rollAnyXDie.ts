@@ -12,7 +12,7 @@ const birdsWithRollAnyXDice: diceActivationInput[] = [
     { name: 'Sri Lanka Frogmouth', targetFood: 'Invertebrate', rollCount: 1, activationResultMode: 'binary' },
 ]
 
-export function getRollAnyXDiceBirdActivations(): diceActivationResult[] {
+export function getRollAnyXDiceBirdActivation(): diceActivationResult[] {
     return birdsWithRollAnyXDice.map(bird => {
         // as all rollAnyXDice power only target non-nectar foods, can safely use basegame die
         const activationStats: ActivationStats = rollAnyXDice(
