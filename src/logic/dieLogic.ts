@@ -21,8 +21,25 @@ function getFoodOdds(die: Die, target: Food | Food[]): number {
     return matchingFaces.length === 0 ? 0 : matchingFaces.length / totalFaces;
 }
 
+function getAllUniqueFoodsOnDie(die: Die): Food[] {
+    const foodSet = new Set<Food>();
+
+    for (const face of die.faces) {
+        if (face.kind === 'single') {
+            foodSet.add(face.food);
+        } else {
+            for (const option of face.options) {
+                foodSet.add(option);
+            }
+        }
+    }
+
+    return Array.from(foodSet);
+}
+
 
 export const DieLogic = {
     containsFood,
-    getFoodOdds
+    getFoodOdds,
+    getAllUniqueFoodsOnDie
 }

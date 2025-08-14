@@ -2,11 +2,11 @@ import type { DiceActivations, Die, Food, ActivationStats } from '@customTypes';
 import { DieLogic } from '@logic/dieLogic';
 
 
-function getAllCombinations<T>(items: T[]): T[][] {
+function getAllSubsets<T>(items: T[]): T[][] {
     const result: T[][] = [];
     const total = 1 << items.length;
 
-    for (let mask = 0; mask < total; mask++) {
+    for (let mask = 1; mask < total; mask++) {
         const subset: T[] = [];
         for (let i = 0; i < items.length; i++) {
             if (mask & (1 << i)) subset.push(items[i]);
@@ -22,7 +22,7 @@ export function getDiceUniqueFoodActivationStats(
     die: Die,
     dieCount: number
 ): ActivationStats {
-    const allFoods = DieLogic.allFoodsOnDie(die);
+    const allFoods = DieLogic.getAllUniqueFoodsOnDie(die);
     let foodSeenProb: Record<Food, number> = {} as Record<Food, number>
 
     // build out probability of landing each unique food
@@ -31,10 +31,9 @@ export function getDiceUniqueFoodActivationStats(
         foodSeenProb[food] = 1 - Math.pow(1 - p, dieCount);
     }
 
-    let distribution: Record<number, number> = {};
-    let expectedValue: number = 0
+    let rawDistribution: Record<number, number> = {};
 
-    const subsets = getAllCombinations(allFoods);
+    const subsets = getAllSubsets(allFoods);
 
     for (const subset of subsets) {
         const included = new Set(subset);
@@ -49,15 +48,32 @@ export function getDiceUniqueFoodActivationStats(
         }
 
         const uniqueCount = subset.length;
-        distribution[uniqueCount] = (distribution[uniqueCount] ?? 0) + prob;
-        expectedValue += uniqueCount * prob;
+
+        rawDistribution[uniqueCount] = (rawDistribution[uniqueCount] ?? 0) + prob;
     }
+
+    // normalise due to composition errors in repeated small multiplication
+    const totalProb = Object.values(rawDistribution).reduce((sum, p) => sum + p, 0);
+    const distribution: Record<number, number> = {};
+    for (const key in rawDistribution) {
+        distribution[+key] = rawDistribution[+key] / totalProb;
+    }
+
+    // calc after normalising results
+    let expectedValue = 0;
+    let anySuccess = 0;
+    for (const [countStr, prob] of Object.entries(distribution)) {
+        const count = +countStr;
+        expectedValue += count * prob;
+        anySuccess += prob;
+    }
+
 
     return {
         activationName,
         distribution,
-        anySuccess: 1,
-        failure: 0,
+        anySuccess,
+        failure: 1 - anySuccess,
         expectedValue
     };
 }
