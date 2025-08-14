@@ -32,5 +32,6 @@ export type {
 
 export type {
     DieFace,
-    Die
+    Die,
+    DieVersions
 } from './Die';
