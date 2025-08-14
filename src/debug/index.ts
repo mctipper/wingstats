@@ -55,9 +55,14 @@ async function loadModules(): Promise<DebugCategory[]> {
                 })
             );
 
-            const subcategories: DebugSubcategory[] = Array.from(subcategoryMap.entries()).map(
-                ([subcategory, entries]) => ({ subcategory, entries })
-            );
+            // subcategories and headers are sorted alphabetically
+            const subcategories: DebugSubcategory[] = Array.from(subcategoryMap.entries())
+                .map(([subcategory, entries]) => ({
+                    subcategory,
+                    entries: entries.sort((a, b) => a.name.localeCompare(b.name)),
+                }))
+                .sort((a, b) => a.subcategory.localeCompare(b.subcategory));
+
 
             return { category, subcategories };
         })
