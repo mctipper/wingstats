@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { rollAnyXDiceLogic, getRollAnyXDiceBirdActivation } from '@logic/diceActivations/rollAnyXDie'
 import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 import type { DiceActivations, Food, ActivationStats, DiceActivationInput } from '@customTypes';
-import { oceaniaDie } from '@definitions/diceDefinitions';
+import { baseGameDie } from '@definitions/diceDefinitions';
 import * as diceActvationLogic from '@logic/diceActivations/rollAnyXDie';
 
 
@@ -30,16 +30,16 @@ describe('rollAnyXDice logic', () => {
     const permitReroll: boolean = false;
 
     it('calls getDiceBinaryActivationStats when mode is "binary"', () => {
-        rollAnyXDiceLogic(oceaniaDie, food, dieCount, 'binary');
+        rollAnyXDiceLogic(baseGameDie, food, dieCount, 'binary');
 
-        expect(getDiceBinaryActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, dieCount, permitReroll);
+        expect(getDiceBinaryActivationStats).toHaveBeenCalledWith(activationName, baseGameDie, food, dieCount, permitReroll);
         expect(getDiceBinomialActivationStats).not.toHaveBeenCalled();
     });
 
     it('calls getDiceBinomialActivationStats when mode is "binomial"', () => {
-        rollAnyXDiceLogic(oceaniaDie, food, dieCount, 'binomial');
+        rollAnyXDiceLogic(baseGameDie, food, dieCount, 'binomial');
 
-        expect(getDiceBinomialActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, dieCount, permitReroll);
+        expect(getDiceBinomialActivationStats).toHaveBeenCalledWith(activationName, baseGameDie, food, dieCount, permitReroll);
         expect(getDiceBinaryActivationStats).not.toHaveBeenCalled();
     });
 });
@@ -64,6 +64,7 @@ describe('getRollAnyXDiceBirdActivation', () => {
 
             expect(result.birdName).toBe(expectedBird.birdName);
             expect(result.targetFood).toBe(expectedBird.targetFood);
+            expect(result.die).toBe(baseGameDie.version);
             expect(result.dieCount).toBe(expectedBird.dieCount);
             expect(result.rollCount).toBe(expectedBird.rollCount);
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);

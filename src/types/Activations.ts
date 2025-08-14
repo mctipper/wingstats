@@ -1,4 +1,4 @@
-import type { Food } from '@customTypes';
+import type { Food, DieVersions } from '@customTypes';
 
 
 
@@ -40,5 +40,6 @@ export type DiceActivationInput = {
 }
 
 export type DiceActivationResult = DiceActivationInput & {
+    die: DieVersions,
     activationStats: Record<number, ActivationStats>
 }
