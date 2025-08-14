@@ -1,7 +1,7 @@
 import type { Die } from '@customTypes';
 
 export const baseGameDie: Die = {
-    kind: 'basegame',
+    version: 'basegame',
     faces: [
         { kind: 'single', food: 'Invertebrate' },
         { kind: 'single', food: 'Seed' },
@@ -13,7 +13,7 @@ export const baseGameDie: Die = {
 };
 
 export const oceaniaDie: Die = {
-    kind: 'oceania',
+    version: 'oceania',
     faces: [
         { kind: 'single', food: 'Invertebrate' },
         { kind: 'choice', options: ['Seed', 'Nectar'] },
@@ -24,7 +24,7 @@ export const oceaniaDie: Die = {
     ],
 };
 
-export const allDice: Record<Die['kind'], Die> = {
+export const allDice: Record<Die['version'], Die> = {
     basegame: baseGameDie,
     oceania: oceaniaDie,
 };
