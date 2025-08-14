@@ -89,6 +89,7 @@ describe('getResetTheBirdfeederActivations', () => {
             expect(result.rollCount).toBe(expectedBird.rollCount);
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);
 
+            // one result only pls
             expect(Object.keys(result.activationStats)).toHaveLength(1);
             expect(result.activationStats[0]).toEqual(mockActivationStatsResult);
         }
