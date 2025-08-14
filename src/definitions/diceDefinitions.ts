@@ -1,4 +1,4 @@
-import type { Die } from '@customTypes';
+import type { Die, DieVersions } from '@customTypes';
 
 export const baseGameDie: Die = {
     version: 'basegame',
@@ -24,7 +24,7 @@ export const oceaniaDie: Die = {
     ],
 };
 
-export const allDice: Record<Die['version'], Die> = {
+export const allDice: Record<DieVersions, Die> = {
     basegame: baseGameDie,
     oceania: oceaniaDie,
 };
