@@ -8,7 +8,8 @@ export function debug(): any {
         input: {
             activationName: DiceActivations,
             food: Food | Food[];
-            rolls: number;
+            dieCount: number,
+            rollCount: number;
             permitReroll: boolean;
         }
     };
@@ -26,37 +27,38 @@ export function debug(): any {
 
     const cases: DebugInputCase[] = [
         // one food on one face
-        { input: { food: 'Fish', rolls: 1, activationName: '__TEST__', permitReroll: false } },
-        { input: { food: 'Fish', rolls: 5, activationName: '__TEST__', permitReroll: true } },
-        { input: { food: 'Fish', rolls: 5, activationName: '__TEST__', permitReroll: false } },
+        { input: { food: 'Fish', dieCount: 1, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
+        { input: { food: 'Fish', dieCount: 5, rollCount: 1, activationName: '__TEST__', permitReroll: true } },
+        { input: { food: 'Fish', dieCount: 5, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
         // one food on two faces
-        { input: { food: 'Seed', rolls: 1, activationName: '__TEST__', permitReroll: false } },
-        { input: { food: 'Seed', rolls: 3, activationName: '__TEST__', permitReroll: true } },
+        { input: { food: 'Seed', dieCount: 1, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
+        { input: { food: 'Seed', dieCount: 3, rollCount: 1, activationName: '__TEST__', permitReroll: true } },
         // two food, each on one face
-        { input: { food: ['Rodent', 'Fruit'], activationName: '__TEST__', permitReroll: false, rolls: 1 } },
-        { input: { food: ['Rodent', 'Fruit'], activationName: '__TEST__', permitReroll: true, rolls: 4 } },
+        { input: { food: ['Rodent', 'Fruit'], dieCount: 1, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
+        { input: { food: ['Rodent', 'Fruit'], dieCount: 4, rollCount: 1, activationName: '__TEST__', permitReroll: true } },
         // two food, both on two faces (but one is shared)
-        { input: { food: ['Invertebrate', 'Seed'], activationName: '__TEST__', permitReroll: false, rolls: 1 } },
-        { input: { food: ['Invertebrate', 'Seed'], activationName: '__TEST__', permitReroll: true, rolls: 2 } },
+        { input: { food: ['Invertebrate', 'Seed'], dieCount: 1, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
+        { input: { food: ['Invertebrate', 'Seed'], dieCount: 2, rollCount: 1, activationName: '__TEST__', permitReroll: true } },
         // three food, mixute
-        { input: { food: ['Rodent', 'Fish', 'Invertebrate'], activationName: '__TEST__', permitReroll: false, rolls: 1 } },
-        { input: { food: ['Rodent', 'Fish', 'Invertebrate'], activationName: '__TEST__', permitReroll: true, rolls: 5 } },
-        { input: { food: ['Rodent', 'Fish', 'Invertebrate'], activationName: '__TEST__', permitReroll: false, rolls: 5 } },
+        { input: { food: ['Rodent', 'Fish', 'Invertebrate'], dieCount: 1, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
+        { input: { food: ['Rodent', 'Fish', 'Invertebrate'], dieCount: 5, rollCount: 1, activationName: '__TEST__', permitReroll: true } },
+        { input: { food: ['Rodent', 'Fish', 'Invertebrate'], dieCount: 5, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
         // four food, mixture allows absolute success
-        { input: { food: ['Rodent', 'Fruit', 'Fish', 'Seed'], activationName: '__TEST__', permitReroll: false, rolls: 2 } },
-        { input: { food: ['Rodent', 'Fruit', 'Fish', 'Seed'], activationName: '__TEST__', permitReroll: true, rolls: 5 } },
-        { input: { food: ['Rodent', 'Fruit', 'Fish', 'Seed'], activationName: '__TEST__', permitReroll: false, rolls: 5 } },
+        { input: { food: ['Rodent', 'Fruit', 'Fish', 'Seed'], dieCount: 2, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
+        { input: { food: ['Rodent', 'Fruit', 'Fish', 'Seed'], dieCount: 5, rollCount: 1, activationName: '__TEST__', permitReroll: true } },
+        { input: { food: ['Rodent', 'Fruit', 'Fish', 'Seed'], dieCount: 5, rollCount: 1, activationName: '__TEST__', permitReroll: false } },
     ];
 
     debugger;
 
     for (const _case of cases) {
-        const result = getDiceBinomialActivationStats(_case.input.activationName, baseGameDie, _case.input.food, _case.input.rolls, _case.input.permitReroll)
+        const result = getDiceBinomialActivationStats(_case.input.activationName, baseGameDie, _case.input.food, _case.input.dieCount, _case.input.permitReroll)
         let output: DebugOutputCase = {
             input: {
                 activationName: _case.input.activationName,
                 food: _case.input.food,
-                rolls: _case.input.rolls,
+                dieCount: _case.input.dieCount,
+                rollCount: _case.input.rollCount,
                 permitReroll: _case.input.permitReroll
             },
             result: result
