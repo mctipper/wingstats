@@ -1,4 +1,4 @@
-import { birdsRollDiceNotInTheBirdfeeder, getRollDiceNotInTheBirdfeederActivation } from "@computed/diceActivations/rollDiceNotInTheBirdfeederActivation";
+import { birdsRollDiceNotInTheBirdfeeder, getRollDiceNotInTheBirdfeederActivation } from "@logic/diceActivations/rollDiceNotInTheBirdfeeder";
 
 
 
