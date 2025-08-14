@@ -27,7 +27,8 @@ export type DiceActivations =
     | 'rollAnyXDice'
     | 'resetTheBirdfeeder'
     | 'rollDiceNotInTheBirdfeeder'
-    | 'pushYourLuck';
+    | 'pushYourLuck'
+    | 'rollDiceForXBirdsInHabitat';
 
 
 export type DiceActivationInput = {
