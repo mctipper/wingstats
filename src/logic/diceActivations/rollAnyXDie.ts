@@ -26,7 +26,7 @@ export function rollAnyXDiceLogic(
 }
 
 
-export function getRollAnyXDiceBirdActivations(birdsWithRollAnyXDice: DiceActivationInput[]): DiceActivationResult[] {
+export function getRollAnyXDiceBirdActivation(birdsWithRollAnyXDice: DiceActivationInput[]): DiceActivationResult[] {
     return birdsWithRollAnyXDice.map(bird => {
         const activationStats: Record<number, ActivationStats> = {};
         // as all rollAnyXDice power only target non-nectar foods, can safely use basegame die

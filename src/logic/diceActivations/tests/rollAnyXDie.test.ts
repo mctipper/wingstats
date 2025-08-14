@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { rollAnyXDiceLogic, getRollAnyXDiceBirdActivations } from '@logic/diceActivations/rollAnyXDie'
+import { rollAnyXDiceLogic, getRollAnyXDiceBirdActivation } from '@logic/diceActivations/rollAnyXDie'
 import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 import type { DiceActivations, Food, ActivationStats, DiceActivationInput } from '@customTypes';
 import { oceaniaDie } from '@definitions/diceDefinitions';
@@ -45,7 +45,7 @@ describe('rollAnyXDice logic', () => {
 });
 
 
-describe('getRollAnyXDiceBirdActivations', () => {
+describe('getRollAnyXDiceBirdActivation', () => {
     it('return correct activation structure and contents for each bird (specifics mocked)', () => {
         vi.spyOn(diceActvationLogic, 'rollAnyXDiceLogic').mockImplementation(() => mockActivationStatsResult as ActivationStats);
 
@@ -54,7 +54,7 @@ describe('getRollAnyXDiceBirdActivations', () => {
             { birdName: 'Great Cormorant', targetFood: 'Fish', dieCount: 2, rollCount: 1, activationResultMode: 'binary' },
         ];
 
-        const results = getRollAnyXDiceBirdActivations(testBirds);
+        const results = getRollAnyXDiceBirdActivation(testBirds);
 
         expect(results).toHaveLength(testBirds.length);
 
