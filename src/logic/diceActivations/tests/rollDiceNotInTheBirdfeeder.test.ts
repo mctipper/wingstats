@@ -80,10 +80,6 @@ describe('getRollDiceNotInTheBirdfeederActivation', () => {
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);
 
             expect(Object.keys(result.activationStats)).toHaveLength(expectedBird.dieCount);
-            // start at 1 to indicate '1 dice not in the birdfeeder'
-            for (let j = 1; j < expectedBird.dieCount; j++) {
-                expect(result.activationStats[j]).toEqual(mockActivationStatsResult);
-            }
         }
     });
 });

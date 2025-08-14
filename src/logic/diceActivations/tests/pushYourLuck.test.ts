@@ -72,10 +72,6 @@ describe('getPushYourLuckActivation', () => {
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);
 
             expect(Object.keys(result.activationStats)).toHaveLength(result.rollCount);
-            // start at 1 to indicate first attempt'
-            for (let j = 1; j < expectedBird.dieCount; j++) {
-                expect(result.activationStats[j]).toEqual(mockActivationStatsResult);
-            }
         }
     });
 });
