@@ -8,23 +8,23 @@ describe('Die definitions', () => {
     it('baseGameDie exists and is a Die', () => {
         const die: Die = baseGameDie;
         expect(die).toBeDefined();
-        expect(die.kind).toBe('basegame');
+        expect(die.version).toBe('basegame');
     });
 
     it('oceaniaDie exists and is a Die', () => {
         const die: Die = oceaniaDie;
         expect(die).toBeDefined();
-        expect(die.kind).toBe('oceania');
+        expect(die.version).toBe('oceania');
     });
 
-    it('allDice includes both die kinds and values are Die', () => {
+    it('allDice includes both die versions and values are Die', () => {
         expect(allDice.basegame).toBeDefined();
         expect(allDice.oceania).toBeDefined();
 
         const base: Die = allDice.basegame;
         const oceania: Die = allDice.oceania;
 
-        expect(base.kind).toBe('basegame');
-        expect(oceania.kind).toBe('oceania');
+        expect(base.version).toBe('basegame');
+        expect(oceania.version).toBe('oceania');
     });
 });
