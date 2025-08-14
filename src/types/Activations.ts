@@ -18,14 +18,16 @@ export type ActivationResultMode =
     // >=1 success counts as 1 EV
     'binary'
     // each success count towards EV
-    | 'binomial';
+    | 'binomial'
+    | 'sequential';
 
 
 export type DiceActivations =
     '__TEST__'
     | 'rollAnyXDice'
     | 'resetTheBirdfeeder'
-    | 'rollDiceNotInTheBirdfeeder';
+    | 'rollDiceNotInTheBirdfeeder'
+    | 'pushYourLuck';
 
 
 export type DiceActivationInput = {
