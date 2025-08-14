@@ -20,7 +20,8 @@ export type ActivationResultMode =
     // each success count towards EV
     | 'binomial'
     | 'sequential'
-    | 'uniques';
+    | 'uniques'
+    | 'withholding';
 
 
 export type DiceActivations =
@@ -30,7 +31,8 @@ export type DiceActivations =
     | 'rollDiceNotInTheBirdfeeder'
     | 'pushYourLuck'
     | 'rollDiceForXBirdsInHabitat'
-    | 'maskedLapwing';
+    | 'maskedLapwing'
+    | 'philippineEagle';
 
 
 export type DiceActivationInput = {
