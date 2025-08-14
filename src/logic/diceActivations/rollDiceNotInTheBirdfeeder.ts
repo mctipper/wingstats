@@ -46,6 +46,7 @@ export function getRollDiceNotInTheBirdfeederActivation(birdsRollDiceNotInTheBir
         let curBirdStats: Record<number, ActivationStats> = {}
         // apply stats from rolling 1 die to 4 dice outside the birdfeeder, as indicated by the Record index
         for (const thisRollCount of Array.from({ length: curBird.rollCount }, (_, i) => i + 1)) {
+            // all birds wit this power target non-nectar
             const curStats: ActivationStats = rollDiceNotInTheBirdfeederLogic(
                 baseGameDie,
                 curBird.targetFood,

@@ -41,7 +41,7 @@ export function resetTheBirdfeederLogic(
 export function getResetTheBirdfeederActivations(birdsResetTheBirdfeeder: DiceActivationInput[]): DiceActivationResult[] {
     return birdsResetTheBirdfeeder.map(bird => {
         const activationStats: Record<number, ActivationStats> = {};
-        // as all rollAnyXDice power only target non-nectar foods, can safely use basegame die
+        // as all resetTheBirdFeeder power (expect special-case Masked Lapwing) only target non-nectar foods, can safely use basegame die
         activationStats[0] = resetTheBirdfeederLogic(
             baseGameDie,
             bird.targetFood,
