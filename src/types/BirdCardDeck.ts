@@ -1,4 +1,10 @@
-import type { BirdCard, Expansions } from "@customTypes";
+import type { BirdCard } from "@customTypes";
+
+export type Expansions =
+  | 'BaseGame'
+  | 'European'
+  | 'Oceania'
+  | 'Asia';
 
 export type BirdCardDeck = {
   expansion: Expansions;

@@ -1,14 +1,27 @@
-export type { ActivationResultMode } from './ActivationResultMode';
-
-export type { DiceActivations } from './Activations'
-
-export type { ActivationStats } from './ActivationStats';
-
-export type { BeakPointing, BeakPointingInfo } from './BeakPointing';
-
-export type { BirdCard } from './BirdCard'
+export type {
+    ActivationStats,
+    ActivationResultMode,
+    DiceActivations,
+    DiceActivationResult,
+    DiceActivationInput
+} from './Activations'
 
 export type {
+    BeakPointing,
+    BeakPointingInfo,
+    BonusCards,
+    BonusCardInfo,
+    Colour,
+    Food,
+    FoodCost,
+    Habitats,
+    HabitatInfo,
+    Nest,
+    BirdCard
+} from './BirdCard'
+
+export type {
+    Expansions,
     BirdCardDeck,
     BaseGameDeck,
     EuropeanDeck,
@@ -18,29 +31,6 @@ export type {
 } from './BirdCardDeck';
 
 export type {
-    BonusCards,
-    BonusCardInfo
-} from './BonusCards';
-
-export type { Colour } from './Colour';
-
-export type { DiceActivationInput, DiceActivationResult } from './Computed'
-
-export type {
     DieFace,
     Die
 } from './Die';
-
-export type { Expansions } from './Expansions';
-
-export type {
-    Food,
-    FoodCost
-} from './Food';
-
-export type {
-    Habitats,
-    HabitatInfo
-} from './Habitats';
-
-export type { Nest } from './Nest';

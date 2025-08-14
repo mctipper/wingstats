@@ -1,8 +1,10 @@
-import type { ActivationStats, DiceActivationInput, DiceActivationResult } from "@customTypes";
+import type { DiceActivations, Die, Food, ActivationResultMode, ActivationStats, DiceActivationInput, DiceActivationResult } from '@customTypes';
+import { getDiceBinaryActivationStats, getDiceBinomialActivationStats } from '@logic/diceActivations/helpers';
 import { baseGameDie } from "@definitions/diceDefinitions";
-import { resetTheBirdfeederLogic } from "@logic/diceActivations/resetTheBirdfeederLogic";
+
 
 const rollCount: number = 5
+
 
 export const birdsResetTheBirdfeeder: DiceActivationInput[] = [
     { birdName: 'Black Noddy', targetFood: 'Fish', rollCount: rollCount, activationResultMode: 'binomial' },
@@ -19,6 +21,22 @@ export const birdsResetTheBirdfeeder: DiceActivationInput[] = [
     { birdName: 'White-Bellied Sea-Eagle', targetFood: ['Fish', 'Rodent'], rollCount: rollCount, activationResultMode: 'binary' },
     { birdName: 'White-Faced Heron', targetFood: 'Fish', rollCount: rollCount, activationResultMode: 'binomial' },
 ]
+
+
+
+export function resetTheBirdfeederLogic(
+    die: Die,
+    targetFood: Food | Food[],
+    activationResultMode: ActivationResultMode
+): ActivationStats {
+    // wrapper function to explicitly call the 'reset the birdfeeder' style activation
+    const activationName: DiceActivations = 'resetTheBirdfeeder'
+    const rollCount: number = 5
+    const permitReroll: boolean = true
+    return activationResultMode === 'binary'
+        ? getDiceBinaryActivationStats(activationName, die, targetFood, rollCount, permitReroll)
+        : getDiceBinomialActivationStats(activationName, die, targetFood, rollCount, permitReroll);
+}
 
 export function getResetTheBirdfeederActivations(birdsResetTheBirdfeeder: DiceActivationInput[]): DiceActivationResult[] {
     return birdsResetTheBirdfeeder.map(bird => {

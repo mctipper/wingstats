@@ -1,3 +1,24 @@
+import type { Food } from '@customTypes';
+
+
+
+export type ActivationStats = {
+    activationName: DiceActivations;
+    // probability of each count of success
+    distribution: Record<number, number>;
+    // P(success >= 1)
+    anySuccess: number;
+    // P(success = 0)
+    failure: number;
+    // Sum (successCount * probability) (will equal anySuccess for Binary success activations)
+    expectedValue: number;
+};
+
+export type ActivationResultMode =
+    // >=1 success counts as 1 EV
+    'binary'
+    // each success count towards EV
+    | 'binomial';
 
 
 export type DiceActivations =
@@ -5,3 +26,19 @@ export type DiceActivations =
     | 'rollAnyXDice'
     | 'resetTheBirdfeeder'
     | 'rollDiceNotInTheBirdfeeder';
+
+
+export type DiceActivationResult = {
+    birdName: string,
+    targetFood: Food | Food[],
+    rollCount: number,
+    activationResultMode: ActivationResultMode,
+    activationStats: Record<number, ActivationStats>
+}
+
+export type DiceActivationInput = {
+    birdName: string,
+    targetFood: Food | Food[],
+    rollCount: number,
+    activationResultMode: ActivationResultMode
+}
