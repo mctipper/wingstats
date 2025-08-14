@@ -1,8 +1,8 @@
 import type { Die, Food } from '@customTypes';
 
-export function getExactMatchExcludingTargetOdds(die: Die, excludeFood: Food | Food[], rollCount: number): number {
+export function getExactMatchExcludingTargetOdds(die: Die, excludeFood: Food | Food[], dieCount: number): number {
     // base case protector, prevent recursion when only a single die is to be rerolled
-    if (rollCount === 1) {
+    if (dieCount === 1) {
         throw new Error('Recursive reroll with only 1 die, aborting')
     }
 
@@ -19,6 +19,6 @@ export function getExactMatchExcludingTargetOdds(die: Die, excludeFood: Food | F
     // all faces contain a excludeFood, no effect
     if (validFaceCount === 0) return 0;
 
-    // probability of rolling (rollCount) identical die that do not include the excludeFood
-    return validFaceCount / Math.pow(totalFaces, rollCount);
+    // probability of rolling (dieCount) identical die that do not include the excludeFood
+    return validFaceCount / Math.pow(totalFaces, dieCount);
 }

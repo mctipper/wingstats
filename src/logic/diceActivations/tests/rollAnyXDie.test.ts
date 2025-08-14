@@ -26,20 +26,20 @@ describe('rollAnyXDice logic', () => {
 
     const activationName: DiceActivations = 'rollAnyXDice'
     const food: Food = 'Fish';
-    const rollCount: number = 5;
+    const dieCount: number = 5;
     const permitReroll: boolean = false;
 
     it('calls getDiceBinaryActivationStats when mode is "binary"', () => {
-        rollAnyXDiceLogic(oceaniaDie, food, rollCount, 'binary');
+        rollAnyXDiceLogic(oceaniaDie, food, dieCount, 'binary');
 
-        expect(getDiceBinaryActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, rollCount, permitReroll);
+        expect(getDiceBinaryActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, dieCount, permitReroll);
         expect(getDiceBinomialActivationStats).not.toHaveBeenCalled();
     });
 
     it('calls getDiceBinomialActivationStats when mode is "binomial"', () => {
-        rollAnyXDiceLogic(oceaniaDie, food, rollCount, 'binomial');
+        rollAnyXDiceLogic(oceaniaDie, food, dieCount, 'binomial');
 
-        expect(getDiceBinomialActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, rollCount, permitReroll);
+        expect(getDiceBinomialActivationStats).toHaveBeenCalledWith(activationName, oceaniaDie, food, dieCount, permitReroll);
         expect(getDiceBinaryActivationStats).not.toHaveBeenCalled();
     });
 });
@@ -50,8 +50,8 @@ describe('getRollAnyXDiceBirdActivations', () => {
         vi.spyOn(diceActvationLogic, 'rollAnyXDiceLogic').mockImplementation(() => mockActivationStatsResult as ActivationStats);
 
         const testBirds: DiceActivationInput[] = [
-            { birdName: 'Eurasian Kestrel', targetFood: 'Rodent', rollCount: 3, activationResultMode: 'binary' },
-            { birdName: 'Great Cormorant', targetFood: 'Fish', rollCount: 2, activationResultMode: 'binary' },
+            { birdName: 'Eurasian Kestrel', targetFood: 'Rodent', dieCount: 3, rollCount: 1, activationResultMode: 'binary' },
+            { birdName: 'Great Cormorant', targetFood: 'Fish', dieCount: 2, rollCount: 1, activationResultMode: 'binary' },
         ];
 
         const results = getRollAnyXDiceBirdActivations(testBirds);
@@ -64,6 +64,7 @@ describe('getRollAnyXDiceBirdActivations', () => {
 
             expect(result.birdName).toBe(expectedBird.birdName);
             expect(result.targetFood).toBe(expectedBird.targetFood);
+            expect(result.dieCount).toBe(expectedBird.dieCount);
             expect(result.rollCount).toBe(expectedBird.rollCount);
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);
 

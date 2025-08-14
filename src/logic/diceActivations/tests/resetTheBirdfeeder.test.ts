@@ -27,7 +27,7 @@ describe('resetTheBirdfeeder logic', () => {
 
     const activationName: DiceActivations = 'resetTheBirdfeeder';
     const food: Food = 'Fish';
-    const rollCount = 5;
+    const dieCount: number = 5;
     const permitReroll = true;
 
     beforeEach(() => {
@@ -41,7 +41,7 @@ describe('resetTheBirdfeeder logic', () => {
             activationName,
             baseGameDie,
             food,
-            rollCount,
+            dieCount,
             permitReroll
         );
         expect(getDiceBinomialActivationStats).not.toHaveBeenCalled();
@@ -54,7 +54,7 @@ describe('resetTheBirdfeeder logic', () => {
             activationName,
             baseGameDie,
             food,
-            rollCount,
+            dieCount,
             permitReroll
         );
         expect(getDiceBinaryActivationStats).not.toHaveBeenCalled();
@@ -67,11 +67,12 @@ describe('getResetTheBirdfeederActivations', () => {
 
         vi.spyOn(diceActivationLogic, 'resetTheBirdfeederLogic').mockImplementation(() => mockActivationStatsResult);
 
-        const rollCount = 5;
+        const dieCount: number = 5;
+        const rollCount: number = 1;
         const testBirds: DiceActivationInput[] = [
-            { birdName: 'Grey Shrikethrush', targetFood: 'Rodent', rollCount, activationResultMode: 'binomial' },
-            { birdName: 'Hawfinch', targetFood: 'Seed', rollCount, activationResultMode: 'binary' },
-            { birdName: 'Laughing Kookaburra', targetFood: ['Fish', 'Invertebrate', 'Rodent'], rollCount, activationResultMode: 'binary' },
+            { birdName: 'Grey Shrikethrush', targetFood: 'Rodent', dieCount, rollCount, activationResultMode: 'binomial' },
+            { birdName: 'Hawfinch', targetFood: 'Seed', dieCount, rollCount, activationResultMode: 'binary' },
+            { birdName: 'Laughing Kookaburra', targetFood: ['Fish', 'Invertebrate', 'Rodent'], dieCount, rollCount, activationResultMode: 'binary' },
         ];
 
         const results = getResetTheBirdfeederActivations(testBirds);
@@ -84,6 +85,7 @@ describe('getResetTheBirdfeederActivations', () => {
 
             expect(result.birdName).toBe(expectedBird.birdName);
             expect(result.targetFood).toEqual(expectedBird.targetFood);
+            expect(result.dieCount).toBe(expectedBird.dieCount);
             expect(result.rollCount).toBe(expectedBird.rollCount);
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);
 

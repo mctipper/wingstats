@@ -6,10 +6,10 @@ import { getExactMatchExcludingTargetOdds } from '@logic/diceActivations/helpers
 function applyBinaryReroll(
     die: Die,
     targetFood: Food | Food[],
-    rollCount: number,
+    dieCount: number,
     activationStats: ActivationStats
 ): ActivationStats {
-    const rerollProb = getExactMatchExcludingTargetOdds(die, targetFood, rollCount)
+    const rerollProb = getExactMatchExcludingTargetOdds(die, targetFood, dieCount)
     activationStats.anySuccess = activationStats.anySuccess / (1 - rerollProb);
     activationStats.expectedValue = activationStats.anySuccess;
     activationStats.failure = 1 - activationStats.anySuccess;
@@ -24,12 +24,12 @@ export function getDiceBinaryActivationStats(
     activationName: DiceActivations,
     die: Die,
     targetFood: Food | Food[],
-    rollCount: number,
+    dieCount: number,
     permitReroll: boolean = false
 ): ActivationStats {
     // Binary Activation, any number of success is counted as 1
     const singleSuccessProb = DieLogic.getFoodOdds(die, targetFood);
-    const failure = Math.pow(1 - singleSuccessProb, rollCount);
+    const failure = Math.pow(1 - singleSuccessProb, dieCount);
     const anySuccess = 1 - failure;
 
     const activationStats: ActivationStats = {
@@ -44,7 +44,7 @@ export function getDiceBinaryActivationStats(
     }
 
     if (permitReroll) {
-        return applyBinaryReroll(die, targetFood, rollCount, activationStats)
+        return applyBinaryReroll(die, targetFood, dieCount, activationStats)
     }
 
     return activationStats

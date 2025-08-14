@@ -4,25 +4,25 @@ import { baseGameDie } from '@definitions/diceDefinitions';
 
 
 export const birdsWithRollAnyXDice: DiceActivationInput[] = [
-    { birdName: 'Eurasian Kestrel', targetFood: 'Rodent', rollCount: 3, activationResultMode: 'binary' },
-    { birdName: 'Great Cormorant', targetFood: 'Fish', rollCount: 2, activationResultMode: 'binary' },
-    { birdName: 'Rhinoceros Auklet', targetFood: 'Fish', rollCount: 2, activationResultMode: 'binary' },
-    { birdName: 'Sri Lanka Frogmouth', targetFood: 'Invertebrate', rollCount: 1, activationResultMode: 'binary' },
+    { birdName: 'Eurasian Kestrel', targetFood: 'Rodent', dieCount: 3, rollCount: 1, activationResultMode: 'binary' },
+    { birdName: 'Great Cormorant', targetFood: 'Fish', dieCount: 2, rollCount: 1, activationResultMode: 'binary' },
+    { birdName: 'Rhinoceros Auklet', targetFood: 'Fish', dieCount: 2, rollCount: 1, activationResultMode: 'binary' },
+    { birdName: 'Sri Lanka Frogmouth', targetFood: 'Invertebrate', dieCount: 1, rollCount: 1, activationResultMode: 'binary' },
 ]
 
 
 export function rollAnyXDiceLogic(
     die: Die,
     targetFood: Food | Food[],
-    rollCount: number,
+    dieCount: number,
     activationResultMode: ActivationResultMode
 ): ActivationStats {
     // wrapper function to explicitly call the 'roll any x dice' style activation
     const activationName: DiceActivations = 'rollAnyXDice';
     const permitReroll: boolean = false;
     return activationResultMode === 'binary'
-        ? getDiceBinaryActivationStats(activationName, die, targetFood, rollCount, permitReroll)
-        : getDiceBinomialActivationStats(activationName, die, targetFood, rollCount, permitReroll);
+        ? getDiceBinaryActivationStats(activationName, die, targetFood, dieCount, permitReroll)
+        : getDiceBinomialActivationStats(activationName, die, targetFood, dieCount, permitReroll);
 }
 
 
@@ -33,12 +33,13 @@ export function getRollAnyXDiceBirdActivations(birdsWithRollAnyXDice: DiceActiva
         activationStats[0] = rollAnyXDiceLogic(
             baseGameDie,
             bird.targetFood,
-            bird.rollCount,
+            bird.dieCount,
             bird.activationResultMode
         )
         return {
             birdName: bird.birdName,
             targetFood: bird.targetFood,
+            dieCount: bird.dieCount,
             rollCount: bird.rollCount,
             activationResultMode: bird.activationResultMode,
             activationStats: activationStats

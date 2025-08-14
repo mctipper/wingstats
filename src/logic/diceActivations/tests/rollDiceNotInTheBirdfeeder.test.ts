@@ -27,29 +27,29 @@ describe('rollDiceNotInTheBirdfeeder logic', () => {
 
     const activationName: DiceActivations = 'rollDiceNotInTheBirdfeeder'
     const food: Food = 'Fish';
-    const rollCount: number = 3;
+    const dieCount: number = 3;
     const permitReroll: boolean = false;
 
-    it('throw when rollCount > 4', () => {
-        const invalidRollCounts: number[] = [5, 6, 1000];
-        for (const ivc of invalidRollCounts) {
+    it('throw when dieCount > 4', () => {
+        const invalidDieCounts: number[] = [5, 6, 1000];
+        for (const idc of invalidDieCounts) {
             expect(() => {
-                rollDiceNotInTheBirdfeederLogic(baseGameDie, food, ivc, 'binomial');
+                rollDiceNotInTheBirdfeederLogic(baseGameDie, food, idc, 'binomial');
             }).toThrow();
         }
     });
 
     it('calls getDiceBinaryActivationStats when mode is "binary"', () => {
-        rollDiceNotInTheBirdfeederLogic(baseGameDie, food, rollCount, 'binary');
+        rollDiceNotInTheBirdfeederLogic(baseGameDie, food, dieCount, 'binary');
 
-        expect(getDiceBinaryActivationStats).toHaveBeenCalledWith(activationName, baseGameDie, food, rollCount, permitReroll);
+        expect(getDiceBinaryActivationStats).toHaveBeenCalledWith(activationName, baseGameDie, food, dieCount, permitReroll);
         expect(getDiceBinomialActivationStats).not.toHaveBeenCalled();
     });
 
     it('calls getDiceBinomialActivationStats when mode is "binomial"', () => {
-        rollDiceNotInTheBirdfeederLogic(baseGameDie, food, rollCount, 'binomial');
+        rollDiceNotInTheBirdfeederLogic(baseGameDie, food, dieCount, 'binomial');
 
-        expect(getDiceBinomialActivationStats).toHaveBeenCalledWith(activationName, baseGameDie, food, rollCount, permitReroll);
+        expect(getDiceBinomialActivationStats).toHaveBeenCalledWith(activationName, baseGameDie, food, dieCount, permitReroll);
         expect(getDiceBinaryActivationStats).not.toHaveBeenCalled();
     });
 });
@@ -61,8 +61,8 @@ describe('getRollDiceNotInTheBirdfeederActivation', () => {
             .mockImplementation(() => mockActivationStatsResult);
 
         const testBirds: DiceActivationInput[] = [
-            { birdName: 'Mississippi Kite', targetFood: 'Rodent', rollCount: 4, activationResultMode: 'binary' },
-            { birdName: 'Northern Gannet', targetFood: 'Fish', rollCount: 4, activationResultMode: 'binomial' },
+            { birdName: 'Mississippi Kite', targetFood: 'Rodent', dieCount: 4, rollCount: 1, activationResultMode: 'binary' },
+            { birdName: 'Northern Gannet', targetFood: 'Fish', dieCount: 4, rollCount: 1, activationResultMode: 'binomial' },
         ];
 
         const results = getRollDiceNotInTheBirdfeederActivation(testBirds);
@@ -75,12 +75,13 @@ describe('getRollDiceNotInTheBirdfeederActivation', () => {
 
             expect(result.birdName).toBe(expectedBird.birdName);
             expect(result.targetFood).toBe(expectedBird.targetFood);
+            expect(result.dieCount).toBe(expectedBird.dieCount);
             expect(result.rollCount).toBe(expectedBird.rollCount);
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);
 
-            expect(Object.keys(result.activationStats)).toHaveLength(expectedBird.rollCount);
+            expect(Object.keys(result.activationStats)).toHaveLength(expectedBird.dieCount);
             // start at 1 to indicate '1 dice not in the birdfeeder'
-            for (let j = 1; j < expectedBird.rollCount; j++) {
+            for (let j = 1; j < expectedBird.dieCount; j++) {
                 expect(result.activationStats[j]).toEqual(mockActivationStatsResult);
             }
         }

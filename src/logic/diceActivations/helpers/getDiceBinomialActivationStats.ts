@@ -7,10 +7,10 @@ import { getExactMatchExcludingTargetOdds } from '@logic/diceActivations/helpers
 function applyBinomialReroll(
     die: Die,
     targetFood: Food | Food[],
-    rollCount: number,
+    dieCount: number,
     activationStats: ActivationStats
 ): ActivationStats {
-    const rerollProb = getExactMatchExcludingTargetOdds(die, targetFood, rollCount);
+    const rerollProb = getExactMatchExcludingTargetOdds(die, targetFood, dieCount);
 
     // adjustment scale due to reroll recursion-until-success-or-fail
     const scale = 1 / (1 - rerollProb);
@@ -41,7 +41,7 @@ export function getDiceBinomialActivationStats(
     activationName: DiceActivations,
     die: Die,
     targetFood: Food | Food[],
-    rollCount: number,
+    dieCount: number,
     permitReroll: boolean = false
 ): ActivationStats {
     // Binomial Activation, the total number of success is detailed along with a singular EV (expected value)
@@ -49,11 +49,11 @@ export function getDiceBinomialActivationStats(
     const distribution: Record<number, number> = {};
     let expectedValue: number = 0;
 
-    for (let k = 0; k <= rollCount; k++) {
-        const combinations = binomialCoefficient(rollCount, k);
+    for (let k = 0; k <= dieCount; k++) {
+        const combinations = binomialCoefficient(dieCount, k);
         const prob = combinations *
             Math.pow(singleSuccessProb, k) *
-            Math.pow(1 - singleSuccessProb, rollCount - k);
+            Math.pow(1 - singleSuccessProb, dieCount - k);
 
         distribution[k] = prob;
         expectedValue += k * prob;
@@ -70,7 +70,7 @@ export function getDiceBinomialActivationStats(
     };
 
     if (permitReroll) {
-        return applyBinomialReroll(die, targetFood, rollCount, activationStats)
+        return applyBinomialReroll(die, targetFood, dieCount, activationStats)
     }
 
     return activationStats

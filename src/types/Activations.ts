@@ -28,17 +28,14 @@ export type DiceActivations =
     | 'rollDiceNotInTheBirdfeeder';
 
 
-export type DiceActivationResult = {
-    birdName: string,
-    targetFood: Food | Food[],
-    rollCount: number,
-    activationResultMode: ActivationResultMode,
-    activationStats: Record<number, ActivationStats>
-}
-
 export type DiceActivationInput = {
     birdName: string,
     targetFood: Food | Food[],
+    dieCount: number,
     rollCount: number,
-    activationResultMode: ActivationResultMode
+    activationResultMode: ActivationResultMode,
+}
+
+export type DiceActivationResult = DiceActivationInput & {
+    activationStats: Record<number, ActivationStats>
 }
