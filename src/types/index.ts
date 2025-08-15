@@ -3,7 +3,13 @@ export type {
     ActivationResultMode,
     DiceActivations,
     DiceActivationResult,
-    DiceActivationInput
+    DiceActivationInput,
+    DrawCardActivations,
+    DrawCardTargets,
+    WingspanOperator,
+    DrawActivationInput,
+    DrawActivationTargetMap,
+    DrawActivationResult
 } from './Activations'
 
 export type {
@@ -13,21 +19,22 @@ export type {
     BonusCardInfo,
     Colour,
     Food,
-    FoodCost,
-    Habitats,
+    FoodInfo,
+    FoodDetail,
+    Habitat,
     HabitatInfo,
     Nest,
-    BirdCard
+    BirdCard,
 } from './BirdCard'
 
 export type {
-    Expansions,
+    Expansion,
     BirdCardDeck,
     BaseGameDeck,
     EuropeanDeck,
     OceaniaDeck,
     AsiaDeck,
-    AllBirdDecks
+    BirdDeckCollection
 } from './BirdCardDeck';
 
 export type {

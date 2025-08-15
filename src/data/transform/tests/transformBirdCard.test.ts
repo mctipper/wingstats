@@ -2,14 +2,16 @@ import { describe, it, expect, expectTypeOf } from 'vitest';
 import { transformBirdCard } from '@data/transform/transformBirdCard';
 import type {
     BirdCard,
-    Expansions,
+    Expansion,
     Colour,
     Nest,
     HabitatInfo,
-    FoodCost,
+    FoodDetail,
+    FoodInfo,
     BonusCardInfo,
     BeakPointingInfo
 } from '@customTypes';
+
 
 
 // using a valid bird card as the transform example
@@ -91,7 +93,7 @@ describe("transformBirdCard", () => {
         expectTypeOf(result).toEqualTypeOf<BirdCard>();
         expectTypeOf(result.id).toEqualTypeOf<number>();
         expectTypeOf(result.commonName).toEqualTypeOf<string>();
-        expectTypeOf(result.expansion).toEqualTypeOf<Expansions>();
+        expectTypeOf(result.expansion).toEqualTypeOf<Expansion>();
         expectTypeOf(result.color).toEqualTypeOf<Colour>();
         expectTypeOf(result.predator).toEqualTypeOf<boolean>();
         expectTypeOf(result.flocking).toEqualTypeOf<boolean>();
@@ -101,12 +103,23 @@ describe("transformBirdCard", () => {
         expectTypeOf(result.eggCapacity).toEqualTypeOf<number>();
         expectTypeOf(result.wingspan).toEqualTypeOf<number>();
         expectTypeOf(result.habitats).toEqualTypeOf<HabitatInfo>();
-        expectTypeOf(result.foodCost).toEqualTypeOf<FoodCost>();
+        expectTypeOf(result.food).toEqualTypeOf<FoodInfo>();
+        expectTypeOf(result.food.foodDetail).toEqualTypeOf<FoodDetail>();
         expectTypeOf(result.bonusCards).toEqualTypeOf<BonusCardInfo>();
         expectTypeOf(result.beakPointing).toEqualTypeOf<BeakPointingInfo>();
 
         // other custom types are tested elsewhere as they require helpers 
-        expect(result.foodCost).toEqual({
+        expect(result.food).toEqual({
+            Invertebrate: expect.any(Boolean),
+            Seed: expect.any(Boolean),
+            Fish: expect.any(Boolean),
+            Fruit: expect.any(Boolean),
+            Rodent: expect.any(Boolean),
+            Nectar: expect.any(Boolean),
+            foodDetail: expect.any(Object) // just test exists, structure is next
+        });
+
+        expect(result.food.foodDetail).toEqual({
             invertebrate: expect.any(Number),
             seed: expect.any(Number),
             fish: expect.any(Number),
@@ -136,23 +149,31 @@ describe("transformBirdCard", () => {
             eggCapacity: 1,
             wingspan: 190,
             habitats: {
-                forest: false,
-                grassland: false,
+                Forest: false,
+                Grassland: false,
                 habitatCount: 1,
                 multipleHabitats: false,
-                wetland: true,
+                Wetland: true,
             },
-            foodCost: {
-                invertebrate: 0,
-                seed: 0,
-                fish: 2,
-                fruit: 0,
-                rodent: 0,
-                nectar: 0,
-                wildFood: 0,
-                slashFoodCost: false,
-                starFoodCost: false,
-                totalFoodCost: 2,
+            food: {
+                Invertebrate: false,
+                Seed: false,
+                Fish: true,
+                Fruit: false,
+                Rodent: false,
+                Nectar: false,
+                foodDetail: {
+                    invertebrate: 0,
+                    seed: 0,
+                    fish: 2,
+                    fruit: 0,
+                    rodent: 0,
+                    nectar: 0,
+                    wildFood: 0,
+                    slashFoodCost: false,
+                    starFoodCost: false,
+                    totalFoodCost: 2,
+                }
             },
             bonusCards: {
                 anatomist: false,

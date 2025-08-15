@@ -39,9 +39,6 @@
       ],
       "@customTypes": [
         "src/types/index.ts"
-      ],
-      "@customTypes/*": [
-        "src/types/"
       ]
     }
   },

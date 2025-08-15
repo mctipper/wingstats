@@ -1,12 +1,11 @@
 import { loadBirdCards } from "@data/loadBirdCards";
-import type { AllBirdDecks } from '@customTypes/BirdCardDeck';
+import type { BirdDeckCollection } from '@customTypes';
 
 
 export async function debug(): Promise<any> {
     debugger;
 
-    const decks: AllBirdDecks = await loadBirdCards()
-    console.log(decks.Asia.cards.length)
+    const decks: BirdDeckCollection = await loadBirdCards()
 
     debugger;
 

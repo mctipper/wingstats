@@ -2,6 +2,7 @@ import type { BirdCard } from "@customTypes";
 import { convertFlagToBoolean, convertNullToZero } from "./helpers/convert";
 import { createBeakPointingInfo, createBonusCardInfo, createHabitatInfo } from "./helpers/create";
 import { translateColour, translateExpansion, translateNest, translateWingspan } from "./helpers/translate";
+import { convertNumberToBoolean } from "./helpers/convert/numberToBoolean";
 
 
 export function transformBirdCard(raw: any): BirdCard {
@@ -21,21 +22,29 @@ export function transformBirdCard(raw: any): BirdCard {
     eggCapacity: convertNullToZero(raw["Egg capacity"]),
     wingspan: translateWingspan(raw["Wingspan"]),
     habitats: createHabitatInfo({
-      forest: convertFlagToBoolean(raw["Forest"]),
-      grassland: convertFlagToBoolean(raw["Grassland"]),
-      wetland: convertFlagToBoolean(raw["Wetland"])
+      Forest: convertFlagToBoolean(raw["Forest"]),
+      Grassland: convertFlagToBoolean(raw["Grassland"]),
+      Wetland: convertFlagToBoolean(raw["Wetland"])
     }),
-    foodCost: {
-      invertebrate: convertNullToZero(raw["Invertebrate"]),
-      seed: convertNullToZero(raw["Seed"]),
-      fish: convertNullToZero(raw["Fish"]),
-      fruit: convertNullToZero(raw["Fruit"]),
-      rodent: convertNullToZero(raw["Rodent"]),
-      nectar: convertNullToZero(raw["Nectar"]),
-      wildFood: convertNullToZero(raw["Wild (food)"]),
-      slashFoodCost: convertFlagToBoolean(raw["/ (food cost)"]),
-      starFoodCost: convertFlagToBoolean(raw["* (food cost)"]),
-      totalFoodCost: convertNullToZero(raw["Total food cost"]),
+    food: {
+      Invertebrate: convertNumberToBoolean(raw["Invertebrate"]),
+      Seed: convertNumberToBoolean(raw["Seed"]),
+      Fish: convertNumberToBoolean(raw["Fish"]),
+      Fruit: convertNumberToBoolean(raw["Fruit"]),
+      Rodent: convertNumberToBoolean(raw["Rodent"]),
+      Nectar: convertNumberToBoolean(raw["Nectar"]),
+      foodDetail: {
+        invertebrate: convertNullToZero(raw["Invertebrate"]),
+        seed: convertNullToZero(raw["Seed"]),
+        fish: convertNullToZero(raw["Fish"]),
+        fruit: convertNullToZero(raw["Fruit"]),
+        rodent: convertNullToZero(raw["Rodent"]),
+        nectar: convertNullToZero(raw["Nectar"]),
+        wildFood: convertNullToZero(raw["Wild (food)"]),
+        slashFoodCost: convertFlagToBoolean(raw["/ (food cost)"]),
+        starFoodCost: convertFlagToBoolean(raw["* (food cost)"]),
+        totalFoodCost: convertNullToZero(raw["Total food cost"]),
+      }
     },
     bonusCards: createBonusCardInfo(
       {

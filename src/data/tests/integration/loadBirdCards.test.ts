@@ -6,7 +6,7 @@ import type {
     EuropeanDeck,
     OceaniaDeck,
     AsiaDeck,
-    AllBirdDecks
+    BirdDeckCollection
 } from '@customTypes';
 
 // sample subset of actual master.json data
@@ -550,10 +550,10 @@ describe('loadBirdCards integration', () => {
             json: async () => sampleBirdCards,
         })));
 
-        const decks: AllBirdDecks = await loadBirdCards();
+        const decks: BirdDeckCollection = await loadBirdCards();
 
         // types first (runtime checks only boooo)
-        expectTypeOf(decks).toEqualTypeOf<AllBirdDecks>();
+        expectTypeOf(decks).toEqualTypeOf<BirdDeckCollection>();
         expectTypeOf(decks.BaseGame).toEqualTypeOf<BaseGameDeck>();
         expectTypeOf(decks.European).toEqualTypeOf<EuropeanDeck>();
         expectTypeOf(decks.Oceania).toEqualTypeOf<OceaniaDeck>();

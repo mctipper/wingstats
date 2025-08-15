@@ -1,9 +1,9 @@
-import type { Food, DieVersions } from '@customTypes';
+import type { Food, Nest, DieVersions, Habitat, Expansion } from '@customTypes';
 
 
 
 export type ActivationStats = {
-    activationName: DiceActivations;
+    activationName: DiceActivations | DrawCardActivations;
     // probability of each count of success
     distribution: Record<number, number>;
     // P(success >= 1)
@@ -43,7 +43,48 @@ export type DiceActivationInput = {
     activationResultMode: ActivationResultMode,
 }
 
+
 export type DiceActivationResult = DiceActivationInput & {
     die: DieVersions,
     activationStats: Record<number, ActivationStats>
 }
+
+export type WingspanOperator = {
+    op: '<' | '<=' | '>' | '>=';
+    value: number;
+};
+
+export type DrawActivationTargetMap = {
+    Habitat: Habitat | Habitat[];
+    Food: Food | Food[];
+    Wingspan: WingspanOperator;
+    Nest: Nest | Nest[];
+    Predator: boolean;
+};
+
+export type DrawActivationInput = {
+    birdName: string;
+    target: Habitat | Food | Nest | WingspanOperator | boolean;
+    targetType: DrawCardTargets;
+    drawCount: number;
+    fromTrayOnly: boolean;
+    activationResultMode: ActivationResultMode
+}
+
+export type DrawActivationResult = DrawActivationInput & {
+    activationStats: Record<number, Record<Expansion, ActivationStats>>
+}
+
+
+export type DrawCardActivations =
+    '__TEST__'
+    | 'matchPredator'
+    | 'pushYourLuck';
+
+
+export type DrawCardTargets =
+    'Habitat'
+    | 'Food'
+    | 'Wingspan'
+    | 'Nest'
+    | 'Predator'

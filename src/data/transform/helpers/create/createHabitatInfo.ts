@@ -1,12 +1,25 @@
 import type {
-    Habitats,
     HabitatInfo
 } from "@customTypes";
 
 
-export function createHabitatInfo(h: Habitats): HabitatInfo {
-    const habitats: Array<boolean> = Object.values(h).filter(Boolean)
-    const habitatCount = habitats.length
+export function createHabitatInfo(raw: {
+    Forest: boolean;
+    Grassland: boolean;
+    Wetland: boolean;
+}): HabitatInfo {
+    const habitatFlags = {
+        Forest: raw.Forest,
+        Grassland: raw.Grassland,
+        Wetland: raw.Wetland,
+    };
+
+    const habitatCount = Object.values(habitatFlags).filter(Boolean).length;
     const multipleHabitats = habitatCount > 1;
-    return { ...h, habitatCount, multipleHabitats };
+
+    return {
+        ...habitatFlags,
+        habitatCount,
+        multipleHabitats,
+    };
 }

@@ -1,4 +1,4 @@
-import type { Expansions } from "@customTypes";
+import type { Expansion } from "@customTypes";
 
 export type BeakPointing = {
   left: boolean;
@@ -60,8 +60,13 @@ export type Food =
   | 'Rodent'
   | 'Nectar';
 
+export type FoodInfo = {
+  [F in Food]: boolean;
+} & {
+  foodDetail: FoodDetail;
+};
 
-export type FoodCost = {
+export type FoodDetail = {
   invertebrate: number,
   seed: number,
   fish: number,
@@ -74,16 +79,17 @@ export type FoodCost = {
   totalFoodCost: number
 }
 
-export type Habitats = {
-  forest: boolean;
-  grassland: boolean;
-  wetland: boolean;
-};
+export type Habitat =
+  | 'Forest'
+  | 'Grassland'
+  | 'Wetland';
 
-export type HabitatInfo = Habitats & {
+export type HabitatInfo = {
+  [H in Habitat]: boolean
+} & {
   habitatCount: number;
   multipleHabitats: boolean;
-};
+}
 
 export type Nest =
   | 'None'
@@ -98,7 +104,7 @@ export type BirdCard = {
   id: number;
   commonName: string;
   scientificName: string;
-  expansion: Expansions;
+  expansion: Expansion;
   color: Colour;
   powerCategory: string | null;
   powerText: string;
@@ -110,7 +116,7 @@ export type BirdCard = {
   eggCapacity: number;
   wingspan: number;
   habitats: HabitatInfo;
-  foodCost: FoodCost;
+  food: FoodInfo
   bonusCards: BonusCardInfo;
   beakPointing: BeakPointingInfo;
   note: string;

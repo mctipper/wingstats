@@ -69,7 +69,7 @@ describe('getFoodOdds', () => {
     });
 
     it('handles empty die gracefully', () => {
-        const emptyDie: Die = { kind: 'basegame', faces: [] };
+        const emptyDie: Die = { version: 'basegame', faces: [] };
         const odds = DieLogic.getFoodOdds(emptyDie, 'Seed');
         expect(odds).toBe(0);
     });

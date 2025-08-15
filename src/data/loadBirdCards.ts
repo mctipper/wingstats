@@ -1,16 +1,16 @@
 import { transformBirdCard } from '@data/transform/transformBirdCard';
 import type {
   BirdCard,
-  Expansions,
+  Expansion,
   BaseGameDeck,
   EuropeanDeck,
   OceaniaDeck,
   AsiaDeck,
-  AllBirdDecks
+  BirdDeckCollection
 } from '@customTypes';
 
 
-export async function loadBirdCards(): Promise<AllBirdDecks> {
+export async function loadBirdCards(): Promise<BirdDeckCollection> {
   const response = await fetch(`${import.meta.env.BASE_URL}/data/master.json`);
 
   if (!response.ok) {
@@ -40,7 +40,7 @@ export async function loadBirdCards(): Promise<AllBirdDecks> {
     cards: []
   };
 
-  const allDecks: AllBirdDecks = {
+  const allDecks: BirdDeckCollection = {
     BaseGame: baseGameDeck,
     European: europeanDeck,
     Oceania: oceaniaDeck,
@@ -48,7 +48,7 @@ export async function loadBirdCards(): Promise<AllBirdDecks> {
   };
 
   for (const card of transformedCards) {
-    allDecks[card.expansion as Expansions].cards.push(card)
+    allDecks[card.expansion as Expansion].cards.push(card)
   }
 
   return allDecks;

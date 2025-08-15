@@ -1,7 +1,7 @@
-import type { Expansions } from "@customTypes";
+import type { Expansion } from "@customTypes";
 
 
-export function translateExpansion(rawExpansion: string): Expansions {
+export function translateExpansion(rawExpansion: string): Expansion {
     switch (rawExpansion) {
         case "originalcore":
         case "swiftstart":

@@ -1,13 +1,13 @@
 import type { BirdCard } from "@customTypes";
 
-export type Expansions =
+export type Expansion =
   | 'BaseGame'
   | 'European'
   | 'Oceania'
   | 'Asia';
 
 export type BirdCardDeck = {
-  expansion: Expansions;
+  expansion: Expansion;
   cards: BirdCard[];
 };
 
@@ -27,7 +27,7 @@ export type AsiaDeck = BirdCardDeck & {
   expansion: "Asia";
 };
 
-export type AllBirdDecks = {
+export type BirdDeckCollection = {
   BaseGame: BaseGameDeck;
   European: EuropeanDeck;
   Oceania: OceaniaDeck;
