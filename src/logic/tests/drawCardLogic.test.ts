@@ -99,6 +99,8 @@ const birdDeckCollection: BirdDeckCollection = {
     Asia: { expansion: 'Asia', cards: [mockAbbottsBooby] },
 };
 
+// all combinations of Expansions
+const callsPerGet: number = 32
 
 
 describe('getDrawOddsByDeck matcher delegation', () => {
@@ -122,7 +124,7 @@ describe('getDrawOddsByDeck matcher delegation', () => {
 
     it('calls matchHabitat when targetType is Habitat', () => {
         getDrawOddsByDeck('Habitat', 'Wetland', birdDeckCollection, 1);
-        expect(habitatSpy).toHaveBeenCalledTimes(4);
+        expect(habitatSpy).toHaveBeenCalledTimes(callsPerGet);
         expect(foodSpy).not.toHaveBeenCalled();
         expect(nestSpy).not.toHaveBeenCalled();
         expect(wingspanSpy).not.toHaveBeenCalled();
@@ -131,7 +133,7 @@ describe('getDrawOddsByDeck matcher delegation', () => {
 
     it('calls matchFood when targetType is Food', () => {
         getDrawOddsByDeck('Food', 'Fish', birdDeckCollection, 1);
-        expect(foodSpy).toHaveBeenCalledTimes(4);
+        expect(foodSpy).toHaveBeenCalledTimes(callsPerGet);
         expect(habitatSpy).not.toHaveBeenCalled();
         expect(nestSpy).not.toHaveBeenCalled();
         expect(wingspanSpy).not.toHaveBeenCalled();
@@ -140,7 +142,7 @@ describe('getDrawOddsByDeck matcher delegation', () => {
 
     it('calls matchNest when targetType is Nest', () => {
         getDrawOddsByDeck('Nest', 'Bowl', birdDeckCollection, 1);
-        expect(nestSpy).toHaveBeenCalledTimes(4);
+        expect(nestSpy).toHaveBeenCalledTimes(callsPerGet);
         expect(habitatSpy).not.toHaveBeenCalled();
         expect(foodSpy).not.toHaveBeenCalled();
         expect(wingspanSpy).not.toHaveBeenCalled();
@@ -149,7 +151,7 @@ describe('getDrawOddsByDeck matcher delegation', () => {
 
     it('calls matchWingspan when targetType is Wingspan', () => {
         getDrawOddsByDeck('Wingspan', { op: '>', value: 40 }, birdDeckCollection, 1);
-        expect(wingspanSpy).toHaveBeenCalledTimes(4);
+        expect(wingspanSpy).toHaveBeenCalledTimes(callsPerGet);
         expect(habitatSpy).not.toHaveBeenCalled();
         expect(foodSpy).not.toHaveBeenCalled();
         expect(nestSpy).not.toHaveBeenCalled();
@@ -158,7 +160,7 @@ describe('getDrawOddsByDeck matcher delegation', () => {
 
     it('calls matchPredator when targetType is Predator', () => {
         getDrawOddsByDeck('Predator', true, birdDeckCollection, 1);
-        expect(predatorSpy).toHaveBeenCalledTimes(4);
+        expect(predatorSpy).toHaveBeenCalledTimes(callsPerGet);
         expect(habitatSpy).not.toHaveBeenCalled();
         expect(foodSpy).not.toHaveBeenCalled();
         expect(nestSpy).not.toHaveBeenCalled();
