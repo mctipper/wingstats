@@ -3,27 +3,46 @@ import type { DrawCardTargets } from "@customTypes"
 import { binomialCoefficient } from "@logic/utils/binomialCoefficient";
 import { matchFood, matchHabitat, matchNest, matchPredator, matchWingspan } from "@logic/drawCardActivations/helpers/targetMatches";
 
+function getAllSubsets<T>(items: T[]): T[][] {
+    const result: T[][] = [];
+    const total = 1 << items.length;
+
+    for (let mask = 1; mask < total; mask++) {
+        const subset: T[] = [];
+        for (let i = 0; i < items.length; i++) {
+            if (mask & (1 << i)) subset.push(items[i]);
+        }
+        result.push(subset);
+    }
+
+    return result;
+}
+
 export function getDrawOddsByDeck<T extends DrawCardTargets>(
     targetType: T,
     target: DrawActivationTargetMap[T],
     birdDeckCollection: BirdDeckCollection,
     drawCount: number,
     ignoreCardName?: string
-): Record<Expansion, number> {
-    const result: Partial<Record<Expansion, number>> = {};
+): Record<string, number> {
+    const result: Partial<Record<string, number>> = {};
+    const subsets = getAllSubsets(Object.keys(birdDeckCollection) as Expansion[]);
 
-    for (const expansion of Object.keys(birdDeckCollection) as Expansion[]) {
-        const deck = birdDeckCollection[expansion];
-        const cards = deck.cards.filter(card => card.commonName !== ignoreCardName);
-        const totalCards = cards.length;
+    for (const subset of subsets) {
+        const subsetKey: string = subset.join('_')
+        // combine decks
+        const combinedCards = subset.flatMap(expansion =>
+            birdDeckCollection[expansion]?.cards.filter(card => card.commonName !== ignoreCardName) ?? []
+        );
 
-        // early exit
+        const totalCards = combinedCards.length;
+
         if (totalCards === 0 || drawCount === 0) {
-            result[expansion] = 0;
+            result[subsetKey] = 0;
             continue;
         }
 
-        const matchCount = cards.filter(card => {
+        const matchCount = combinedCards.filter(card => {
             switch (targetType) {
                 case 'Habitat': return matchHabitat(card, target as DrawActivationTargetMap['Habitat']);
                 case 'Food': return matchFood(card, target as DrawActivationTargetMap['Food']);
@@ -35,8 +54,6 @@ export function getDrawOddsByDeck<T extends DrawCardTargets>(
         }).length;
 
         const nonMatchCount = totalCards - matchCount;
-
-        // minimise to ensure computation
         const k = Math.min(drawCount, totalCards);
 
         const odds =
@@ -44,8 +61,8 @@ export function getDrawOddsByDeck<T extends DrawCardTargets>(
                 ? 1
                 : 1 - binomialCoefficient(nonMatchCount, k) / binomialCoefficient(totalCards, k);
 
-        result[expansion] = odds;
+        result[subsetKey] = odds;
     }
 
-    return result as Record<Expansion, number>;
+    return result as Record<string, number>;
 }
