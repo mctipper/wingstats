@@ -17,6 +17,7 @@ export function getDrawOddsByDeck<T extends DrawCardTargets>(
         const cards = deck.cards.filter(card => card.commonName !== ignoreCardName);
         const totalCards = cards.length;
 
+        // early exit
         if (totalCards === 0 || drawCount === 0) {
             result[expansion] = 0;
             continue;
@@ -35,10 +36,9 @@ export function getDrawOddsByDeck<T extends DrawCardTargets>(
 
         const nonMatchCount = totalCards - matchCount;
 
-        // Clamp drawCount to totalCards to avoid invalid combinations
+        // minimise to ensure computation
         const k = Math.min(drawCount, totalCards);
 
-        // Compute odds of at least one match (without replacement)
         const odds =
             k > nonMatchCount
                 ? 1
