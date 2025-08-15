@@ -64,7 +64,7 @@ export type DrawActivationTargetMap = {
 
 export type DrawActivationInput = {
     birdName: string;
-    target: Habitat | Food | Nest | WingspanOperator | boolean;
+    target: Habitat | Habitat[] | Food | Food[] | Nest | Nest[] | WingspanOperator | boolean;
     targetType: DrawCardTargets;
     drawCount: number;
     fromTrayOnly: boolean;
@@ -79,6 +79,10 @@ export type DrawActivationResult = DrawActivationInput & {
 export type DrawCardActivations =
     '__TEST__'
     | 'matchPredator'
+    | 'matchWingspan'
+    | 'matchNest'
+    | 'matchHabitat'
+    | 'matchFood'
     | 'pushYourLuck';
 
 

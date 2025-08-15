@@ -1,10 +1,18 @@
 import type { BirdCard, Nest, Habitat, Food, WingspanOperator } from '@customTypes'
+import { nestMatchLogic } from '@logic/nestLogic';
 
 
-export function matchNest(card: BirdCard, target: Nest | Nest[]): boolean {
-    return Array.isArray(target)
-        ? target.includes(card.nestType)
-        : card.nestType === target;
+export function matchNest(card: BirdCard, targetNest: Nest | Nest[]): boolean {
+    if (Array.isArray(targetNest)) {
+        for (const tn of targetNest) {
+            if (nestMatchLogic(card.nestType, tn)) {
+                return true;
+            }
+        }
+    } else {
+        return nestMatchLogic(card.nestType, targetNest)
+    }
+    return false;
 }
 
 export function matchHabitat(card: BirdCard, target: Habitat | Habitat[]): boolean {

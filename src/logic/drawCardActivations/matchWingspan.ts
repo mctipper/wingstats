@@ -27,7 +27,7 @@ export function matchWingspanLogic(
     birdDeckCollection: BirdDeckCollection,
     ignoreCardName: string
 ) {
-    const activationName: DrawCardActivations = 'matchPredator';
+    const activationName: DrawCardActivations = 'matchWingspan';
     return getDrawBinaryActivationStats(
         activationName,
         targetType,
@@ -39,9 +39,9 @@ export function matchWingspanLogic(
 }
 
 
-export function getMatchWingspanActivation(birdsMatchPredator: DrawActivationInput[], birdDeckCollection: BirdDeckCollection): DrawActivationResult[] {
+export function getMatchWingspanActivation(birdsMatchWingspan: DrawActivationInput[], birdDeckCollection: BirdDeckCollection): DrawActivationResult[] {
     let allBirdStats: DrawActivationResult[] = []
-    for (let curBird of birdsMatchPredator) {
+    for (let curBird of birdsMatchWingspan) {
         const curBirdStats: Record<number, Record<Expansion, ActivationStats>> = {};
         if (curBird.fromTrayOnly) {
             for (const thisManyBirdsInTheTray of Array.from({ length: curBird.drawCount }, (_, i) => i + 1)) {
