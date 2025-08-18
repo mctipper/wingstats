@@ -21,7 +21,8 @@ export type ActivationResultMode =
     | 'binomial'
     | 'sequential'
     | 'uniques'
-    | 'withholding';
+    | 'withholding'
+    | 'wingspanCDF';
 
 
 export type DiceActivations =
@@ -83,7 +84,7 @@ export type DrawCardActivations =
     | 'matchNest'
     | 'matchHabitat'
     | 'matchFood'
-    | 'pushYourLuck';
+    | 'pushYourLuckWingspan';
 
 
 export type DrawCardTargets =

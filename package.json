@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
+    "jstat": "^1.9.6",
     "vitest": "^3.2.4"
   }
 }

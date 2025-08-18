@@ -10,7 +10,7 @@ export function getDrawBinaryActivationStats<T extends DrawCardTargets>(
     drawCount: number,
     birdDeckCollection: BirdDeckCollection,
     ignoreCardName?: string
-): Record<Expansion, ActivationStats> {
+): Record<string, ActivationStats> {
     // Binary Activation, any number of success is counted as 1
     const singleSuccessProbByDeck = getDrawOddsByDeck(
         targetType,
@@ -19,10 +19,10 @@ export function getDrawBinaryActivationStats<T extends DrawCardTargets>(
         drawCount,
         ignoreCardName
     )
-    let results: Record<Expansion, ActivationStats> = {} as Record<Expansion, ActivationStats>
+    let results: Record<string, ActivationStats> = {} as Record<Expansion, ActivationStats>
 
-    for (const [expansion, odds] of Object.entries(singleSuccessProbByDeck) as [Expansion, number][]) {
-        results[expansion] = {
+    for (const [expansion_combine, odds] of Object.entries(singleSuccessProbByDeck) as [string, number][]) {
+        results[expansion_combine] = {
             activationName: activationName,
             distribution: {
                 0: 1 - odds,
