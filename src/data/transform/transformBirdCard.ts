@@ -33,7 +33,7 @@ export function transformBirdCard(raw: any): BirdCard {
       Fruit: convertNumberToBoolean(raw["Fruit"]),
       Rodent: convertNumberToBoolean(raw["Rodent"]),
       Nectar: convertNumberToBoolean(raw["Nectar"]),
-      foodDetail: {
+      foodCost: {
         invertebrate: convertNullToZero(raw["Invertebrate"]),
         seed: convertNullToZero(raw["Seed"]),
         fish: convertNullToZero(raw["Fish"]),
@@ -41,9 +41,11 @@ export function transformBirdCard(raw: any): BirdCard {
         rodent: convertNullToZero(raw["Rodent"]),
         nectar: convertNullToZero(raw["Nectar"]),
         wildFood: convertNullToZero(raw["Wild (food)"]),
+        totalFoodCost: convertNullToZero(raw["Total food cost"]),
+      },
+      foodDetail: {
         slashFoodCost: convertFlagToBoolean(raw["/ (food cost)"]),
         starFoodCost: convertFlagToBoolean(raw["* (food cost)"]),
-        totalFoodCost: convertNullToZero(raw["Total food cost"]),
       }
     },
     bonusCards: createBonusCardInfo(

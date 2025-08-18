@@ -63,10 +63,12 @@ export type Food =
 export type FoodInfo = {
   [F in Food]: boolean;
 } & {
+  foodCost: FoodCost
+} & {
   foodDetail: FoodDetail;
 };
 
-export type FoodDetail = {
+export type FoodCost = {
   invertebrate: number,
   seed: number,
   fish: number,
@@ -74,9 +76,12 @@ export type FoodDetail = {
   rodent: number,
   nectar: number,
   wildFood: number,
-  slashFoodCost: boolean,
-  starFoodCost: boolean,
   totalFoodCost: number
+}
+
+export type FoodDetail = {
+  slashFoodCost: boolean,
+  starFoodCost: boolean
 }
 
 export type Habitat =
