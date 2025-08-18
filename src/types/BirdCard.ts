@@ -69,12 +69,12 @@ export type FoodInfo = {
 };
 
 export type FoodCost = {
-  invertebrate: number,
-  seed: number,
-  fish: number,
-  fruit: number,
-  rodent: number,
-  nectar: number,
+  Invertebrate: number,
+  Seed: number,
+  Fish: number,
+  Fruit: number,
+  Rodent: number,
+  Nectar: number,
   wildFood: number,
   totalFoodCost: number
 }

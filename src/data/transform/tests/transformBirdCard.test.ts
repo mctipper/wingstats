@@ -116,20 +116,24 @@ describe("transformBirdCard", () => {
             Fruit: expect.any(Boolean),
             Rodent: expect.any(Boolean),
             Nectar: expect.any(Boolean),
+            foodCost: expect.any(Object), // just test exists, structure is next
             foodDetail: expect.any(Object) // just test exists, structure is next
         });
 
-        expect(result.food.foodDetail).toEqual({
-            invertebrate: expect.any(Number),
-            seed: expect.any(Number),
-            fish: expect.any(Number),
-            fruit: expect.any(Number),
-            rodent: expect.any(Number),
-            nectar: expect.any(Number),
+        expect(result.food.foodCost).toEqual({
+            Invertebrate: expect.any(Number),
+            Seed: expect.any(Number),
+            Fish: expect.any(Number),
+            Fruit: expect.any(Number),
+            Rodent: expect.any(Number),
+            Nectar: expect.any(Number),
             wildFood: expect.any(Number),
+            totalFoodCost: expect.any(Number),
+        })
+
+        expect(result.food.foodDetail).toEqual({
             slashFoodCost: expect.any(Boolean),
             starFoodCost: expect.any(Boolean),
-            totalFoodCost: expect.any(Number),
         });
 
         // check full result
@@ -162,17 +166,19 @@ describe("transformBirdCard", () => {
                 Fruit: false,
                 Rodent: false,
                 Nectar: false,
-                foodDetail: {
-                    invertebrate: 0,
-                    seed: 0,
-                    fish: 2,
-                    fruit: 0,
-                    rodent: 0,
-                    nectar: 0,
+                foodCost: {
+                    Invertebrate: 0,
+                    Seed: 0,
+                    Fish: 2,
+                    Fruit: 0,
+                    Rodent: 0,
+                    Nectar: 0,
                     wildFood: 0,
+                    totalFoodCost: 2,
+                },
+                foodDetail: {
                     slashFoodCost: false,
                     starFoodCost: false,
-                    totalFoodCost: 2,
                 }
             },
             bonusCards: {
