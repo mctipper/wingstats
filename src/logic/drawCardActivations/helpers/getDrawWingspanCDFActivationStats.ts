@@ -33,11 +33,10 @@ export function getDrawWingspanCDFActivationStats(
             continue;
         }
 
-        const n = combinedCards.length;
         const wingspans = combinedCards.map(card => card.wingspan);
         const mean = jStat.mean(wingspans);
         const variance = jStat.variance(wingspans, true); // population variance
-        const correction = 1 - (drawCount - 1) / (n - 1);
+        const correction = 1 - (drawCount - 1) / (totalCards - 1);
         const stdDev = Math.sqrt(drawCount * variance * correction);
         const sumMean = drawCount * mean;
 
