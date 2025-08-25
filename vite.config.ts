@@ -9,7 +9,7 @@ export default defineConfig({
         port: 5173,
         strictPort: true,
         fs: {
-            allow: ["src"]
+            allow: ["."]
         }
     },
     test: {
@@ -36,6 +36,7 @@ export default defineConfig({
             '@data': path.resolve(__dirname, 'src/data'),
             '@definitions': path.resolve(__dirname, 'src/definitions'),
             '@logic': path.resolve(__dirname, 'src/logic'),
+            '@render': path.resolve(__dirname, 'src/render'),
         },
     }
 });

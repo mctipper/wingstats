@@ -37,6 +37,9 @@
       "@logic/*": [
         "src/logic/*"
       ],
+      "@render/*": [
+        "src/render/*"
+      ],
       "@customTypes": [
         "src/types/index.ts"
       ]
