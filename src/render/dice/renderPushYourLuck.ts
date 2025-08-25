@@ -4,7 +4,7 @@ import { getBirdCardByName } from "@data/helpers/getBirdCardByName"
 
 const birdCardDeck: BirdDeckCollection = await loadBirdCards()
 
-export function renderRollDiceNotInBirdfeederResult(result: DiceActivationResult): HTMLElement {
+export function renderPushYourLuck(result: DiceActivationResult): HTMLElement {
   const card = document.createElement('div')
   card.className = 'result-card'
   // for anchor nav
@@ -24,6 +24,7 @@ export function renderRollDiceNotInBirdfeederResult(result: DiceActivationResult
     <h1>${result.birdName}</h1>
     <h3>${powerText}</h3>
   `
+
   card.appendChild(header)
 
   // update the nav index
@@ -38,8 +39,6 @@ export function renderRollDiceNotInBirdfeederResult(result: DiceActivationResult
   item.appendChild(link)
   indexList?.appendChild(item)
 
-  // build out the stats sections
-
   const section = document.createElement('section')
 
   // create a results 'block' for each number of dice being rolled
@@ -47,9 +46,9 @@ export function renderRollDiceNotInBirdfeederResult(result: DiceActivationResult
     const block = document.createElement('div')
     block.className = 'activation-block'
 
-    const plural = index === '1' ? 'die' : 'dice'
+    const plural = index === '1' ? 'success' : 'successes'
     const title = document.createElement('h4')
-    title.innerHTML = `With <strong><i><big>${index}</big></i></strong> ${plural} not in the birdfeeder`
+    title.innerHTML = `Stopping after <strong><i><big>${index}</big></i></strong> ${plural}`
     block.appendChild(title)
 
     // First row: stat boxes

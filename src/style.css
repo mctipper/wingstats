@@ -87,15 +87,17 @@ header {
 .card-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 1.5rem 0 1.5rem;
+  justify-content: center;
   gap: 1rem;
-  /* vertical gap only */
-  row-gap: 1rem;
+  padding: 0 1.5rem;
 }
 
 .card {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3rem;
   padding: 1rem;
   background-color: #f5f5f5;
   border-radius: 8px;
