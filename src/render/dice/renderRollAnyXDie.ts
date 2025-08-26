@@ -4,7 +4,7 @@ import { getBirdCardByName } from "@data/helpers/getBirdCardByName"
 
 const birdCardDeck: BirdDeckCollection = await loadBirdCards()
 
-export function renderRollAnyXDie(result: DiceActivationResult): HTMLElement {
+export function renderRollAnyXDie(layoutId: string, result: DiceActivationResult): HTMLElement {
     const card = document.createElement('div')
     card.className = 'result-card'
     // for anchor nav
@@ -28,7 +28,7 @@ export function renderRollAnyXDie(result: DiceActivationResult): HTMLElement {
     card.appendChild(header)
 
     // update the nav index
-    const indexList = document.getElementById('index-list')
+    const indexList = document.getElementById(`${layoutId}-index`)
     const item = document.createElement('li')
     item.className = 'index-item'
 

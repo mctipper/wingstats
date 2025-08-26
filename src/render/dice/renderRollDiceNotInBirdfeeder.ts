@@ -1,45 +1,13 @@
-import type { DiceActivationResult, BirdDeckCollection } from "@customTypes"
-import { loadBirdCards } from "@data/loadBirdCards"
-import { getBirdCardByName } from "@data/helpers/getBirdCardByName"
+import type { DiceActivationResult } from "@customTypes"
+import { idFriendlyBirdname } from "@render/helpers/idFriendlyBirdName";
+import { renderPrimaryLayout } from "@render/helpers/primaryRender"
 
-const birdCardDeck: BirdDeckCollection = await loadBirdCards()
-
-export function renderRollDiceNotInBirdfeederResult(result: DiceActivationResult): HTMLElement {
-  const card = document.createElement('div')
-  card.className = 'result-card'
-  // for anchor nav
-  card.id = `${result.birdName.replace(/\s+/g, '-')}`
-
-  // get the card text
-  const curBird = getBirdCardByName(result.birdName, birdCardDeck)
-
-  // brute force change of squarebrakcets to italics markers because ECMAscript goodness
-  let powerText = curBird.powerText.replace('[', '<i>').replace(']', '</i>')
-  while (powerText.includes('[') && powerText.includes(']')) {
-    powerText = powerText.replace('[', '<i>').replace(']', '</i>')
-  }
-
-  const header = document.createElement('div')
-  header.innerHTML = `
-    <h1>${result.birdName}</h1>
-    <h3>${powerText}</h3>
-  `
-  card.appendChild(header)
-
-  // update the nav index
-  const indexList = document.getElementById('index-list')
-  const item = document.createElement('li')
-  item.className = 'index-item'
-
-  const link = document.createElement('a')
-  link.href = `#${result.birdName.replace(/\s+/g, '-')}`
-  link.textContent = result.birdName
-
-  item.appendChild(link)
-  indexList?.appendChild(item)
+export function renderRollDiceNotInBirdfeederResult(layoutId: string, result: DiceActivationResult): HTMLElement {
+  // header and greater container
+  const blurbSpecialText = "While the probability of success improves with more dice not in the birdfeeder, it is not as much as you would suspect"
+  let layout = renderPrimaryLayout(layoutId, result, blurbSpecialText);
 
   // build out the stats sections
-
   const section = document.createElement('section')
 
   // create a results 'block' for each number of dice being rolled
@@ -47,7 +15,7 @@ export function renderRollDiceNotInBirdfeederResult(result: DiceActivationResult
     const block = document.createElement('div')
     block.className = 'activation-block'
 
-    const plural = index === '1' ? 'die' : 'dice'
+    const plural = index === '1' ? 'dice' : 'dice'
     const title = document.createElement('h4')
     title.innerHTML = `With <strong><i><big>${index}</big></i></strong> ${plural} not in the birdfeeder`
     block.appendChild(title)
@@ -94,6 +62,8 @@ export function renderRollDiceNotInBirdfeederResult(result: DiceActivationResult
     section.appendChild(block)
   }
 
-  card.appendChild(section)
-  return card
+  let resultCard = document.getElementById(idFriendlyBirdname(result.birdName))
+  resultCard!.appendChild(section)
+
+  return layout
 }
