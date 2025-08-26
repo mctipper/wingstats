@@ -7,8 +7,9 @@ import { renderRollAnyXDie } from "@render/dice/renderRollAnyXDie";
 import type { DiceActivationInput, DiceActivationResult, DrawActivationResult } from "@customTypes";
 
 
-function displayActivationResults(layoutId: string, getFunction: Function, birds: DiceActivationInput[] | DrawActivationResult[], renderFunction: Function) {
-    const lr = document.getElementById('layout-root')
+function displayActivationResults(layoutContainer: string, layoutId: string, getFunction: Function, birds: DiceActivationInput[] | DrawActivationResult[], renderFunction: Function) {
+    const lr = document.getElementById(layoutContainer)
+
     console.log(`Rendering ${layoutId}`)
     if (lr) {
         const results: DiceActivationResult[] | DrawActivationResult[] = getFunction(birds)
@@ -21,8 +22,8 @@ function displayActivationResults(layoutId: string, getFunction: Function, birds
 
 
 const layoutResultsMap: Record<string, () => void> = {
-    'roll-dice-not-in-the-birdfeeder': () => displayActivationResults('roll-dice-not-in-the-birdfeeder', getRollDiceNotInTheBirdfeederActivation, birdsRollDiceNotInTheBirdfeeder, renderRollDiceNotInBirdfeederResult),
-    'roll-any-x-dice': () => displayActivationResults('roll-any-x-dice', getRollAnyXDiceBirdActivation, birdsWithRollAnyXDice, renderRollAnyXDie),
+    'roll-dice-not-in-the-birdfeeder': () => displayActivationResults('dice-layout', 'roll-dice-not-in-the-birdfeeder', getRollDiceNotInTheBirdfeederActivation, birdsRollDiceNotInTheBirdfeeder, renderRollDiceNotInBirdfeederResult),
+    'roll-any-x-dice': () => displayActivationResults('dice-layout', 'roll-any-x-dice', getRollAnyXDiceBirdActivation, birdsWithRollAnyXDice, renderRollAnyXDie),
 }
 
 

@@ -1,6 +1,6 @@
 import type { DiceActivationResult } from "@customTypes"
 import { idFriendlyBirdname } from "@render/helpers/idFriendlyBirdName";
-import { renderPrimaryLayout } from "@render/helpers/primaryRender"
+import { renderPrimaryLayout } from "@render/primaryRender"
 
 export function renderRollDiceNotInBirdfeederResult(layoutId: string, result: DiceActivationResult): HTMLElement {
   // header and greater container

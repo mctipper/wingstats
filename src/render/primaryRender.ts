@@ -1,7 +1,7 @@
 import type { DiceActivationResult, BirdDeckCollection } from "@customTypes"
 import { loadBirdCards } from "@data/loadBirdCards"
 import { getBirdCardByName } from "@data/helpers/getBirdCardByName"
-import { idFriendlyBirdname } from "./idFriendlyBirdName";
+import { idFriendlyBirdname } from "./helpers/idFriendlyBirdName";
 
 const birdCardDeck: BirdDeckCollection = await loadBirdCards()
 
