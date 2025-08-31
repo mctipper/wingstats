@@ -6,6 +6,7 @@ body {
   background-color: black;
   color: white;
   font-family: 'Cardenio Modern', sans-serif;
+  letter-spacing: 0.1rem;
 }
 
 header {
@@ -74,7 +75,7 @@ h1 {
   padding: 0.2rem;
   border-bottom: 1px solid #ccc;
   text-align: center;
-  max-width: 80%;
+  max-width: 70%;
 }
 
 .index-list {

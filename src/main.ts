@@ -4,6 +4,21 @@ import { renderRollDiceNotInBirdfeederResult } from "@render/dice/renderRollDice
 import { birdsWithRollAnyXDice, getRollAnyXDiceBirdActivation } from "@logic/diceActivations/rollAnyXDie";
 import { renderRollAnyXDie } from "@render/dice/renderRollAnyXDie";
 
+import { birdsRollDiceForXBirdsInHabitiat, getRollDiceForXBirdsInHabitiatActivation } from "@logic/diceActivations/rollDiceForXBirdsInHabitat";
+import { renderRollDiceForXBirdsInHabitat } from "@render/dice/renderRollDiceForXBirdsInHabitat";
+
+import { birdsResetTheBirdfeeder, getResetTheBirdfeederActivations } from "@logic/diceActivations/resetTheBirdfeeder";
+import { renderResetTheBirdfeeder } from "@render/dice/renderResetTheBirdfeeder";
+
+import { birdsPushYourLuck, getPushYourLuckActivation } from "@logic/diceActivations/pushYourLuck";
+import { renderPushYourLuck } from "@render/dice/renderPushYourLuck";
+
+import { birdsPhilippineEagle, getPhilippineEagleActivation } from "@logic/diceActivations/philippineEagle";
+import { renderPhilippineEagle } from "@render/dice/renderPhilippineEagle";
+
+import { birdsMaskedLapwing, getMaskedLapwingActivation } from "@logic/diceActivations/maskedLapwing";
+import { renderMaskedLapwing } from "@render/dice/renderMaskedLapwing";
+
 import type { DiceActivationInput, DiceActivationResult, DrawActivationResult } from "@customTypes";
 
 
@@ -38,6 +53,11 @@ function displayActivationResults(layoutCategory: string, layoutId: string, getF
 const layoutResultsMap: Record<string, () => void> = {
     'roll-dice-not-in-the-birdfeeder': () => displayActivationResults('dice', 'roll-dice-not-in-the-birdfeeder', getRollDiceNotInTheBirdfeederActivation, birdsRollDiceNotInTheBirdfeeder, renderRollDiceNotInBirdfeederResult),
     'roll-any-x-dice': () => displayActivationResults('dice', 'roll-any-x-dice', getRollAnyXDiceBirdActivation, birdsWithRollAnyXDice, renderRollAnyXDie),
+    'roll-dice-for-x-birds-in-habitat': () => displayActivationResults('dice', 'roll-dice-for-x-birds-in-habitat', getRollDiceForXBirdsInHabitiatActivation, birdsRollDiceForXBirdsInHabitiat, renderRollDiceForXBirdsInHabitat),
+    'reset-the-birdfeeder': () => displayActivationResults('dice', 'reset-the-birdfeeder', getResetTheBirdfeederActivations, birdsResetTheBirdfeeder, renderResetTheBirdfeeder),
+    'push-your-luck': () => displayActivationResults('dice', 'push-your-luck', getPushYourLuckActivation, birdsPushYourLuck, renderPushYourLuck),
+    'philippine-eagle': () => displayActivationResults('dice', 'philippine-eagle', getPhilippineEagleActivation, birdsPhilippineEagle, renderPhilippineEagle),
+    // 'masked-lapwing': () => displayActivationResults('dice', 'masked-lapwing', getMaskedLapwingActivation, birdsMaskedLapwing, renderMaskedLapwing),
 }
 
 
