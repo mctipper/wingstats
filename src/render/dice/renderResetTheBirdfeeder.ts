@@ -3,8 +3,8 @@ import { renderPrimaryLayout } from "@render/primaryRender";
 import { renderBirdResultSection } from "@render/helpers/renderResults";
 
 
-export function renderResetTheBirdfeeder(layoutId: string, result: DiceActivationResult): HTMLElement {
-    const layout = renderPrimaryLayout(layoutId, result);
+export function renderResetTheBirdfeeder(layoutCategory: string, layoutId: string, result: DiceActivationResult): HTMLElement {
+    const layout = renderPrimaryLayout(layoutCategory, layoutId, result);
 
     renderBirdResultSection(result, {
         includeResultTable: true,

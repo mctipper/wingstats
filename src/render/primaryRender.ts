@@ -5,8 +5,8 @@ import { idFriendlyBirdname } from "@render/helpers/idFriendlyBirdName";
 
 const birdCardDeck: BirdDeckCollection = await loadBirdCards();
 
-export function renderPrimaryLayout(layoutId: string, result: DiceActivationResult, includeIndex: boolean = true): HTMLElement {
-    // Get or create layout container
+export function renderPrimaryLayout(layoutCategory: string, layoutId: string, result: DiceActivationResult, includeIndex: boolean = true): HTMLElement {
+    // get or create layout container
     let layout = document.getElementById(layoutId) as HTMLElement | null;
     if (!layout) {
         layout = document.createElement("div");
@@ -16,19 +16,27 @@ export function renderPrimaryLayout(layoutId: string, result: DiceActivationResu
     }
 
     // blurb 
-    let blurbHeader = document.getElementById(`${layoutId}-blurb-header`) as HTMLElement | null;
+    let blurbHeader = document.getElementById(`${layoutId}-activation-header`) as HTMLElement | null;
     if (!blurbHeader) {
         blurbHeader = document.createElement("div");
-        blurbHeader.className = "blurb-header";
-        blurbHeader.id = `${layoutId}-blurb-header`;
+        blurbHeader.className = "activation-header";
+        blurbHeader.id = `${layoutId}-activation-header`;
 
         const headerTitle = document.createElement("h1");
-        headerTitle.innerHTML = layoutId
+        const anchorId = `${layoutCategory}-activations`;
+        const formattedTitle = layoutId
             .split("-")
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
+
+        headerTitle.id = anchorId;
+        headerTitle.innerHTML = `
+  ${formattedTitle}
+  <a class="navlink" href="#${anchorId}" style="text-decoration: none;">⤒</a>
+`;
         blurbHeader.appendChild(headerTitle);
         layout.appendChild(blurbHeader);
+
     }
 
     // index navigation
@@ -77,7 +85,8 @@ export function renderPrimaryLayout(layoutId: string, result: DiceActivationResu
     const resultHeader = document.createElement("div");
     resultHeader.innerHTML = `
     <h1 class="bird-header">${result.birdName}
-      <a href="#${layoutId}" style="text-decoration: none;">^</a>
+      <a class="navlink" href="#${layoutId}" style="text-decoration: none;">^</a>
+      <a class="navlink" href="#${layoutCategory}-activations" style="text-decoration: none;">⤒</a>
     </h1>
     <div class="brown-power-wrapper"><h3 class="brown-power-text">${powerText}</h3></div>
   `;

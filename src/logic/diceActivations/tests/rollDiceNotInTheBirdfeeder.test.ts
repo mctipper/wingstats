@@ -75,7 +75,6 @@ describe('getRollDiceNotInTheBirdfeederActivation', () => {
 
             expect(result.birdName).toBe(expectedBird.birdName);
             expect(result.targetFood).toBe(expectedBird.targetFood);
-            expect(result.die).toBe(baseGameDie.version);
             expect(result.dieCount).toBe(expectedBird.dieCount);
             expect(result.rollCount).toBe(expectedBird.rollCount);
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);

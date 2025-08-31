@@ -14,7 +14,6 @@ export const birdsResetTheBirdfeeder: DiceActivationInput[] = [
     { birdName: 'European Bee-Eater', targetFood: 'Invertebrate', dieCount: dieCount, rollCount: rollCount, activationResultMode: 'binary' },
     { birdName: 'European Honey Buzzard', targetFood: 'Invertebrate', dieCount: dieCount, rollCount: rollCount, activationResultMode: 'binomial' },
     { birdName: 'Galah', targetFood: 'Seed', dieCount: dieCount, rollCount: rollCount, activationResultMode: 'binary' },
-    { birdName: 'Great Tit', targetFood: ['Fish', 'Fruit', 'Invertebrate', 'Rodent', 'Seed'], dieCount: dieCount, rollCount: rollCount, activationResultMode: 'binary' },
     { birdName: 'Grey Shrikethrush', targetFood: 'Rodent', dieCount: dieCount, rollCount: rollCount, activationResultMode: 'binomial' },
     { birdName: 'Hawfinch', targetFood: 'Seed', dieCount: dieCount, rollCount: rollCount, activationResultMode: 'binary' },
     { birdName: 'Laughing Kookaburra', targetFood: ['Fish', 'Invertebrate', 'Rodent'], dieCount: dieCount, rollCount: rollCount, activationResultMode: 'binary' },
@@ -51,7 +50,6 @@ export function getResetTheBirdfeederActivations(birdsResetTheBirdfeeder: DiceAc
         return {
             birdName: bird.birdName,
             targetFood: bird.targetFood,
-            die: baseGameDie.version,
             dieCount: bird.dieCount,
             rollCount: bird.rollCount,
             activationResultMode: bird.activationResultMode,

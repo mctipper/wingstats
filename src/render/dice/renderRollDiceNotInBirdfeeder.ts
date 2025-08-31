@@ -2,8 +2,8 @@ import type { DiceActivationResult } from "@customTypes";
 import { renderPrimaryLayout } from "@render/primaryRender";
 import { renderBirdResultSection } from "@render/helpers/renderResults";
 
-export function renderRollDiceNotInBirdfeederResult(layoutId: string, result: DiceActivationResult): HTMLElement {
-  const layout = renderPrimaryLayout(layoutId, result);
+export function renderRollDiceNotInBirdfeederResult(layoutCategory: string, layoutId: string, result: DiceActivationResult): HTMLElement {
+  const layout = renderPrimaryLayout(layoutCategory, layoutId, result);
 
   renderBirdResultSection(result, {
     includeResultTable: true,

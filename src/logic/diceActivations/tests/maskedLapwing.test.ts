@@ -4,7 +4,7 @@ import { getDiceUniqueFoodActivationStats } from '@logic/diceActivations/helpers
 import type { DiceActivations, Die, ActivationStats, DiceActivationInput } from '@customTypes';
 import * as diceActvationLogic from '@logic/diceActivations/maskedLapwing';
 import { allDice } from '@definitions/diceDefinitions';
-import { DieLogic } from '@logic/dieLogic';
+
 
 
 const mockActivationStatsResult: ActivationStats = {
@@ -49,25 +49,19 @@ describe('getMaskedLapwingActivation', () => {
 
         const results = getMaskedLapwingActivation(testBirds);
 
-        // multiplied as each testBird gets a result per dice set
-        expect(results).toHaveLength(testBirds.length * 2);
-
-        for (let i = 0; i < results.length; i++) {
-            const result = results[i];
-            const birdIndex = Math.floor(i / 2); // as per two results per bird
-            const expectedBird = testBirds[birdIndex];
-            let curDie: Die
-            i % 2 === 0 ? curDie = allDice.basegame : curDie = allDice.oceania;
+        for (const [_dieVersion, curDie] of Object.entries(allDice)) {
+            const result = results[0];
+            const expectedBird = testBirds[0];
+            // let curDie: Die
             expect(result.birdName).toBe(expectedBird.birdName);
-            expect(result.targetFood).toStrictEqual(DieLogic.getAllUniqueFoodsOnDie(curDie)); // adjusted to match die within activation
-            expect(result.die).toBe(curDie.version);
+            expect(result.targetFood).toBe(expectedBird.targetFood);
             expect(result.dieCount).toBe(expectedBird.dieCount);
             expect(result.rollCount).toBe(expectedBird.rollCount);
             expect(result.activationResultMode).toBe(expectedBird.activationResultMode);
 
             // one result only pls
-            expect(Object.keys(result.activationStats)).toHaveLength(1);
-            expect(result.activationStats[0]).toEqual(mockActivationStatsResult);
+            expect(Object.keys(result.activationStats)).toHaveLength(2);
+            expect(result.activationStats[curDie.version]).toEqual(mockActivationStatsResult);
         }
     });
 });

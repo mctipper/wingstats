@@ -1,4 +1,4 @@
-import type { Food, Nest, DieVersions, Habitat, Expansion } from '@customTypes';
+import type { Food, Nest, Habitat, Expansion } from '@customTypes';
 
 
 
@@ -47,8 +47,7 @@ export type DiceActivationInput = {
 
 
 export type DiceActivationResult = DiceActivationInput & {
-    die: DieVersions,
-    activationStats: Record<number, ActivationStats>
+    activationStats: Record<number | string, ActivationStats>
 }
 
 export type WingspanOperator = {

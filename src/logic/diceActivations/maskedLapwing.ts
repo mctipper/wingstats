@@ -1,6 +1,5 @@
-import type { DiceActivations, Die, Food, ActivationStats, DiceActivationInput, DiceActivationResult } from '@customTypes';
+import type { DiceActivations, Die, ActivationStats, DiceActivationInput, DiceActivationResult } from '@customTypes';
 import { getDiceUniqueFoodActivationStats } from '@logic/diceActivations/helpers';
-import { DieLogic } from '@logic/dieLogic';
 import { allDice } from '@definitions/diceDefinitions';
 
 // yeah this is a bit redundant, keeping the same pattern as others though...
@@ -22,26 +21,22 @@ export function maskedLapwingLogic(
 export function getMaskedLapwingActivation(birdsMaskedLapwing: DiceActivationInput[]): DiceActivationResult[] {
     let allBirdStats: DiceActivationResult[] = []
     for (const curBird of birdsMaskedLapwing) {
+        const activationStats: Record<string, ActivationStats> = {};
         for (const curDie of Object.values(allDice)) {
-            const activationStats: Record<number, ActivationStats> = {};
-
-            // for neatness and accuracy, change the targetfood to just that on the current die
-            const adjustedTargetFood: Food[] = DieLogic.getAllUniqueFoodsOnDie(curDie);
-
-            activationStats[0] = maskedLapwingLogic(curDie, curBird.dieCount)
-
-            const result: DiceActivationResult = {
-                birdName: curBird.birdName,
-                targetFood: adjustedTargetFood,
-                die: curDie.version,
-                dieCount: curBird.dieCount,
-                rollCount: curBird.rollCount,
-                activationResultMode: curBird.activationResultMode,
-                activationStats: activationStats
-            }
-
-            allBirdStats.push(result);
+            activationStats[curDie.version] = maskedLapwingLogic(curDie, curBird.dieCount)
         }
+
+        const result: DiceActivationResult = {
+            birdName: curBird.birdName,
+            targetFood: curBird.targetFood,
+            dieCount: curBird.dieCount,
+            rollCount: curBird.rollCount,
+            activationResultMode: curBird.activationResultMode,
+            activationStats: activationStats
+        }
+
+        allBirdStats.push(result);
     }
+
     return allBirdStats
 }

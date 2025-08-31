@@ -2,9 +2,9 @@ import type { DiceActivationResult } from "@customTypes";
 import { renderPrimaryLayout } from "@render/primaryRender";
 import { renderBirdResultSection } from "@render/helpers/renderResults";
 
-export function renderPhilippineEagle(layoutId: string, result: DiceActivationResult): HTMLElement {
+export function renderPhilippineEagle(layoutCategory: string, layoutId: string, result: DiceActivationResult): HTMLElement {
     const includeIndex: boolean = false
-    const layout = renderPrimaryLayout(layoutId, result, includeIndex);
+    const layout = renderPrimaryLayout(layoutCategory, layoutId, result, includeIndex);
 
     renderBirdResultSection(result, {
         includeResultTable: true,

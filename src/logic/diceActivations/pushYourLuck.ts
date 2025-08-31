@@ -41,7 +41,6 @@ export function getPushYourLuckActivation(birdsPushYourLuck: DiceActivationInput
         let result: DiceActivationResult = {
             birdName: curBird.birdName,
             targetFood: curBird.targetFood,
-            die: baseGameDie.version,
             dieCount: curBird.dieCount,
             rollCount: curBird.rollCount,
             activationResultMode: curBird.activationResultMode,

@@ -39,7 +39,6 @@ export function getRollAnyXDiceBirdActivation(birdsWithRollAnyXDice: DiceActivat
         return {
             birdName: bird.birdName,
             targetFood: bird.targetFood,
-            die: baseGameDie.version,
             dieCount: bird.dieCount,
             rollCount: bird.rollCount,
             activationResultMode: bird.activationResultMode,

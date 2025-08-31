@@ -14,9 +14,9 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 75px;
+  height: 4.5rem;
   /* define a consistent height */
-  padding-top: 10px;
+  padding-top: 0.5rem;
   background-color: #222;
   text-align: center;
   font-size: 4rem;
@@ -55,11 +55,23 @@ h1 {
   margin: 1.5rem auto;
   font-size: 2rem;
   line-height: 1.6;
-  max-width: 60%
+  max-width: 60%;
+  scroll-margin-top: 5rem;
 }
 
+#dice-activations {
+  scroll-margin-top: 5rem;
+}
 
-.blurb-header {
+.navlink {
+  font-size: 1.8rem;
+  line-height: 1;
+  vertical-align: middle;
+  text-decoration: none;
+  margin-left: 0.25rem;
+}
+
+.activation-header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,7 +79,7 @@ h1 {
   margin: 1.5rem auto;
   font-size: 2rem;
   line-height: 1.6;
-  max-width: 60%
+  max-width: 60%;
 }
 
 .index {
@@ -142,7 +154,7 @@ h1 {
   text-align: center;
   width: fit-content;
   /* for anchor navigation */
-  scroll-margin-top: 55px;
+  scroll-margin-top: 4rem;
 }
 
 .result-card h1 .result-card h3 {

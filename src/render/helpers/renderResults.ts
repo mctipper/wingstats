@@ -44,7 +44,7 @@ function renderResultTable(result: DiceActivationResult, config: ResultTableConf
             const td = document.createElement("td");
             td.innerHTML = config.getConditionText
                 ? config.getConditionText(activationIndex)
-                : `<strong><i>${activationIndex}</i></strong> ${Number(activationIndex) === 1 ? "die" : "dice"}`;
+                : `Set Bespoke Condition Text`;
             row.appendChild(td);
         }
 

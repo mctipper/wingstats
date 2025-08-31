@@ -43,7 +43,7 @@ function displayActivationResults(layoutCategory: string, layoutId: string, getF
     if (lr) {
         const results: DiceActivationResult[] | DrawActivationResult[] = getFunction(birds)
         results.forEach(result => {
-            const layout = renderFunction(layoutId, result)
+            const layout = renderFunction(layoutCategory, layoutId, result)
             lr.appendChild(layout)
         });
     }
@@ -51,13 +51,13 @@ function displayActivationResults(layoutCategory: string, layoutId: string, getF
 
 
 const layoutResultsMap: Record<string, () => void> = {
+    'reset-the-birdfeeder': () => displayActivationResults('dice', 'reset-the-birdfeeder', getResetTheBirdfeederActivations, birdsResetTheBirdfeeder, renderResetTheBirdfeeder),
     'roll-dice-not-in-the-birdfeeder': () => displayActivationResults('dice', 'roll-dice-not-in-the-birdfeeder', getRollDiceNotInTheBirdfeederActivation, birdsRollDiceNotInTheBirdfeeder, renderRollDiceNotInBirdfeederResult),
+    'push-your-luck': () => displayActivationResults('dice', 'push-your-luck', getPushYourLuckActivation, birdsPushYourLuck, renderPushYourLuck),
     'roll-any-x-dice': () => displayActivationResults('dice', 'roll-any-x-dice', getRollAnyXDiceBirdActivation, birdsWithRollAnyXDice, renderRollAnyXDie),
     'roll-dice-for-x-birds-in-habitat': () => displayActivationResults('dice', 'roll-dice-for-x-birds-in-habitat', getRollDiceForXBirdsInHabitiatActivation, birdsRollDiceForXBirdsInHabitiat, renderRollDiceForXBirdsInHabitat),
-    'reset-the-birdfeeder': () => displayActivationResults('dice', 'reset-the-birdfeeder', getResetTheBirdfeederActivations, birdsResetTheBirdfeeder, renderResetTheBirdfeeder),
-    'push-your-luck': () => displayActivationResults('dice', 'push-your-luck', getPushYourLuckActivation, birdsPushYourLuck, renderPushYourLuck),
     'philippine-eagle': () => displayActivationResults('dice', 'philippine-eagle', getPhilippineEagleActivation, birdsPhilippineEagle, renderPhilippineEagle),
-    // 'masked-lapwing': () => displayActivationResults('dice', 'masked-lapwing', getMaskedLapwingActivation, birdsMaskedLapwing, renderMaskedLapwing),
+    'masked-lapwing': () => displayActivationResults('dice', 'masked-lapwing', getMaskedLapwingActivation, birdsMaskedLapwing, renderMaskedLapwing),
 }
 
 
