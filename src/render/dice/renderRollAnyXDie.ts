@@ -13,11 +13,6 @@ export function renderRollAnyXDie(layoutId: string, result: DiceActivationResult
     const block = document.createElement('div')
     block.className = 'activation-block'
 
-    const plural = result.dieCount === 1 ? 'die' : 'dice'
-    const title = document.createElement('h4')
-    title.innerHTML = `With <strong><i><big>${result.dieCount}</big></i></strong> ${plural}`
-    block.appendChild(title)
-
     // First row: stat boxes
     const statRow = document.createElement('div')
     statRow.className = 'stat-row'
