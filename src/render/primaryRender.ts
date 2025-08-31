@@ -31,6 +31,38 @@ export function renderPrimaryLayout(layoutId: string, result: DiceActivationResu
         layout.appendChild(blurbHeader);
     }
 
+    // index navigation 
+    // check if already exists 
+    let birdIndex = document.getElementById(`${layoutId}-index`) as HTMLElement | null;
+    let birdIndexList: HTMLUListElement;
+    if (birdIndex) {
+        // use existing 
+        birdIndexList = birdIndex.querySelector('ul.index-list') as HTMLUListElement;
+        if (!birdIndexList) {
+            birdIndexList = document.createElement('ul');
+            birdIndexList.className = 'index-list';
+            birdIndex.appendChild(birdIndexList);
+        }
+    } else {
+        // create 
+        birdIndex = document.createElement('div');
+        birdIndex.className = 'bird-index'
+        birdIndex.id = `${layoutId}-index`;
+        birdIndexList = document.createElement('ul');
+        birdIndexList.className = 'index-list';
+        birdIndex.appendChild(birdIndexList);
+        layout.appendChild(birdIndex)
+    }
+
+    // create and append new list item with anchor link 
+    const listItem = document.createElement('li')
+    listItem.className = 'index-item'
+    const link = document.createElement('a')
+    link.href = `#${result.birdName.replace(/\s+/g, '-')}`
+    link.textContent = result.birdName
+    listItem.appendChild(link)
+    birdIndexList?.appendChild(listItem)
+
     // Create result card for this bird
     const resultCard = document.createElement("div");
     resultCard.className = "result-card";
@@ -44,10 +76,10 @@ export function renderPrimaryLayout(layoutId: string, result: DiceActivationResu
 
     const resultHeader = document.createElement("div");
     resultHeader.innerHTML = `
-    <h1>${result.birdName}
+    <h1 class="bird-header">${result.birdName}
       <a href="#${layoutId}" style="text-decoration: none;">^</a>
     </h1>
-    <h3>${powerText}</h3>
+    <div class="brown-power-wrapper"><h3 class="brown-power-text">${powerText}</h3></div>
   `;
     resultCard.appendChild(resultHeader);
     layout.appendChild(resultCard);

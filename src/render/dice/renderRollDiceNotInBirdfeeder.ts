@@ -3,66 +3,86 @@ import { idFriendlyBirdname } from "@render/helpers/idFriendlyBirdName";
 import { renderPrimaryLayout } from "@render/primaryRender";
 
 export function renderRollDiceNotInBirdfeederResult(layoutId: string, result: DiceActivationResult): HTMLElement {
-  // Create layout and bird card
   const layout = renderPrimaryLayout(layoutId, result);
 
-  // Build section to hold tables
+  // seciont to hold result tables
   const section = document.createElement("section");
   section.className = "bird-results-section";
 
-  // Create flex container for side-by-side tables
+  // container to allow side-by-side rendering of tables
   const tableContainer = document.createElement("div");
-  tableContainer.className = "table-container"; // style with display: flex
+  tableContainer.className = "table-container";
 
-  // === Result Table ===
+  // result table
   const resultTable = document.createElement("table");
   resultTable.className = "result-table";
   resultTable.innerHTML = `
     <thead>
-      <tr><th>Condition</th><th>Success</th><th>EV</th></tr>
+      <tr><th>Condition</th><th class="succCol">Success</th><th class="evCol">EV</th></tr>
     </thead>
     <tbody>
       ${Object.entries(result.activationStats).map(([diceCount, stat]) => `
         <tr>
-          <td>${diceCount} dice not in the birdfeeder</td>
-          <td>${(stat.anySuccess * 100).toFixed(1)}%</td>
-          <td>${stat.expectedValue.toFixed(3)}</td>
+          <td><strong><i>${diceCount}</i></strong> ${diceCount == '1' ? "die" : "dice"}</td>
+          <td class="succCol">${(stat.anySuccess * 100).toFixed(1)}%</td>
+          <td class="evCol">${stat.expectedValue.toFixed(3)}</td>
         </tr>
       `).join("")}
     </tbody>
   `;
   tableContainer.appendChild(resultTable);
 
-  // === Distribution Table (only if >1 dice count) ===
-  const totalDistributionEntries = Object.values(result.activationStats)
-    .reduce((acc, stat) => acc + Object.keys(stat.distribution).length, 0);
-  console.log()
-  console.log(totalDistributionEntries);
+  // distribution of outcomes
+  const allOutcomes: string[] = Array.from(
+    new Set(Object.values(result.activationStats).flatMap(stat => Object.keys(stat.distribution)))
+  ).sort((a, b) => Number(a) - Number(b));
 
-  if (totalDistributionEntries > 1) {
-    const distributionTable = document.createElement("table");
-    distributionTable.className = "distribution-table";
-    distributionTable.innerHTML = `
-      <thead>
-        <tr><th>Result</th><th>Probability</th></tr>
-      </thead>
-      <tbody>
-        ${Object.entries(result.activationStats).flatMap(([_, stat]) =>
-      Object.entries(stat.distribution).map(([outcome, prob]) => `
-            <tr>
-              <td>${outcome}</td>
-              <td>${(prob * 100).toFixed(3)}%</td>
-            </tr>
-          `)
-    ).join("")}
-      </tbody>
-    `;
-    tableContainer.appendChild(distributionTable);
+  const distributionTable = document.createElement("table");
+  distributionTable.className = "distribution-table";
+
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  const columnClasses: string[] = [];
+
+  for (const outcome of allOutcomes) {
+    const th = document.createElement("th");
+    th.textContent = outcome;
+
+    const colClass = outcome === "0" ? "failCol" : "succCol";
+    th.classList.add(colClass);
+    columnClasses.push(colClass);
+
+    headerRow.appendChild(th);
   }
 
+  thead.appendChild(headerRow);
+  distributionTable.appendChild(thead);
+
+  // one row per die not in the birdfeeder
+  const tbody = document.createElement("tbody");
+
+  for (const [_diceCount, stat] of Object.entries(result.activationStats)) {
+    const row = document.createElement("tr");
+
+    allOutcomes.forEach((outcome, index) => {
+      const td = document.createElement("td");
+      const prob = (stat.distribution as Record<string, number>)[outcome];
+
+      td.textContent = prob && prob !== 0 ? `${(prob * 100).toFixed(3)}%` : " - ";
+      td.classList.add(columnClasses[index]); // Apply matching class
+      row.appendChild(td);
+    });
+
+    tbody.appendChild(row);
+  }
+
+  distributionTable.appendChild(tbody);
+  tableContainer.appendChild(distributionTable);
+
+  // append append append
   section.appendChild(tableContainer);
 
-  // Append section to result card
   const resultCard = document.getElementById(idFriendlyBirdname(result.birdName));
   resultCard?.appendChild(section);
 
