@@ -1,44 +1,12 @@
-import type { DiceActivationResult, BirdDeckCollection } from "@customTypes"
-import { loadBirdCards } from "@data/loadBirdCards"
-import { getBirdCardByName } from "@data/helpers/getBirdCardByName"
-
-const birdCardDeck: BirdDeckCollection = await loadBirdCards()
+import type { DiceActivationResult } from "@customTypes"
+import { idFriendlyBirdname } from "@render/helpers/idFriendlyBirdName";
+import { renderPrimaryLayout } from "@render/primaryRender"
 
 export function renderRollAnyXDie(layoutId: string, result: DiceActivationResult): HTMLElement {
-    const card = document.createElement('div')
-    card.className = 'result-card'
-    // for anchor nav
-    card.id = `${result.birdName.replace(/\s+/g, '-')}`
+    // header and greater container
+    let layout = renderPrimaryLayout(layoutId, result);
 
-    // get the card text
-    const curBird = getBirdCardByName(result.birdName, birdCardDeck)
-
-    // brute force change of squarebrakcets to italics markers because ECMAscript goodness
-    let powerText = curBird.powerText.replace('[', '<i>').replace(']', '</i>')
-    while (powerText.includes('[') && powerText.includes(']')) {
-        powerText = powerText.replace('[', '<i>').replace(']', '</i>')
-    }
-
-    const header = document.createElement('div')
-    header.innerHTML = `
-    <h1>${result.birdName}</h1>
-    <h3>${powerText}</h3>
-  `
-
-    card.appendChild(header)
-
-    // update the nav index
-    const indexList = document.getElementById(`${layoutId}-index`)
-    const item = document.createElement('li')
-    item.className = 'index-item'
-
-    const link = document.createElement('a')
-    link.href = `#${result.birdName.replace(/\s+/g, '-')}`
-    link.textContent = result.birdName
-
-    item.appendChild(link)
-    indexList?.appendChild(item)
-
+    // build out the stats sections
     const section = document.createElement('section')
 
     // create a results 'block' for each number of dice being rolled
@@ -47,7 +15,7 @@ export function renderRollAnyXDie(layoutId: string, result: DiceActivationResult
 
     const plural = result.dieCount === 1 ? 'die' : 'dice'
     const title = document.createElement('h4')
-    title.innerHTML = `Rolling <strong><i><big>${result.dieCount}</big></i></strong> ${plural}`
+    title.innerHTML = `With <strong><i><big>${result.dieCount}</big></i></strong> ${plural}`
     block.appendChild(title)
 
     // First row: stat boxes
@@ -91,6 +59,8 @@ export function renderRollAnyXDie(layoutId: string, result: DiceActivationResult
     block.appendChild(distributionList)
     section.appendChild(block)
 
-    card.appendChild(section)
-    return card
+    let resultCard = document.getElementById(idFriendlyBirdname(result.birdName))
+    resultCard!.appendChild(section)
+
+    return layout
 }

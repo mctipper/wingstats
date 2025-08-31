@@ -4,8 +4,7 @@ import { renderPrimaryLayout } from "@render/primaryRender"
 
 export function renderRollDiceNotInBirdfeederResult(layoutId: string, result: DiceActivationResult): HTMLElement {
   // header and greater container
-  const blurbSpecialText = "While the probability of success improves with more dice not in the birdfeeder, it is not as much as you would suspect"
-  let layout = renderPrimaryLayout(layoutId, result, blurbSpecialText);
+  let layout = renderPrimaryLayout(layoutId, result);
 
   // build out the stats sections
   const section = document.createElement('section')

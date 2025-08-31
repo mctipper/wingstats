@@ -5,7 +5,7 @@ import { idFriendlyBirdname } from "./helpers/idFriendlyBirdName";
 
 const birdCardDeck: BirdDeckCollection = await loadBirdCards()
 
-export function renderPrimaryLayout(layoutId: string, result: DiceActivationResult, blurbSpecialText: string = ""): HTMLElement {
+export function renderPrimaryLayout(layoutId: string, result: DiceActivationResult): HTMLElement {
     // header and greater container
     let layout = document.getElementById(layoutId) as HTMLElement | null;
     if (!layout) {
@@ -24,11 +24,6 @@ export function renderPrimaryLayout(layoutId: string, result: DiceActivationResu
         // "kebab-case" to "Kebab Case"
         headerTitle.innerHTML = layoutId.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         blurbHeader.appendChild(headerTitle)
-        if (blurbSpecialText) {
-            const blurbSpecialTextElement = document.createElement('h3')
-            blurbSpecialTextElement.innerHTML = blurbSpecialText
-            blurbHeader.appendChild(blurbSpecialTextElement)
-        }
         layout.appendChild(blurbHeader)
     }
 
@@ -86,7 +81,9 @@ export function renderPrimaryLayout(layoutId: string, result: DiceActivationResu
 
     const resultHeader = document.createElement('div')
     resultHeader.innerHTML = `
-    <h1>${result.birdName}</h1>
+    <h1>${result.birdName}
+     <a href="#${layoutId}" style="text-decoration: none;">^</a>
+  </h1>
     <h3>${powerText}</h3>
   `
     resultCard.appendChild(resultHeader)
