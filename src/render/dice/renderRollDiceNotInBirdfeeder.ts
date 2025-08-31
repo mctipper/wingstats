@@ -1,68 +1,70 @@
-import type { DiceActivationResult } from "@customTypes"
+import type { DiceActivationResult } from "@customTypes";
 import { idFriendlyBirdname } from "@render/helpers/idFriendlyBirdName";
-import { renderPrimaryLayout } from "@render/primaryRender"
+import { renderPrimaryLayout } from "@render/primaryRender";
 
 export function renderRollDiceNotInBirdfeederResult(layoutId: string, result: DiceActivationResult): HTMLElement {
-  // header and greater container
-  let layout = renderPrimaryLayout(layoutId, result);
+  // Create layout and bird card
+  const layout = renderPrimaryLayout(layoutId, result);
 
-  // build out the stats sections
-  const section = document.createElement('section')
+  // Build section to hold tables
+  const section = document.createElement("section");
+  section.className = "bird-results-section";
 
-  // create a results 'block' for each number of dice being rolled
-  for (const [index, stat] of Object.entries(result.activationStats)) {
-    const block = document.createElement('div')
-    block.className = 'activation-block'
+  // Create flex container for side-by-side tables
+  const tableContainer = document.createElement("div");
+  tableContainer.className = "table-container"; // style with display: flex
 
-    const plural = index === '1' ? 'dice' : 'dice'
-    const title = document.createElement('h4')
-    title.innerHTML = `With <strong><i><big>${index}</big></i></strong> ${plural} not in the birdfeeder`
-    block.appendChild(title)
+  // === Result Table ===
+  const resultTable = document.createElement("table");
+  resultTable.className = "result-table";
+  resultTable.innerHTML = `
+    <thead>
+      <tr><th>Condition</th><th>Success</th><th>EV</th></tr>
+    </thead>
+    <tbody>
+      ${Object.entries(result.activationStats).map(([diceCount, stat]) => `
+        <tr>
+          <td>${diceCount} dice not in the birdfeeder</td>
+          <td>${(stat.anySuccess * 100).toFixed(1)}%</td>
+          <td>${stat.expectedValue.toFixed(3)}</td>
+        </tr>
+      `).join("")}
+    </tbody>
+  `;
+  tableContainer.appendChild(resultTable);
 
-    // First row: stat boxes
-    const statRow = document.createElement('div')
-    statRow.className = 'stat-row'
+  // === Distribution Table (only if >1 dice count) ===
+  const totalDistributionEntries = Object.values(result.activationStats)
+    .reduce((acc, stat) => acc + Object.keys(stat.distribution).length, 0);
+  console.log()
+  console.log(totalDistributionEntries);
 
-    const successBox = document.createElement('div')
-    successBox.className = 'stat-box success'
-    successBox.innerHTML = `
-      <div class="stat-label">Success Chance</div>
-      <div class="stat-value">${(stat.anySuccess * 100).toFixed(1)}%</div>
-    `
-
-    const evBox = document.createElement('div')
-    evBox.className = 'stat-box ev'
-    evBox.innerHTML = `
-      <div class="stat-label">Expected Value</div>
-      <div class="stat-value">${stat.expectedValue.toFixed(3)}</div>
-    `
-
-    statRow.appendChild(successBox)
-    statRow.appendChild(evBox)
-    block.appendChild(statRow)
-
-    // Second row: distribution list
-    const distributionTitle = document.createElement('div')
-    distributionTitle.className = 'distribution-title'
-    distributionTitle.textContent = '🎲 Distribution of outcomes'
-
-    const distributionList = document.createElement('div')
-    distributionList.className = 'distribution-list'
-
-    for (const [outcome, prob] of Object.entries(stat.distribution)) {
-      const item = document.createElement('div')
-      item.className = 'distribution-item'
-      item.innerHTML = `<strong>${outcome}</strong>: ${(prob * 100).toFixed(3)}%`
-      distributionList.appendChild(item)
-    }
-
-    block.appendChild(distributionTitle)
-    block.appendChild(distributionList)
-    section.appendChild(block)
+  if (totalDistributionEntries > 1) {
+    const distributionTable = document.createElement("table");
+    distributionTable.className = "distribution-table";
+    distributionTable.innerHTML = `
+      <thead>
+        <tr><th>Result</th><th>Probability</th></tr>
+      </thead>
+      <tbody>
+        ${Object.entries(result.activationStats).flatMap(([_, stat]) =>
+      Object.entries(stat.distribution).map(([outcome, prob]) => `
+            <tr>
+              <td>${outcome}</td>
+              <td>${(prob * 100).toFixed(3)}%</td>
+            </tr>
+          `)
+    ).join("")}
+      </tbody>
+    `;
+    tableContainer.appendChild(distributionTable);
   }
 
-  let resultCard = document.getElementById(idFriendlyBirdname(result.birdName))
-  resultCard!.appendChild(section)
+  section.appendChild(tableContainer);
 
-  return layout
+  // Append section to result card
+  const resultCard = document.getElementById(idFriendlyBirdname(result.birdName));
+  resultCard?.appendChild(section);
+
+  return layout;
 }
