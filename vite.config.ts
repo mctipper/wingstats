@@ -29,6 +29,7 @@ export default defineConfig({
             exclude: [
                 '**/debug/**', // happy debug dashboard
                 '**/index.ts', // all barrels
+                '**/dist/**',
                 'vite.config.ts'
             ]
         }
