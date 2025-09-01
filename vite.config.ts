@@ -1,8 +1,12 @@
 import { defineConfig } from "vite";
 import { configDefaults } from 'vitest/config';
+import { version } from './package.json'
 import path from 'path';
 
 export default defineConfig({
+    define: {
+        __APP_VERSION__: JSON.stringify(version),
+    },
     base: '/wingstats/',
     server: {
         host: true,

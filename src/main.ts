@@ -22,44 +22,52 @@ import { renderMaskedLapwing } from "@render/dice/renderMaskedLapwing";
 import type { DiceActivationInput, DiceActivationResult, DrawActivationResult } from "@customTypes";
 
 
-function displayActivationResults(layoutCategory: string, layoutId: string, getFunction: Function, birds: DiceActivationInput[] | DrawActivationResult[], renderFunction: Function) {
-    // add to index
-    let indexList = document.getElementById(`${layoutCategory}-index-list`) as HTMLUListElement;
+async function init() {
+    const version = __APP_VERSION__;
+    console.log(version);
 
-    const listItem = document.createElement('li')
-    listItem.className = 'index-item'
 
-    const link = document.createElement('a')
-    link.href = `#${layoutId}`
-    link.textContent = `${layoutId.replace(/-/g, ' ')}`
+    function displayActivationResults(layoutCategory: string, layoutId: string, getFunction: Function, birds: DiceActivationInput[] | DrawActivationResult[], renderFunction: Function) {
+        // add to index
+        let indexList = document.getElementById(`${layoutCategory}-index-list`) as HTMLUListElement;
 
-    listItem.appendChild(link)
-    indexList?.appendChild(listItem)
+        const listItem = document.createElement('li')
+        listItem.className = 'index-item'
 
-    // render layout
-    const lr = document.getElementById(`${layoutCategory}-layout`)
+        const link = document.createElement('a')
+        link.href = `#${layoutId}`
+        link.textContent = `${layoutId.replace(/-/g, ' ')}`
 
-    console.log(`Rendering ${layoutId}`)
-    if (lr) {
-        const results: DiceActivationResult[] | DrawActivationResult[] = getFunction(birds)
-        results.forEach(result => {
-            const layout = renderFunction(layoutCategory, layoutId, result)
-            lr.appendChild(layout)
-        });
+        listItem.appendChild(link)
+        indexList?.appendChild(listItem)
+
+        // render layout
+        const lr = document.getElementById(`${layoutCategory}-layout`)
+
+        console.log(`Rendering ${layoutId}`)
+        if (lr) {
+            const results: DiceActivationResult[] | DrawActivationResult[] = getFunction(birds)
+            results.forEach(result => {
+                const layout = renderFunction(layoutCategory, layoutId, result)
+                lr.appendChild(layout)
+            });
+        }
     }
+
+
+    const layoutResultsMap: Record<string, () => void> = {
+        'reset-the-birdfeeder': () => displayActivationResults('dice', 'reset-the-birdfeeder', getResetTheBirdfeederActivations, birdsResetTheBirdfeeder, renderResetTheBirdfeeder),
+        'roll-dice-not-in-the-birdfeeder': () => displayActivationResults('dice', 'roll-dice-not-in-the-birdfeeder', getRollDiceNotInTheBirdfeederActivation, birdsRollDiceNotInTheBirdfeeder, renderRollDiceNotInBirdfeederResult),
+        'push-your-luck': () => displayActivationResults('dice', 'push-your-luck', getPushYourLuckActivation, birdsPushYourLuck, renderPushYourLuck),
+        'roll-any-x-dice': () => displayActivationResults('dice', 'roll-any-x-dice', getRollAnyXDiceBirdActivation, birdsWithRollAnyXDice, renderRollAnyXDie),
+        'roll-dice-for-x-birds-in-habitat': () => displayActivationResults('dice', 'roll-dice-for-x-birds-in-habitat', getRollDiceForXBirdsInHabitiatActivation, birdsRollDiceForXBirdsInHabitiat, renderRollDiceForXBirdsInHabitat),
+        'philippine-eagle': () => displayActivationResults('dice', 'philippine-eagle', getPhilippineEagleActivation, birdsPhilippineEagle, renderPhilippineEagle),
+        'masked-lapwing': () => displayActivationResults('dice', 'masked-lapwing', getMaskedLapwingActivation, birdsMaskedLapwing, renderMaskedLapwing),
+    }
+
+
+    // run them all
+    Object.values(layoutResultsMap).forEach(fn => fn());
 }
 
-
-const layoutResultsMap: Record<string, () => void> = {
-    'reset-the-birdfeeder': () => displayActivationResults('dice', 'reset-the-birdfeeder', getResetTheBirdfeederActivations, birdsResetTheBirdfeeder, renderResetTheBirdfeeder),
-    'roll-dice-not-in-the-birdfeeder': () => displayActivationResults('dice', 'roll-dice-not-in-the-birdfeeder', getRollDiceNotInTheBirdfeederActivation, birdsRollDiceNotInTheBirdfeeder, renderRollDiceNotInBirdfeederResult),
-    'push-your-luck': () => displayActivationResults('dice', 'push-your-luck', getPushYourLuckActivation, birdsPushYourLuck, renderPushYourLuck),
-    'roll-any-x-dice': () => displayActivationResults('dice', 'roll-any-x-dice', getRollAnyXDiceBirdActivation, birdsWithRollAnyXDice, renderRollAnyXDie),
-    'roll-dice-for-x-birds-in-habitat': () => displayActivationResults('dice', 'roll-dice-for-x-birds-in-habitat', getRollDiceForXBirdsInHabitiatActivation, birdsRollDiceForXBirdsInHabitiat, renderRollDiceForXBirdsInHabitat),
-    'philippine-eagle': () => displayActivationResults('dice', 'philippine-eagle', getPhilippineEagleActivation, birdsPhilippineEagle, renderPhilippineEagle),
-    'masked-lapwing': () => displayActivationResults('dice', 'masked-lapwing', getMaskedLapwingActivation, birdsMaskedLapwing, renderMaskedLapwing),
-}
-
-
-// run them all
-Object.values(layoutResultsMap).forEach(fn => fn());
+init();
