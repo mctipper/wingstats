@@ -50,14 +50,14 @@ There is a `devcontainer` setup to make things easy, else using the versions fro
 
 # Future Enhancements
 
-- Put in a little 'explainer' blurb.
+- Mobile design layout fixes. Yueck.
+- Put in a little 'explainer' blurb, about what the tables signify etc...
 - Complete the 'draw cards' activations section. Some of the code is done but wasn't happy with how I structured it, so will re-visit in time.
 - Complete the 'bird cards' statistics, counts, analysis section
 - Complete the 'bonus cards' statistics, counts, analysis section
 - Provide 'run experiment' section for custom dice activations. Pick food, dice version, number of dice etc... and get probablities of outcomes.
 - Insert little images of die or food where \[rodent\] type syntax appears.
 - Dreaded post-deployment refactoring. As mentioned purposefully over-engineered this but got spaghettified along the way (again, kinda on purpose). Once happy with eventual structure and logics will refactor once to align logic throughout.
-- Mobile design fixes. Yueck.
 
 # Versioning
 
