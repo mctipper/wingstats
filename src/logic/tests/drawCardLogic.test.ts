@@ -33,17 +33,19 @@ const mockAbbottsBooby: BirdCard = {
         Fruit: false,
         Rodent: false,
         Nectar: false,
-        foodDetail: {
-            invertebrate: 0,
-            seed: 0,
-            fish: 2,
-            fruit: 0,
-            rodent: 0,
-            nectar: 0,
+        foodCost: {
+            Invertebrate: 0,
+            Seed: 0,
+            Fish: 2,
+            Fruit: 0,
+            Rodent: 0,
+            Nectar: 0,
             wildFood: 0,
+            totalFoodCost: 2,
+        },
+        foodDetail: {
             slashFoodCost: false,
             starFoodCost: false,
-            totalFoodCost: 2,
         }
     },
     bonusCards: {
