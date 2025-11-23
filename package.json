@@ -1,0 +1,26 @@
+{
+  "name": "wingstats",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "homepage": "https://mctipper.github.io/wingstats/",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest --config vitest.config.ts",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "gh-pages": "^6.3.0",
+    "jsdom": "^27.2.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.0"
+  },
+  "dependencies": {
+    "jstat": "^1.9.6",
+    "vitest": "^3.2.4"
+  }
+}

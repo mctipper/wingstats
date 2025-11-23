@@ -1,0 +1,134 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  font-family: 'Cardenio Modern', sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4.5rem;
+  /* define a consistent height */
+  padding-top: 0.5rem;
+  background-color: #222;
+  text-align: center;
+  font-size: 4rem;
+  letter-spacing: 0.4rem;
+  font-weight: bold;
+  border-bottom: 1px solid #444;
+  z-index: 1000;
+}
+
+.page-blurb {
+  padding-top: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem auto;
+  font-size: 2rem;
+  line-height: 1.6;
+  max-width: 60%
+}
+
+.container-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* horizontal centering */
+  justify-content: flex-start;
+  gap: 1rem;
+  /* space between children */
+  margin-top: 2rem;
+  /* spacing from previous section */
+}
+
+.dice-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  /* space between buttons and dice line */
+}
+
+.dice-line {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: calc(5 * 50px + 4 * 8px);
+  /* 5 dice + 4 gaps */
+}
+
+.dice-line .die {
+  width: 50px;
+  height: 50px;
+}
+
+
+/* Text label below the line */
+#die-count {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* Target food control centered */
+#target-food-control {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Target food line */
+.food-line {
+  display: flex;
+  justify-content: center;
+  /* center the images horizontally */
+  align-items: center;
+  gap: 1.5rem;
+  /* buffer between items (increase from 0.5rem) */
+  width: calc(6 * 50px + 5 * 16px);
+  /* fixed width for 6 foods + gaps */
+  margin-top: 1rem;
+}
+
+.food-line .food {
+  width: 50px;
+  /* same size as dice */
+  height: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Selected foods grow */
+.food-line .food.selected {
+  transform: scale(1.2);
+  outline: 2px solid #4caf50;
+}
+
+/* Unselected foods shrink */
+.food-line .food.unselected {
+  transform: scale(0.75);
+}
+
+/* Run button styling */
+#run-button button {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Results text styling */
+#results {
+  font-size: 1.1rem;
+  text-align: center;
+  min-height: 1.5rem;
+  /* reserve space even before results appear */
+}
