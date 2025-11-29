@@ -1,4 +1,5 @@
-import { controlState } from '@state'
+import { controlState } from "@state";
+import { updateResults } from "@render";
 
 export function createDiceControl(): HTMLElement {
   const diceControlContainer = document.getElementById("dice-control")!;
@@ -24,8 +25,11 @@ export function createDiceControl(): HTMLElement {
   dieCountSpan.id = "die-count";
 
   function updateDisplay() {
-    dieCountSpan.textContent = `${controlState.dieCount} ${controlState.dieCount === 1 ? "die" : "dice"}`;
+    dieCountSpan.textContent = `${controlState.dieCount} ${
+      controlState.dieCount === 1 ? "die" : "dice"
+    }`;
     renderDiceLine(controlState.dieCount, diceImagesdiceControlContainer);
+    updateResults();
   }
 
   decreaseBtn.addEventListener("click", () => {
