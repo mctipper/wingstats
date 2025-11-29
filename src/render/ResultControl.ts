@@ -8,7 +8,7 @@ export function updateResults(): void {
     throw new Error("results container not found in DOM");
   }
 
-  // derive ordered array from the Set
+  // derive ordered array from the Set, just for display purposes
   const orderedFoods: Food[] = allFoods.filter((food) =>
     controlState.selectedFoods.has(food)
   );
