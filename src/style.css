@@ -50,7 +50,7 @@ header {
   /* spacing from previous section */
 }
 
-.dice-row {
+.dice-row, .dice-type-row {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,12 +58,20 @@ header {
   /* space between buttons and dice line */
 }
 
-.dice-line {
+.dice-type-row {
+  margin-bottom: .5em; /* space between rows */
+}
+
+.dice-line, .dice-type-line {
   display: flex;
   justify-content: center;
   gap: 8px;
   width: calc(5 * 50px + 4 * 8px);
   /* 5 dice + 4 gaps */
+}
+
+.dice-type-line {
+  font-size: 30px;
 }
 
 .dice-line .die {

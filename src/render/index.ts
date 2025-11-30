@@ -1,3 +1,3 @@
 export { createDiceControl } from "./DiceControl";
-export { createTargetFoodControl } from "./TargetFoodControl";
+export { createTargetFoodControl, refreshFoodUI } from "./TargetFoodControl";
 export { updateResults } from "./ResultControl";
