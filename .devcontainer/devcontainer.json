@@ -1,5 +1,5 @@
 {
-  "name": "Node.js & TypeScript",
+  "name": "Wingstats Dev Container",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
   // Automatically install dependencies with npm
   "postCreateCommand": "npm install",
