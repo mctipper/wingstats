@@ -94,36 +94,69 @@ header {
   width: 100%;
 }
 
+/* --- Wrapper and Line Structure --- */
+
 /* Target food line */
 .food-line {
   display: flex;
   justify-content: center;
-  /* center the images horizontally */
-  align-items: center;
+  /* center the food item wrappers horizontally */
+  align-items: flex-start; /* IMPORTANT: Align to start so text doesn't affect vertical center of other items */
   gap: 1.5rem;
   /* buffer between items (increase from 0.5rem) */
-  width: calc(6 * 50px + 5 * 16px);
-  /* fixed width for 6 foods + gaps */
+  /* Re-calculate width based on the new structure/gaps if necessary, but this should be fine for 6 items */
+  width: calc(6 * 70px + 5 * 1.5rem); 
   margin-top: 1rem;
 }
 
-.food-line .food {
-  width: 50px;
-  /* same size as dice */
-  height: 50px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+/* NEW: Wrapper for image and text */
+.food-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* Stack image and text vertically */
+  align-items: center;
+  /* Center the image and text horizontally within the wrapper */
+  /* Add padding to ensure scale(1.2) doesn't overlap borders */
+  padding-bottom: 1.5rem; /* Space for the text line beneath the image */
 }
 
-/* Selected foods grow */
-.food-line .food.selected {
+/* --- Image Styling and Transitions --- */
+
+.food-item-wrapper .food {
+  width: 70px;
+  /* same size as dice */
+  height: 70px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border-radius: 4px; /* Optional: adds a slight curve to the outline */
+}
+
+/* Selected foods grow and get outline */
+.food-item-wrapper .food.selected {
   transform: scale(1.2);
-  outline: 2px solid #4caf50;
+  /* outline: 2px solid #4caf50; */
 }
 
 /* Unselected foods shrink */
-.food-line .food.unselected {
+.food-item-wrapper .food.unselected {
   transform: scale(0.75);
+}
+
+/* --- Text Styling --- */
+
+/* NEW: Style for the text beneath the food image */
+.food-item-wrapper .food-name-text {
+  /* This is managed by JS (display: block/none), but style it here */
+  display: none; 
+  /* Initial state is hidden */
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #4caf50;
+  /* Matches the selection outline color */
+  margin-top: 0.5rem;
+  /* Space between the scaled image and the text */
+  text-align: center;
+  /* Ensures text is centered (though align-items: center in wrapper should handle this) */
 }
 
 /* Run button styling */

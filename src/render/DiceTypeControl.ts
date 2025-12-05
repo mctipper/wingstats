@@ -1,5 +1,5 @@
 import { controlState } from "@state";
-import { refreshFoodUI, updateResults } from "@render";
+import { resetFoodUI, updateResults } from "@render";
 import { diceList, allFoods } from "@customTypes";
 import { type Die } from "@customTypes";
 import { capitaliseFirstLetter } from "@utils";
@@ -66,6 +66,6 @@ function setDie(die: Die) {
   }
   const container = document.getElementById("target-food-control");
   if (container) {
-    refreshFoodUI(container);
+    resetFoodUI(container);
   }
 }
