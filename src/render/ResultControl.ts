@@ -20,14 +20,15 @@ export function updateResults(): void {
 
   // inputDiv: shows dice count + selected foods
   const inputDiv = document.createElement("div");
-  inputDiv.textContent = `Die: ${capitaliseFirstLetter(
-    controlState.die.dieType
-  )}, Dice: ${controlState.dieCount}, Foods: ${
-    orderedFoods.join(", ") || "none"
-  }`;
+  inputDiv.textContent = `Rolling ${
+    controlState.dieCount
+  } ${capitaliseFirstLetter(controlState.die.dieType)} Di${
+    controlState.dieCount === 1 ? "" : "c"
+  }e targeting: ${orderedFoods.join(", ") || "none"}`;
 
   // outputDiv: shows probability of success - how the will end up looking is a big fat TODO
   const outputDiv = document.createElement("div");
+  outputDiv.className = "probability-div";
   outputDiv.textContent = `Probability: ${probabilityOfSuccess(
     controlState.die,
     controlState.dieCount,

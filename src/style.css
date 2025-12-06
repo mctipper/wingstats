@@ -116,8 +116,7 @@ header {
   /* Stack image and text vertically */
   align-items: center;
   /* Center the image and text horizontally within the wrapper */
-  /* Add padding to ensure scale(1.2) doesn't overlap borders */
-  padding-bottom: 1.5rem; /* Space for the text line beneath the image */
+  height: 3.5rem; /* static height */
 }
 
 /* --- Image Styling and Transitions --- */
@@ -155,8 +154,9 @@ header {
   /* Matches the selection outline color */
   margin-top: 0.5rem;
   /* Space between the scaled image and the text */
+  margin-bottom: 1rem; 
+  /* --- FIX: ADDED margin-bottom to create space AFTER the text when it is visible --- */
   text-align: center;
-  /* Ensures text is centered (though align-items: center in wrapper should handle this) */
 }
 
 /* Run button styling */
@@ -172,4 +172,10 @@ header {
   text-align: center;
   min-height: 1.5rem;
   /* reserve space even before results appear */
+}
+
+.probability-div {
+  font-size: 3vh;
+  font-style: strong;
+  color: white;
 }

@@ -32,12 +32,8 @@ export function createTargetFoodControl(): HTMLElement {
       if (!controlState.availableFoods.has(food)) return; // ignore disabled
       if (controlState.selectedFoods.has(food)) {
         controlState.selectedFoods.delete(food);
-        img.src = `${import.meta.env.BASE_URL}assets/images/${food}.png`;
-        img.classList.remove("selected");
       } else {
         controlState.selectedFoods.add(food);
-        img.src = `${import.meta.env.BASE_URL}assets/images/${food}-glow.png`;
-        img.classList.add("selected");
       }
       updateFoodSelection(targetFoodContainer);
     });
@@ -82,16 +78,19 @@ function updateFoodSelection(container: HTMLElement) {
     if (controlState.selectedFoods.size === 0) {
       // No selection: remove all state classes
       img.classList.remove("selected", "unselected");
+      img.src = `${import.meta.env.BASE_URL}assets/images/${food}.png`;
       text.style.display = "none"; // Hide text
     } else if (controlState.selectedFoods.has(food)) {
       // Food is selected
       img.classList.add("selected");
       img.classList.remove("unselected");
+      img.src = `${import.meta.env.BASE_URL}assets/images/${food}-glow.png`;
       text.style.display = "block"; // Show text
     } else {
       // Food is not selected (but others are)
       img.classList.add("unselected");
       img.classList.remove("selected");
+      img.src = `${import.meta.env.BASE_URL}assets/images/${food}.png`;
       text.style.display = "none"; // Hide text
     }
   });
