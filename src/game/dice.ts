@@ -3,12 +3,10 @@ import { type Die, type Food } from "@customTypes";
 export function probabilityOfSuccess(
   die: Die,
   numDice: number,
-  target: Food | Food[],
+  target: Set<Food>,
   rerollWhenAllEqual: boolean
 ): string {
-  const targets = Array.isArray(target) ? target : [target];
-
-  if (numDice === 0 || target.length === 0) {
+  if (numDice === 0 || target.size === 0) {
     // basecase, no dice or no target food somehow
     return formatPercent(0);
   }
@@ -16,7 +14,7 @@ export function probabilityOfSuccess(
   // count matching faces
   const matchingFaces = die.faces.filter((face) => {
     const foods = Array.isArray(face) ? face : [face];
-    return foods.some((f) => targets.includes(f));
+    return foods.some((f) => target.has(f));
   }).length;
 
   const singleDieSuccess = matchingFaces / die.faces.length; // 6 faces
@@ -29,7 +27,7 @@ export function probabilityOfSuccess(
     // count non-target faces
     const nonTargetFaces = die.faces.filter((face) => {
       const foods = Array.isArray(face) ? face : [face];
-      return foods.every((f) => !targets.includes(f));
+      return foods.every((f) => !target.has(f));
     }).length;
 
     // probability of all dice showing the same non-target face
