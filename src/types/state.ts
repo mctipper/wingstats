@@ -14,5 +14,5 @@ export interface AdvancedOptionsState {
   withholdSuccess: boolean; // withhold successful die before reroll
   rerollWhenAllEqual: boolean; // negate current and reroll if all die faces are equal.
   countAllFoodOnFaces: boolean; // allow counting of all the food on the diefaces as success
-  allProbabilitesUpToDieCount: boolean; // return probability of 'multiple success', from 1 up to dieCount
+  countMultipleSuccesses: boolean; // return probability of 'multiple success', from 1 up to dieCount
 }

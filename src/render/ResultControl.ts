@@ -1,6 +1,6 @@
 import { controlState } from "@state";
 import { allFoods } from "@customTypes";
-import { probabilityOfSuccess } from "@game";
+import { renderProbabilityOutput } from "@render";
 import { capitaliseFirstLetter } from "@utils";
 
 const getControlStateSummary = () => {
@@ -82,8 +82,8 @@ const getControlStateSummary = () => {
     lines.push("Count All Food on Faces: Enabled");
   }
 
-  if (controlState.advancedOptions.allProbabilitesUpToDieCount) {
-    lines.push("Probabilities Up To Die Count: Enabled");
+  if (controlState.advancedOptions.countMultipleSuccesses) {
+    lines.push("Counting Multiple Successes: Enabled");
   }
 
   return lines.join("\n");
@@ -104,9 +104,7 @@ export function updateResults(): void {
   inputDiv.textContent = getControlStateSummary();
 
   // outputDiv: shows probability of success - how the will end up looking is a big fat TODO
-  const outputDiv = document.createElement("div");
-  outputDiv.className = "probability-div";
-  outputDiv.textContent = `Probability: ${probabilityOfSuccess()}`;
+  const outputDiv = renderProbabilityOutput();
 
   resultsDiv.appendChild(inputDiv);
   resultsDiv.appendChild(outputDiv);

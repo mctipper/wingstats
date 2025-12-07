@@ -3,3 +3,4 @@ export type { Food } from "./food";
 export { baseDie, oceaniaDie, diceList } from "./die";
 export type { DieFace, Die } from "./die";
 export type { ControlState, AdvancedOptionsState } from "./state";
+export type { ProbabilityDistribution } from "./game";

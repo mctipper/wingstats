@@ -1,1 +1,6 @@
-export { capitaliseFirstLetter, formatOptionKey } from "./stringUtils";
+export {
+  capitaliseFirstLetter,
+  formatOptionKey,
+  formatProbability,
+} from "./stringUtils";
+export { combinations } from "./mathUtils";

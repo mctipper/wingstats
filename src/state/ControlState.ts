@@ -6,7 +6,7 @@ export const advancedOptionsState: AdvancedOptionsState = {
   withholdSuccess: false,
   rerollWhenAllEqual: true,
   countAllFoodOnFaces: false,
-  allProbabilitesUpToDieCount: false,
+  countMultipleSuccesses: false,
 };
 
 export const controlState: ControlState = {
