@@ -26,8 +26,8 @@ export function createDiceControl(): HTMLElement {
 
   function updateDisplay() {
     dieCountSpan.textContent = `${controlState.dieCount} ${
-      controlState.dieCount === 1 ? "die" : "dice"
-    }`;
+      controlState.die.dieType
+    } ${controlState.dieCount === 1 ? "die" : "dice"}`;
     renderDiceLine(controlState.dieCount, diceImagesdiceControlContainer);
     updateResults();
   }

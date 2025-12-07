@@ -1,1 +1,1 @@
-export { capitaliseFirstLetter } from "./stringUtils";
+export { capitaliseFirstLetter, formatOptionKey } from "./stringUtils";

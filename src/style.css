@@ -179,3 +179,41 @@ header {
   font-style: strong;
   color: white;
 }
+
+#advanced-options-control {
+  width: 300px; 
+}
+
+.advanced-options-header {
+  cursor: pointer;
+  padding: 8px 10px;
+  background-color: gray;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.advanced-options-content {
+  overflow: hidden;
+  max-height: 500px; /* Large value to allow expansion */
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out, opacity 0.3s;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.advanced-options-content.hidden {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  border: none;
+}
+
+.advanced-option-label {
+  display: block; 
+  margin-bottom: 5px;
+  margin-left: 5px;
+  font-size: 0.9em;
+}

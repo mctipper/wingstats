@@ -1,4 +1,8 @@
-import { createDiceControl, createTargetFoodControl } from "@render";
+import {
+  createDiceControl,
+  createTargetFoodControl,
+  createAdvancedOptionsControl,
+} from "@render";
 import { createDiceTypeControl } from "./render/DiceTypeControl";
 
 // application version for sanity eyeballing
@@ -10,4 +14,5 @@ if (layoutRoot) {
   createDiceTypeControl();
   createDiceControl();
   createTargetFoodControl();
+  createAdvancedOptionsControl();
 }

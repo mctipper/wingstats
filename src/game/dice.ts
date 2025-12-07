@@ -1,42 +1,44 @@
-import { type Die, type Food } from "@customTypes";
+import { controlState } from "@state";
 
-export function probabilityOfSuccess(
-  die: Die,
-  numDice: number,
-  target: Set<Food>,
-  rerollWhenAllEqual: boolean
-): string {
-  if (numDice === 0 || target.size === 0) {
-    // basecase, no dice or no target food somehow
+export function probabilityOfSuccess(): string {
+  if (controlState.dieCount === 0 || controlState.selectedFoods.size === 0) {
+    // basecase, no dice or no controlState.selectedFoods food somehow
     return formatPercent(0);
   }
 
   // count matching faces
-  const matchingFaces = die.faces.filter((face) => {
+  const matchingFaces = controlState.die.faces.filter((face) => {
     const foods = Array.isArray(face) ? face : [face];
-    return foods.some((f) => target.has(f));
+    return foods.some((f) => controlState.selectedFoods.has(f));
   }).length;
 
-  const singleDieSuccess = matchingFaces / die.faces.length; // 6 faces
+  const singleDieSuccess = matchingFaces / controlState.die.faces.length; // 6 faces
 
   // normal probability
-  let overallSuccess = 1 - Math.pow(1 - singleDieSuccess, numDice);
+  let overallSuccess =
+    1 - Math.pow(1 - singleDieSuccess, controlState.dieCount);
 
-  // when permitted to reroll when 5 non-target die faces are rolled
-  if (numDice === 5 && rerollWhenAllEqual) {
-    // count non-target faces
-    const nonTargetFaces = die.faces.filter((face) => {
+  // when permitted to reroll when 5 non-controlState.selectedFoods die faces are rolled
+  if (
+    controlState.dieCount === 5 &&
+    controlState.advancedOptions.rerollWhenAllEqual
+  ) {
+    // count non-controlState.selectedFoods faces
+    const nonTargetFaces = controlState.die.faces.filter((face) => {
       const foods = Array.isArray(face) ? face : [face];
-      return foods.every((f) => !target.has(f));
+      return foods.every((f) => !controlState.selectedFoods.has(f));
     }).length;
 
-    // probability of all dice showing the same non-target face
+    // probability of all dice showing the same non-controlState.selectedFoods face
     const allEqualNonTarget =
-      nonTargetFaces / Math.pow(die.faces.length, numDice);
+      nonTargetFaces /
+      Math.pow(controlState.die.faces.length, controlState.dieCount);
 
     // remove this from failure probability
     overallSuccess =
-      1 - (Math.pow(1 - singleDieSuccess, numDice) - allEqualNonTarget);
+      1 -
+      (Math.pow(1 - singleDieSuccess, controlState.dieCount) -
+        allEqualNonTarget);
   }
 
   return formatPercent(overallSuccess);

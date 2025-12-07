@@ -106,12 +106,7 @@ export function updateResults(): void {
   // outputDiv: shows probability of success - how the will end up looking is a big fat TODO
   const outputDiv = document.createElement("div");
   outputDiv.className = "probability-div";
-  outputDiv.textContent = `Probability: ${probabilityOfSuccess(
-    controlState.die,
-    controlState.dieCount,
-    controlState.selectedFoods,
-    controlState.advancedOptions.rerollWhenAllEqual
-  )}`;
+  outputDiv.textContent = `Probability: ${probabilityOfSuccess()}`;
 
   resultsDiv.appendChild(inputDiv);
   resultsDiv.appendChild(outputDiv);
